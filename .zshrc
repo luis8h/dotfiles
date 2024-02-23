@@ -58,13 +58,14 @@ ZSH_THEME="pixegami-agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(
-#   git
-#   zsh-syntax-highlighting
-#   zsh-autosuggestions
-# )
-#
-# source $ZSH/oh-my-zsh.sh
+plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-vi-mode
+)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -103,4 +104,4 @@ alias vim=nvim
 alias vimk="nvim ~/kbase/"
 
 ### plugins
-source /home/luis8h/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source /home/luis8h/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
