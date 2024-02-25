@@ -56,12 +56,6 @@ export LC_ALL=en_US.UTF-8
 source $HOME/.profile
 source $HOME/.config/tmuxinator/tmuxinator.zsh
 
-if [ Darwin = `uname` ]; then
-  source $HOME/.profile-macOS
-elif [ Linux = `uname` ]; then
-  source $HOME/.profile-linux
-fi
-
 setopt auto_cd
 
 #export PATH="/usr/local/opt/curl/bin:$PATH"
@@ -72,9 +66,9 @@ export LD_LIBRARY_PATH=/usr/local/lib
 
 # Completions
 
-source <(doctl completion zsh)
+# source <(doctl completion zsh)
 
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
 # P10k customizations
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
