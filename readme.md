@@ -10,6 +10,9 @@
 -   `stow . -v --adopt`
 -   `git restore .`
 
+#### notes
+-   if tmux plugins not working delete plugin directory and run the install with prefix + I in tmux.conf again
+
 
 ### documentation / keybindings
 
