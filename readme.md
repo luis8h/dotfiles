@@ -12,6 +12,7 @@
 
 #### notes
 -   if tmux plugins not working delete plugin directory and run the install with prefix + I in tmux.conf again
+-   if local dns is not working disable ubuntu default dns server (bind9 doc)
 
 
 ### documentation / keybindings
