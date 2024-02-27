@@ -103,6 +103,10 @@ fi
 ### aliases
 alias vim=nvim
 alias vimk="nvim ~/kbase/"
+alias dco="docker-compose"
+alias gico="git commit -m"
+alias giad="git add ."
+alias gipu="git push"
 
 ### plugins
 # source /home/luis8h/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
