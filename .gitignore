@@ -1,1 +1,2 @@
 .config/tmux/plugins/
+.scripts/monitor-setup.sh

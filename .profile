@@ -42,3 +42,7 @@ if [ -f /opt/asdf-vm/asdf.sh ]; then
 
   # Insert autocompletion setup for your shell here.
 fi
+
+# run scripts
+sh ~/.scripts/monitor-setup.sh
+sh ~/.scripts/mousesettings.sh
