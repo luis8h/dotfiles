@@ -44,5 +44,10 @@ if [ -f /opt/asdf-vm/asdf.sh ]; then
 fi
 
 # run scripts
-sh ~/.scripts/monitor-setup.sh
-sh ~/.scripts/mousesettings.sh
+if [ -f "${HOME}/.scripts/monitor-setup.sh" ]; then
+    sh "${HOME}/.scripts/monitor-setup.sh" > /dev/null 2>&1
+fi
+
+if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
+    sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
+fi
