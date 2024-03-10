@@ -107,6 +107,11 @@ alias dco="docker-compose"
 alias gico="git commit -m"
 alias giad="git add ."
 alias gipu="git push"
+alias gitmp="sh ~/.scripts/tmp-commit.sh"
 
 ### plugins
 # source /home/luis8h/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
