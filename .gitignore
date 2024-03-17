@@ -1,2 +1,3 @@
 .config/tmux/plugins/
 .scripts/monitor-setup.sh
+.dotfiles-settings

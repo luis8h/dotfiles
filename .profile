@@ -43,11 +43,19 @@ if [ -f /opt/asdf-vm/asdf.sh ]; then
   # Insert autocompletion setup for your shell here.
 fi
 
-# run scripts
-if [ -f "${HOME}/.scripts/monitor-setup.sh" ]; then
-    sh "${HOME}/.scripts/monitor-setup.sh" > /dev/null 2>&1
+if [ -f "${HOME}/.dotfiles-settings" ]; then
+    source "${HOME}/.dotfiles-settings" ];
 fi
 
-if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
-    sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
+# run scripts
+if [ ${DEVICE} = "pc" ]; then
+    if [ -f "${HOME}/.scripts/monitor-setup.sh" ]; then
+        sh "${HOME}/.scripts/monitor-setup.sh" > /dev/null 2>&1
+    fi
+
+    if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
+        sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
+    fi
 fi
+
+
