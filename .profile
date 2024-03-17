@@ -1,4 +1,5 @@
 setxkbmap -layout us -option caps:escape
+# xmodmap -e 'keysym Alt_R = Multi_key'
 
 alias c="clear"
 alias vim='nvim'
@@ -44,7 +45,7 @@ if [ -f /opt/asdf-vm/asdf.sh ]; then
 fi
 
 if [ -f "${HOME}/.dotfiles-settings" ]; then
-    source "${HOME}/.dotfiles-settings" ];
+    source "${HOME}/.dotfiles-settings";
 fi
 
 # run scripts
@@ -55,6 +56,12 @@ if [ ${DEVICE} = "pc" ]; then
 
     if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
         sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
+    fi
+fi
+
+if [ ${DEVICE} = "yoga-laptop" ]; then
+    if [ -f "${HOME}/.scripts/mousesettings-laptop.sh" ]; then
+        sh "${HOME}/.scripts/mousesettings-laptop.sh" > /dev/null 2>&1
     fi
 fi
 
