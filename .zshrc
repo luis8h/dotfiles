@@ -114,4 +114,5 @@ alias gitmp="sh ~/.scripts/tmp-commit.sh"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# this line made problems when ng is not installed
+# source <(ng completion script)
