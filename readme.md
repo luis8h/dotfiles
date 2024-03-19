@@ -14,6 +14,12 @@
 -   if tmux plugins not working delete plugin directory and run the install with prefix + I in tmux.conf again
 -   if local dns is not working disable ubuntu default dns server (bind9 doc)
 
+### regolith customization
+To change a regolith keybinding look into `/usr/share/regolith/...`.
+There are several files which are all included by the main file.
+The variables in these files can be set via the `.config/i3/Xresources` file.
+For additional shortcuts just add to `.config/i3/regolith3/i3/config`.
+
 
 ### documentation / keybindings
 
