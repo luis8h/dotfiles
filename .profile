@@ -59,10 +59,10 @@ fi
 #     fi
 # fi
 #
-# if [ "${DEVICE}" = "yoga-laptop" ]; then
-#     if [ -f "${HOME}/.scripts/mousesettings-laptop.sh" ]; then
-#         sh "${HOME}/.scripts/mousesettings-laptop.sh" > /dev/null 2>&1
-#     fi
-# fi
+if [ "${DEVICE}" = "yoga-laptop" ]; then
+    if [ -f "${HOME}/.scripts/mousesettings-laptop.sh" ]; then
+        sh "${HOME}/.scripts/mousesettings-laptop.sh" > /dev/null 2>&1
+    fi
+fi
 
 
