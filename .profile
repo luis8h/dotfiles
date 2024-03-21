@@ -49,20 +49,20 @@ if [ -f "${HOME}/.dotfiles-settings" ]; then
 fi
 
 # run scripts
-if [ "${DEVICE}" = "pc" ]; then
-    if [ -f "${HOME}/.scripts/monitor-setup.sh" ]; then
-        sh "${HOME}/.scripts/monitor-setup.sh" > /dev/null 2>&1
-    fi
-
-    if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
-        sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
-    fi
-fi
-
-if [ "${DEVICE}" = "yoga-laptop" ]; then
-    if [ -f "${HOME}/.scripts/mousesettings-laptop.sh" ]; then
-        sh "${HOME}/.scripts/mousesettings-laptop.sh" > /dev/null 2>&1
-    fi
-fi
+# if [ "${DEVICE}" = "pc" ]; then
+#     if [ -f "${HOME}/.scripts/monitor-setup.sh" ]; then
+#         sh "${HOME}/.scripts/monitor-setup.sh" > /dev/null 2>&1
+#     fi
+#
+#     if [ -f "${HOME}/.scripts/mousesettings.sh" ]; then
+#         sh "${HOME}/.scripts/mousesettings.sh" > /dev/null 2>&1
+#     fi
+# fi
+#
+# if [ "${DEVICE}" = "yoga-laptop" ]; then
+#     if [ -f "${HOME}/.scripts/mousesettings-laptop.sh" ]; then
+#         sh "${HOME}/.scripts/mousesettings-laptop.sh" > /dev/null 2>&1
+#     fi
+# fi
 
 
