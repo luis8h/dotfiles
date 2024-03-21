@@ -116,3 +116,10 @@ alias gitmp="sh ~/.scripts/tmp-commit.sh"
 # Load Angular CLI autocompletion.
 # this line made problems when ng is not installed
 # source <(ng completion script)
+
+
+# zoxide initialization
+eval "$(zoxide init zsh)"
+alias cd=z
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
