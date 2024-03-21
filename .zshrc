@@ -119,7 +119,6 @@ alias gitmp="sh ~/.scripts/tmp-commit.sh"
 
 
 # zoxide initialization
-eval "$(zoxide init zsh)"
-alias cd=z
+eval "$(zoxide init --cmd cd zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
