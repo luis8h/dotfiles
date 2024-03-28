@@ -15,6 +15,8 @@
 -   if local dns is not working disable ubuntu default dns server (bind9 doc)
 -   mounting ntfs file system on linux: `/dev/nvme1n1p2 /mnt/data ntfs-3g rw 0 0` in /etc/fstab
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
+-   if markdown preview in nvim is not working just go to installation path of plugin
+    (probably: `~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim`) and run `npm install` manually
 
 ### regolith customization
 To change a regolith keybinding look into `/usr/share/regolith/...`.
