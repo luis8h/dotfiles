@@ -24,6 +24,12 @@ There are several files which are all included by the main file.
 The variables in these files can be set via the `.config/i3/Xresources` file.
 For additional shortcuts just add to `.config/i3/regolith3/i3/config`.
 
+changing wallpaper: probably in gnome tweaks
+changing look to dracula:
+-   `sudo apt install regolith-look-dracula -y`
+-   `regolith-look set dracula`
+-   to list all looks: regolith-look list
+
 
 ### documentation / keybindings
 
