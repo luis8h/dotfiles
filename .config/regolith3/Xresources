@@ -2,3 +2,5 @@ Xcursor.size: 8
 
 wm.binding.display: none
 wm.binding.launcher.app: d
+
+regolith.wallpaper.file: ./../../.wallpapers/bg1.jpg
