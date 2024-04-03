@@ -55,5 +55,10 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 
+-- for asymptote converting to pdf
+vim.keymap.set("n", "<leader>asy", "<cmd>w<CR>:!asy -f pdf %<CR>", { silent = true })
+
+
+
 -- vim.keymap.set("v", "<leader>c", [[:!cp '%:p' '%:p:h/%:t:r-copy.%:e']])
 
