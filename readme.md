@@ -17,6 +17,8 @@
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
 -   if markdown preview in nvim is not working just go to installation path of plugin
     (probably: `~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim`) and run `npm install` manually
+-   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
+-   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
 
 ### regolith customization
 To change a regolith keybinding look into `/usr/share/regolith/...`.
