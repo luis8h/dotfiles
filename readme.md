@@ -19,6 +19,7 @@
     (probably: `~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim`) and run `npm install` manually
 -   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
+-   if markdown preview is not working, just comment out the packer installation of the plugin, run `:so` and `:PackerSync` and then readded and install it again
 
 ### regolith customization
 To change a regolith keybinding look into `/usr/share/regolith/...`.
