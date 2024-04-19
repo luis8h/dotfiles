@@ -5,3 +5,12 @@ vim.filetype.add({
     asy = 'asy', -- This line adds a custom filetype for the extension .asy
   },
 })
+
+-- fix for terraform lsp working
+vim.filetype.add({
+    extensions = {
+        tf = "terraform",
+        tfvars = "terraform",
+        tfstate = "json",
+    },
+})
