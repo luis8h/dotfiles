@@ -76,12 +76,18 @@ return require('packer').startup(function(use)
 	  }
   }
 
+  -- puts current buffer into floating window
   use("folke/zen-mode.nvim")
-  use("github/copilot.vim")
+
+  -- useless but funny
+  -- :CellularAutomaton make_it_rain
+  -- :CellularAutomaton game_of_life
   use("eandrju/cellular-automaton.nvim")
+
+  -- can replace characters in view (.env file variables are shown as *****)
   use("laytan/cloak.nvim")
 
-  -- not from prime
+  -- navigation with tmux and nvim using <Ctrl>+<j,k,l,h>
   use("christoomey/vim-tmux-navigator")
 
   -- markdown preview
