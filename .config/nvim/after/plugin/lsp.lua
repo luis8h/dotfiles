@@ -25,9 +25,9 @@ lsp.ensure_installed({
   'csharp_ls',
   'jdtls',
   'pyright',
-  'pylsp',
+  -- 'pylsp',
   'terraformls',
-  'tflint',
+  -- 'tflint',
 })
 
 -- Fix Undefined global 'vim'
