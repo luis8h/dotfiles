@@ -14,9 +14,20 @@ vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
 lsp.preset("recommended")
 
+-- write mason plugins here to install them automaticly (:so after update)
+-- use grey word behind plugin in :Mason view
+-- only lsp, linter (maybe csharpier manual installation)
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
+  'pyright',
+  'angularls',
+  'csharp_ls',
+  'jdtls',
+  'pyright',
+  'pylsp',
+  'terraformls',
+  'tflint',
 })
 
 -- Fix Undefined global 'vim'
