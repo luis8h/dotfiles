@@ -1,0 +1,24 @@
+
+-- example how a configuration could look like, but defaults of pyiright are good for now
+
+-- local function on_attach(client, bufnr)
+--     print('attaching')
+-- end
+-- local lspconfig = require('lspconfig')
+-- lspconfig.pyright.setup {
+--     on_attach = on_attach,
+--     settings = {
+--         pyright = {autoImportCompletion = true,},
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 useLibraryCodeForTypes = true,
+--                 maxLineLength = nil,
+--                 ignore = {
+--                     "no-docstring-on-blank-line",
+--                     "trailing-whitespace"
+--                 }
+--             }
+--         }
+--     }
+-- }
