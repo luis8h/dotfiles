@@ -16,7 +16,6 @@ local lspconfig = require'lspconfig'
 local ltexls_enabled = false
 
 local function ltexls_setup()
-    print (ltexls_enabled)
     require('lspconfig').ltex.setup({
         on_attach = on_attach,
         settings = {
