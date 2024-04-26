@@ -14,9 +14,13 @@ local lspconfig = require'lspconfig'
 
 -- Define language specific configurations
 local ltex_language_settings = {
+    on_attach = on_attach,
     settings = {
         ltex = {
-            language = "en-US"
+            language = "en-US",
+            disabledRules = {
+                ['en-US'] = { 'PROFANITY', 'MORFOLOGIK_RULE_EN_US' } -- disable spell checker by default
+            }
         }
     }
 }
