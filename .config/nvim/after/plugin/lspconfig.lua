@@ -1,4 +1,32 @@
 
+-- Load LSP configuration
+local lspconfig = require'lspconfig'
+
+
+-------------------------------------------------------------------------------
+--- LATEX ---------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+-- change language per markdown file? - add following 3 lines on top in file
+--  ---
+--  lang: de-DE
+--  ---
+
+-- Define language specific configurations
+local ltex_language_settings = {
+    settings = {
+        ltex = {
+            language = "en-US"
+        }
+    }
+}
+lspconfig.ltex.setup(ltex_language_settings)
+
+
+
+
+
+
 -- example how a configuration could look like, but defaults of pyiright are good for now
 
 -- local function on_attach(client, bufnr)

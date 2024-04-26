@@ -122,5 +122,16 @@ return require('packer').startup(function(use)
         use("kristijanhusak/vim-dadbod-ui")
         use("kristijanhusak/vim-dadbod-completion")
 
+        -- latex
+        use({
+            "lervag/vimtex",
+            lazy = false,     -- we don't want to lazy load VimTeX
+            -- tag = "v2.15", -- uncomment to pin to a specific release
+            init = function()
+                -- VimTeX configuration goes here
+            end
+        })
+        use("icewind/ltex-client.nvim")
+
     end)
 
