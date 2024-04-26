@@ -131,7 +131,7 @@ return require('packer').startup(function(use)
                 -- VimTeX configuration goes here
             end
         })
-        use("icewind/ltex-client.nvim")
+        -- use("icewind/ltex-client.nvim")
 
     end)
 

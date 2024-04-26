@@ -12,19 +12,39 @@ local lspconfig = require'lspconfig'
 --  lang: de-DE
 --  ---
 
--- Define language specific configurations
-local ltex_language_settings = {
-    on_attach = on_attach,
-    settings = {
-        ltex = {
-            language = "en-US",
-            disabledRules = {
-                ['en-US'] = { 'PROFANITY', 'MORFOLOGIK_RULE_EN_US' } -- disable spell checker by default
+-- disable ltexls by default
+local ltexls_enabled = false
+
+local function ltexls_setup()
+    print (ltexls_enabled)
+    require('lspconfig').ltex.setup({
+        on_attach = on_attach,
+        settings = {
+            ltex = {
+                disabledRules = {
+                    -- ['en-US'] = { 'PROFANITY', 'MORFOLOGIK_RULE_EN_US', "UPPERCASE_SENTENCE_START", 'EN_A_VS_AN' }, -- disable spell checker by default
+                },
+                enabled = ltexls_enabled,
             }
         }
-    }
-}
-lspconfig.ltex.setup(ltex_language_settings)
+    })
+end
+
+local function toggle_ltexls()
+    if ltexls_enabled then
+        ltexls_enabled = false
+    else
+        ltexls_enabled = true
+    end
+
+    ltexls_setup()
+end
+
+ltexls_setup()
+vim.keymap.set("n", "<leader>ts", toggle_ltexls, { silent = true })
+
+
+
 
 
 
