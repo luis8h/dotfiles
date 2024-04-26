@@ -66,3 +66,6 @@ if [ "${DEVICE}" = "yoga-laptop" ]; then
 fi
 
 
+
+if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

@@ -62,6 +62,8 @@ setopt auto_cd
 #export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$PATH:/home/elliott/Library/flutter/bin"
 
+export PATH="$PATH:/home/luis8h/.local/share/bob/nvim-bin"
+
 alias sudo='sudo '
 export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -133,3 +135,5 @@ if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+
+if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
