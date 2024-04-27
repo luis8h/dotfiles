@@ -91,6 +91,7 @@ installation or config changes
     - ```<leader>``` space
     - ```<leader>u``` toggle undo tree
     - ```<leader>gs``` open git
+    - ```g then <Ctrl-g>``` shows word count (works also with selected text)
 - netrw file browser
     - ```%``` create file
     - ```d``` create directory
