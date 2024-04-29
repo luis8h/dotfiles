@@ -25,6 +25,7 @@ lsp.ensure_installed({
   'csharp_ls',
   'jdtls',
   'pyright',
+  'bufls',
   -- 'pylsp',
   'terraformls',
   -- 'tflint',
