@@ -128,6 +128,15 @@ installation or config changes
     - ```<C-f>``` search for project (tmux sessions)
     - ```<leader>-s``` replace current word
     - ```<leader>-x``` make file executable without quitting vim
+- spelling
+    - ```<leader>z``` enable spelling
+    - ```zde``` change spelllang to de
+    - ```zen``` change spelllang to en_us
+    - ```z=``` show list of correct spelled words
+    - ```zg``` add word to dictionary
+    - ```zG``` ignore word temporary
+    - ```[s``` go to previous mistake
+    - ```]s``` go to next mistake
 
 
 ##### commands

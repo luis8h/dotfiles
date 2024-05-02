@@ -55,6 +55,18 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 
+-- spelling
+vim.keymap.set("n", "<leader>z", function()
+    vim.cmd("setlocal spell")
+end)
+vim.keymap.set("n", "zde", function()
+    vim.cmd("setlocal spelllang=de")
+end)
+vim.keymap.set("n", "zen", function()
+    vim.cmd("setlocal spelllang=en_us")
+end)
+
+
 
 
 
