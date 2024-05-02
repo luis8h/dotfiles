@@ -29,7 +29,7 @@ lsp.ensure_installed({
   -- 'pylsp',
   'terraformls',
   -- 'tflint',
-  'ltex',
+  'texlab',
 })
 
 -- Fix Undefined global 'vim'
