@@ -122,6 +122,31 @@ installation or config changes
     - ```mr``` mark files/directories using regexp
     - ```mu``` unmark all marked files
     - ```mz``` toggle compression of marked files
+- surrounding
+    - note: replaces default keybind ```S``` with ```T```
+    - ```ysw(``` surround word with () (use <)> for no whitespaces)
+    - ```yss"``` surround current line with "
+    - ```T"``` surround selection with "
+    - ```ds"``` delete " surrounding (not in visual mode)
+    - ```cs"'``` change surrounding " to ' (not in visual mode)
+    - ```ysa"(``` surrounds with ( around "
+    - ```cst``` change html tag surrounding
+    - ```dst``` delete surrounding html tag
+    - ```yswf``` surrounds word with function (also possible in v mode with S) (c and d also possible to change/delete function)
+    - custom aliases: c = ```
+- treesj (expand code over multiple lines)
+    - ```mt``` toggle split
+    - ```ms``` split
+    - ```mj``` join
+    - ```Mt``` recursive toggle (also works with s and j
+- leap (better navigation)
+    - note: replaces ```s``` and ```S``` keybindings - possible equivalents:
+        - ```s``` = ```cl``` (or ```xi```)
+        - ```S``` = ```cc```
+        - ```v_s``` = ```v_c``` (v_ for stands for when being in visual mode)
+        - ```v_S``` = ```Vc```
+    - ```s``` search forward
+    - ```S``` search backwards
 - fuzzy finder
     - ```<leader>pf``` find files (all)
     - ```<C-p>``` find files (git)

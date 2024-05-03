@@ -133,5 +133,29 @@ return require('packer').startup(function(use)
         })
         -- use("icewind/ltex-client.nvim")
 
+        -- sorround highlighted text
+        -- note: removed config function because it set the S key and this was a problem with leap.nvim
+        -- setup functino is now called in after/plugin directory
+        use({
+            "kylechui/nvim-surround",
+            tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        })
+
+        -- toggle expand object over multiple lines
+        use({
+            'Wansmer/treesj',
+            requires = { 'nvim-treesitter/nvim-treesitter' },
+            config = function()
+                require('treesj').setup({--[[ your config ]]})
+            end,
+        })
+
+        -- leap to faster navigate using s (overrides default s)
+        use("ggandor/leap.nvim")
+
+
+
     end)
+
+
 
