@@ -99,6 +99,29 @@ installation or config changes
     - ```<leader>pv``` open file browser
     - ```<C-r>``` refresh directories
     - ```i``` change fire tree representation
+    - ```-``` go 1 directory back
+    - ```cd``` make browse directory current directory
+    - ```o``` enter file/directory in new window (horizontaly)
+    - ```v``` enter file/directory in new window (verticaly)
+    - ```t``` enter file/direcotry in new tab
+    - ```gt/gT``` go to next/previous tab
+- netrw hiding
+    - ```a``` toggle hide hidden directories (hiding list)
+    - ```gh``` toggle dot-files hiding
+- netrw bookmarks
+    - ```mb``` bookmark current directory
+    - ```gb``` go to last bookmarked directory
+    - ```qb``` show history/bookmars
+    - ```qf``` display file info
+- netrw marking
+    - ```mf``` mark file
+    - ```mf``` unmark files
+    - ```mc``` copy marked files to marked-file target directory
+    - ```mt``` current browsing directory becomes markfile target
+    - ```mm``` move marked files to target
+    - ```mr``` mark files/directories using regexp
+    - ```mu``` unmark all marked files
+    - ```mz``` toggle compression of marked files
 - fuzzy finder
     - ```<leader>pf``` find files (all)
     - ```<C-p>``` find files (git)
