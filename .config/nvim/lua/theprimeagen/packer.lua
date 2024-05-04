@@ -142,13 +142,14 @@ return require('packer').startup(function(use)
         })
 
         -- toggle expand object over multiple lines
-        use({
-            'Wansmer/treesj',
-            requires = { 'nvim-treesitter/nvim-treesitter' },
-            config = function()
-                require('treesj').setup({--[[ your config ]]})
-            end,
-        })
+        -- commented out because of keybind conflict (<leader>s)
+        -- use({
+        --     'Wansmer/treesj',
+        --     requires = { 'nvim-treesitter/nvim-treesitter' },
+        --     config = function()
+        --         require('treesj').setup({--[[ your config ]]})
+        --     end,
+        -- })
 
         -- leap to faster navigate using s (overrides default s)
         use("ggandor/leap.nvim")
