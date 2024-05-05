@@ -1,5 +1,6 @@
-require("theprimeagen.set")
-require("theprimeagen.remap")
+-- require("luis8h.lazy")
+require("luis8h.set")
+require("luis8h.remap")
 
 -- DO NOT INCLUDE THIS
 vim.opt.rtp:append("~/personal/streamer-tools")
