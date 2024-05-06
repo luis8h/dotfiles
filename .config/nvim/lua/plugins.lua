@@ -15,15 +15,6 @@ return {
         lazy = false,
     },
 
-    -- rose pine colorscheme
-    {
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    },
-
     -- shows code errors of file in a list
     {
         "folke/trouble.nvim",
@@ -54,7 +45,7 @@ return {
         "mbbill/undotree",
 
         -- running git commands in vim using :Git
-        "tpope/vim-fugitive",
+        -- "tpope/vim-fugitive",
 
         -- gues: keeps function name on top when scrolling
         "nvim-treesitter/nvim-treesitter-context",
@@ -95,7 +86,7 @@ return {
         "eandrju/cellular-automaton.nvim",
 
         -- can replace characters in view (.env file variables are shown as *****)
-        "laytan/cloak.nvim",
+        -- "laytan/cloak.nvim",
 
         -- navigation with tmux and nvim using <Ctrl>+<j,k,l,h>
         "christoomey/vim-tmux-navigator",
