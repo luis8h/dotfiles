@@ -25,5 +25,15 @@ return {
             },
         })
 
+        -- toggle all
+        vim.keymap.set("n", "<leader>cta", function()
+            vim.cmd("CloakToggle")
+        end)
+
+        -- show one line
+        vim.keymap.set("n", "<leader>cl", function()
+            vim.cmd("CloakPreviewLine")
+        end)
+
     end,
 }

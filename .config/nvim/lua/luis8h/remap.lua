@@ -2,6 +2,11 @@
 -- also set in lazy config
 vim.g.mapleader = " "
 
+
+-- select all
+vim.keymap.set("n", "==", "gg<S-v>G")
+
+
 -- open file explorer
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" }) -- for oil
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- for netrw

@@ -13,6 +13,7 @@ return {
             keymaps = {
                 ["<C-h>"] = false,
                 ["<C-l>"] = false,
+                ["<C-p>"] = false,
                 ["<C-r>"] = "actions.refresh",
             }
         })
