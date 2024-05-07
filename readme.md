@@ -15,23 +15,8 @@
 -   if local dns is not working disable ubuntu default dns server (bind9 doc)
 -   mounting ntfs file system on linux: `/dev/nvme1n1p2 /mnt/data ntfs-3g rw 0 0` in /etc/fstab
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
--   if markdown preview in nvim is not working just go to installation path of plugin
-    (probably: `~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim`) and run `npm install` manually
 -   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
--   if markdown preview is not working, just comment out the packer installation of the plugin, run `:so` and `:PackerSync` and then readded and install it again
-
-### regolith customization
-To change a regolith keybinding look into `/usr/share/regolith/...`.
-There are several files which are all included by the main file.
-The variables in these files can be set via the `.config/i3/Xresources` file.
-For additional shortcuts just add to `.config/i3/regolith3/i3/config`.
-
-changing wallpaper: probably in gnome tweaks
-changing look to dracula:
--   `sudo apt install regolith-look-dracula -y`
--   `regolith-look set dracula`
--   to list all looks: regolith-look list
 
 
 ### documentation / keybindings
@@ -196,3 +181,52 @@ installation or config changes
 
 
 
+### tmux plugin customization
+
+#### fzf-tmux
+
+**this is a github issue copy where fzf tmux customizatino is explained**
+
+This is a good idea, this feature is supported via 09e5e0b.
+
+Preselect session, window or pane
+Simply bind a key to execute the shell script
+
+bind-key "C-l" run-shell -b "/home/sainnhe/.tmux/plugins/tmux-fzf/scripts/session.sh"
+All available shell scripts can be found in /path/to/tmux-fzf/scripts.
+
+Preselect action
+Pass a parameter to the shell script:
+
+bind-key "C-l" run-shell -b "/home/sainnhe/.tmux/plugins/tmux-fzf/scripts/session.sh attach"
+Will execute attach session.
+
+Available actions:
+
+scripts/session.sh: attach, detach, rename, kill
+scripts/window.sh: switch, link, move, swap, rename, kill
+scripts/pane.sh: switch, break, join, swap, layout, kill, resize
+scripts/clipboard.sh: system, buffer
+scripts/process.sh: display, tree, terminate, kill, interrupt, continue, stop, quit, hangup
+Add frequently used actions to the user menu
+For example, in ~/.tmux.conf:
+
+TMUX_FZF_MENU=\
+"attach session\n/home/sainnhe/.tmux/plugins/tmux-fzf/scripts/session.sh attach\n"\
+"rename window\n/home/sainnhe/.tmux/plugins/tmux-fzf/scripts/window.sh rename\n"
+will add attach session and rename window to the user menu.
+
+or watch online [here](https://github.com/sainnhe/tmux-fzf/issues/6#issuecomment-578750879)
+
+
+### regolith customization
+To change a regolith keybinding look into `/usr/share/regolith/...`.
+There are several files which are all included by the main file.
+The variables in these files can be set via the `.config/i3/Xresources` file.
+For additional shortcuts just add to `.config/i3/regolith3/i3/config`.
+
+changing wallpaper: probably in gnome tweaks
+changing look to dracula:
+-   `sudo apt install regolith-look-dracula -y`
+-   `regolith-look set dracula`
+-   to list all looks: regolith-look list
