@@ -25,10 +25,6 @@ return {
         build = function() vim.fn["mkdp#util#install"]() end,
     },
 
-    "tpope/vim-dadbod",
-    "kristijanhusak/vim-dadbod-ui",
-    "kristijanhusak/vim-dadbod-completion",
-
     {
         "lervag/vimtex",
         lazy = false,     -- we don't want to lazy load VimTeX
