@@ -90,6 +90,7 @@ alias gico="git commit -m"
 alias giad="git add ."
 alias gipu="git push"
 alias gitmp="sh ~/.scripts/tmp-commit.sh"
+alias la="ls --color -a"
 
 # Keybinds
 bindkey "^P" up-line-or-beginning-search
