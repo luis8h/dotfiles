@@ -17,6 +17,7 @@
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
 -   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
+-   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
 
 
 ### documentation / keybindings
