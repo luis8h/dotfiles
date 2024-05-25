@@ -26,6 +26,10 @@ automaticly sourced in the `.profile` file. <br>
 An example would be the data directory which is needed for the nvim-telescope
 find files command.
 
+### how to setup autocleaning of downloads directory at startup
+-   `crontab -e` to access cron config file
+-   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
+
 ### documentation / keybindings
 
 #### i3
