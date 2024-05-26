@@ -135,7 +135,7 @@ installation or config changes
     - ```ms``` split
     - ```mj``` join
     - ```Mt``` recursive toggle (also works with s and j
-- leap (better navigation)
+- leap (better navigation) ---- replaced with flash.nvim
     - note: replaces ```s``` and ```S``` keybindings - possible equivalents:
         - ```s``` = ```cl``` (or ```xi```)
         - ```S``` = ```cc```

@@ -47,7 +47,7 @@ return {
         end, {})
 
         -- find directories in working dir
-        vim.keymap.set('n', '<leader>ds', function()
+        vim.keymap.set('n', '<leader>df', function()
             builtin.find_files({
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
