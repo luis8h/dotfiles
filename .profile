@@ -71,3 +71,5 @@ if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.n
 . "$HOME/.cargo/env"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
