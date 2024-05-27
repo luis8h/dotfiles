@@ -19,6 +19,16 @@
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
 
+### device specific configuration
+Device specific configuration like environment variables are set in the
+`.dotfiles-settings` file in the home directory. If existing, this file is
+automaticly sourced in the `.profile` file. <br>
+An example would be the data directory which is needed for the nvim-telescope
+find files command.
+
+### how to setup autocleaning of downloads directory at startup
+-   `crontab -e` to access cron config file
+-   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
 
 ### documentation / keybindings
 
@@ -125,7 +135,7 @@ installation or config changes
     - ```ms``` split
     - ```mj``` join
     - ```Mt``` recursive toggle (also works with s and j
-- leap (better navigation)
+- leap (better navigation) ---- replaced with flash.nvim
     - note: replaces ```s``` and ```S``` keybindings - possible equivalents:
         - ```s``` = ```cl``` (or ```xi```)
         - ```S``` = ```cc```
