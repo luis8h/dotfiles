@@ -92,6 +92,11 @@ alias gipu="git push"
 alias gitmp="sh ~/.scripts/tmp-commit.sh"
 alias la="ls --color -a"
 
+alias ..='cd ..'
+alias cd..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
 # Keybinds
 bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
