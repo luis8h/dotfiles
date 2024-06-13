@@ -10,6 +10,7 @@ return {
 
         require("oil").setup({
             default_file_explorer = true,
+            delete_to_trash = true,
             keymaps = {
                 ["<C-h>"] = false,
                 ["<C-l>"] = false,
