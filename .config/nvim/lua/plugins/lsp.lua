@@ -120,6 +120,31 @@ return {
             })
         })
 
+
+        local lspconfig = require('lspconfig')
+
+        -----------------------------------------------------------------------
+        -- opengl setup -------------------------------------------------------
+        -----------------------------------------------------------------------
+
+        -- Ensure correct filetype for .frag and .vert files
+        vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+            pattern = {"*.frag", "*.vert"},
+            callback = function()
+                vim.bo.filetype = "glsl"
+            end
+        })
+
+        lspconfig.glsl_analyzer.setup({
+            filetypes = {'glsl', 'vert', 'frag'},
+            on_attach = function(client, bufnr)
+                -- Custom keymaps or settings for this language server
+                local opts = { buffer = bufnr }
+                -- vim.keymap.set('n', '<leader>gf', vim.lsp.buf.definition, opts)
+                -- vim.keymap.set('n', '<leader>gh', vim.lsp.buf.hover, opts)
+            end,
+        })
+
     end,
 }
 
