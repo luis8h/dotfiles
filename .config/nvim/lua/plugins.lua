@@ -19,13 +19,6 @@ return {
     "christoomey/vim-tmux-navigator",
 
     {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
-
-    {
         "lervag/vimtex",
         lazy = false,     -- we don't want to lazy load VimTeX
         -- tag = "v2.15", -- uncomment to pin to a specific release
