@@ -91,7 +91,7 @@ return {
             builtin.find_files({
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
-                cwd = os.getenv('HOME')
+                cwd = os.getenv('HOME') .. '/Downloads'
             })
         end, {})
 
@@ -112,7 +112,15 @@ return {
 
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+        vim.keymap.set('n', '<leader>fgf', builtin.live_grep, {})
+
+        vim.keymap.set('n', '<leader>fga', function()
+            builtin.live_grep({
+                additional_args = function(opts)
+                    return { "--hidden" }
+                end
+            })
+        end, {})
 
         vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 
