@@ -21,16 +21,16 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- append line below
 vim.keymap.set("n", "J", "mzJ`z")
 
+-- keep window centered when scrolling (uncommented because of scrolloff=999 in set.lua)
+-- vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "n", "nzzzv")
+-- vim.keymap.set("n", "N", "Nzzzv")
 
--- when using C-u automaticly center vertically
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
-
--- when searching center vertically
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
+-- Copy file paths
+vim.keymap.set("n", "<leader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "Copy File Name" })
+vim.keymap.set("n", "<leader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
 
 -- replace selected text without overwriting clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -89,6 +89,16 @@ end)
 
 
 -- disable highlithing of search
-vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>");
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true });
 
+-- Stay in indent mode
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- go faster to end and beginning of line
+vim.keymap.set({"n", "o", "x"}, "<s-h>", "^", { desc = "Jump to beginning of line" })
+vim.keymap.set({"n", "o", "x"}, "<s-l>", "g_", { desc = "Jump to end of line" })
+
+-- Search for highlighted text in buffer
+vim.keymap.set("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
 

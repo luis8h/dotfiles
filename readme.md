@@ -7,6 +7,8 @@
 -   H and L for jumping to begin/end of line
 -   indenting in visual mode
 -   fugitive gs
+-   gitsigns (more view not do)
+-   neogit
 
 ### how to use?
 
