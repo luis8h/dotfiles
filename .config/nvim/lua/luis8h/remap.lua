@@ -88,3 +88,7 @@ vim.keymap.set("n", "zen", function()
 end)
 
 
+-- disable highlithing of search
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>");
+
+

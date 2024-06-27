@@ -8,6 +8,8 @@ return {
         lazy = false,
     },
 
+    "mg979/vim-visual-multi",
+
     "nvim-treesitter/nvim-treesitter-context",
 
     'mfussenegger/nvim-jdtls',
