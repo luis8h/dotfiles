@@ -1,6 +1,13 @@
 # dotfiles repo
 
 
+### new to learn/use
+-   neoclip
+-   `//` for searching after selected text
+-   H and L for jumping to begin/end of line
+-   indenting in visual mode
+-   fugitive gs
+
 ### how to use?
 
 #### installation
