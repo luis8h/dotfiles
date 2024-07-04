@@ -16,7 +16,7 @@ return {
         end, { silent = true })
 
         -- open floating oil buffer
-        vim.keymap.set("n", "<leader>pv", function()
+        vim.keymap.set("n", "<leader>of", function()
             local current_file_dir = vim.fn.expand('%:p:h')
             require('oil').open_float(current_file_dir)
         end, { silent = true })

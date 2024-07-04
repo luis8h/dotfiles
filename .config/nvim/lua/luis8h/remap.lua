@@ -33,12 +33,14 @@ vim.keymap.set("n", "<leader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "C
 vim.keymap.set("n", "<leader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
 
 -- replace selected text without overwriting clipboard
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>lp", [["_dP]])
 
-
--- yank into global register
+-- yank/paste into/from global register
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set({"n", "v"}, "<leader>p", [["+p]])
+vim.keymap.set("n", "<leader>P", [["+P]])
 
 
 -- deletes into _ register

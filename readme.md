@@ -1,5 +1,27 @@
 # dotfiles repo
 
+### macos notes
+
+#### modifier keys
+Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
+Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
+The following code block is used to achieve this:
+``` json
+"conditions": [
+    {
+        "bundle_identifiers": [
+            "^((?!net\\.kovidgoyal\\.kitty).)*$"
+        ],
+        "type": "frontmost_application_if"
+    }
+],
+```
+If another application should also be added just add it to the array. The name (bundle identifier) can be found out using this command: `osascript -e 'id of app "Application Name"'`.
+
+#### yabay/skhd
+start skhd: `skhd --restart-service`
+start skhd: `yabai --restart-service`
+
 
 ### new to learn/use
 -   neoclip

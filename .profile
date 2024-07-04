@@ -1,4 +1,3 @@
-setxkbmap -layout us -option caps:escape
 # xmodmap -e 'keysym Alt_R = Multi_key'
 
 alias c="clear"
@@ -52,10 +51,15 @@ if [ "${DEVICE}" = "yoga-laptop" ]; then
 fi
 
 
+# only if os is not macos
+if [ "$(uname)" != "Darwin" ]; then
+    setxkbmap -layout us -option caps:escape
 
-if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-. "$HOME/.cargo/env"
+    if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+    . "$HOME/.cargo/env"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+

@@ -20,6 +20,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
 
+ZVM_INIT_MODE=sourcing # very important fix for zsh vi mode working with tmux (resurect)
+
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
