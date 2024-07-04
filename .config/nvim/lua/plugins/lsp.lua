@@ -31,19 +31,17 @@ return {
         -- use grey word behind plugin in :Mason view
         -- only lsp, linter (maybe csharpier manual installation)
         lsp.ensure_installed({
-            'tsserver',
-            'rust_analyzer',
-            'pyright',
-            'angularls',
-            'csharp_ls',
-            'jdtls',
-            'pyright',
-            'bufls',
-            -- 'pylsp',
-            'terraformls',
-            -- 'tflint',
-            'texlab',
-            'lua_ls',
+            -- 'tsserver',
+            -- 'rust_analyzer',
+            -- 'pyright',
+            -- 'angularls',
+            -- 'csharp_ls',
+            -- 'jdtls',
+            -- 'pyright',
+            -- 'bufls',
+            -- 'terraformls',
+            -- 'texlab',
+            -- 'lua_ls',
         })
 
         -- Fix Undefined global 'vim'
