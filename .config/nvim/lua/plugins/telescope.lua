@@ -63,7 +63,7 @@ return {
         end, {})
 
         -- find all directories on system
-        vim.keymap.set('n', '<leader>da', function()
+        vim.keymap.set('n', '<leader>dr', function()
             builtin.find_files({
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
