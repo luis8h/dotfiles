@@ -1,6 +1,9 @@
 # dotfiles repo
 
-### macos notes
+## lsp configuration
+Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.
+
+## macos notes
 
 #### modifier keys
 Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
@@ -23,7 +26,7 @@ start skhd: `skhd --restart-service`
 start skhd: `yabai --restart-service`
 
 
-### new to learn/use
+## new to learn/use
 -   neoclip
 -   `//` for searching after selected text
 -   H and L for jumping to begin/end of line
@@ -32,7 +35,7 @@ start skhd: `yabai --restart-service`
 -   gitsigns (more view not do)
 -   neogit
 
-### how to use?
+## how to use?
 
 #### installation
 -   `sudo apt install stow build-essentials -y`
@@ -50,18 +53,18 @@ start skhd: `yabai --restart-service`
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
 
-### device specific configuration
+## device specific configuration
 Device specific configuration like environment variables are set in the
 `.dotfiles-settings` file in the home directory. If existing, this file is
 automaticly sourced in the `.profile` file. <br>
 An example would be the data directory which is needed for the nvim-telescope
 find files command.
 
-### how to setup autocleaning of downloads directory at startup
+## how to setup autocleaning of downloads directory at startup
 -   `crontab -e` to access cron config file
 -   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
 
-### documentation / keybindings
+## documentation / keybindings
 
 #### i3
 - ```leader``` alt
@@ -223,7 +226,7 @@ installation or config changes
 
 
 
-### tmux plugin customization
+## tmux plugin customization
 
 #### fzf-tmux
 
