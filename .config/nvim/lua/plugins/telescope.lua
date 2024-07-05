@@ -111,9 +111,9 @@ return {
 
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-        vim.keymap.set('n', '<leader>slf', builtin.live_grep, {})
+        vim.keymap.set('n', '<leader>lf', builtin.live_grep, {})
 
-        vim.keymap.set('n', '<leader>sla', function()
+        vim.keymap.set('n', '<leader>la', function()
             builtin.live_grep({
                 additional_args = function(opts)
                     return { "--hidden" }
@@ -121,7 +121,7 @@ return {
             })
         end, {})
 
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+        vim.keymap.set('n', '<leader>bf', builtin.buffers, {})
 
     end,
 }
