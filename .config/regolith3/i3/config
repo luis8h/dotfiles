@@ -155,7 +155,11 @@ for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
-bindsym $mod+m move workspace to output left
+bindsym $mod+m focus output left
+bindsym $mod+s focus output right
+
+bindsym $mod+shift+m move workspace to output left
+bindsym $mod+shift+s move workspace to output right
 
 bindsym $alt+shift+p exec shutter -s
 
