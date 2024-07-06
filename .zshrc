@@ -85,6 +85,33 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 
+## fuzzy switch directory
+cda() {
+    local dir
+    dir=$(fd --hidden --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+cdf() {
+    local dir
+    dir=$(fd --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+cdh() {
+    local dir
+    dir=$(fd --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+cdha() {
+    local dir
+    dir=$(fd --hidden --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+cdr() {
+    local dir
+    dir=$(fd --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+cdra() {
+    local dir
+    dir=$(fd --hidden --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+
+
 # Aliases
 alias ls='ls --color'
 alias vim='nvim'
@@ -96,7 +123,7 @@ alias gico="git commit -m"
 alias giad="git add ."
 alias gipu="git push"
 alias gitmp="sh ~/.scripts/tmp-commit.sh"
-alias la="ls --color -a"
+alias l="ls --color -a -l"
 
 alias ..='cd ..'
 alias cd..='cd ..'
