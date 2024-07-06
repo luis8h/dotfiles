@@ -143,9 +143,17 @@ include $HOME/.config/regolith3/common-wm/config.d/*
 include $HOME/.config/regolith3/i3/config.d/*
 
 
+# keybinds
+bindsym $mod+Shift+period exec systemctl suspend
 
+bindsym $mod+m focus output left
+bindsym $mod+s focus output right
 
+bindsym $mod+shift+m move workspace to output left
+# to bind this the suspend key must be changed which is set by regolith3 in the config file /usr/share/regolith/i3/config.d/55_session_keybindings
+# bindsym $mod+shift+s move workspace to output right
 
+bindsym $alt+shift+p exec shutter -s
 
 
 
@@ -154,15 +162,6 @@ include $HOME/.config/regolith3/i3/config.d/*
 for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text    indicator child_border
 for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
-
-bindsym $mod+m focus output left
-bindsym $mod+s focus output right
-
-bindsym $mod+shift+m move workspace to output left
-bindsym $mod+shift+s move workspace to output right
-
-bindsym $alt+shift+p exec shutter -s
-
 
 
 ### rose pine
