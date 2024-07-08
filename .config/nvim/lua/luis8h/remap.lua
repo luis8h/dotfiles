@@ -94,7 +94,7 @@ end)
 
 
 -- disable highlithing of search
-vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true });
+-- vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true });
 
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv")
