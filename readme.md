@@ -153,7 +153,7 @@ installation or config changes
     - ```mu``` unmark all marked files
     - ```mz``` toggle compression of marked files
 - surrounding
-    - note: replaces default keybind ```S``` with ```T```
+    - note: replaces default keybind ```S``` with ```Z```
     - ```ysw(``` surround word with () (use <)> for no whitespaces)
     - ```yss"``` surround current line with "
     - ```T"``` surround selection with "
