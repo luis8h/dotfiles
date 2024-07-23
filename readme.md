@@ -24,6 +24,7 @@ If another application should also be added just add it to the array. The name (
 #### yabay/skhd
 start skhd: `skhd --restart-service`
 start skhd: `yabai --restart-service`
+brew services start sketchybar
 
 
 ## new to learn/use
