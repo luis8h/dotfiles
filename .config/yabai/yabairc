@@ -35,4 +35,4 @@ yabai -m signal --add event=window_destroyed action="yabai -m query --windows --
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 
 # sketchybar
-# yabai -m config external_bar all:32:0
+yabai -m config external_bar all:32:0
