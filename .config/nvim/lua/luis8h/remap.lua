@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 
 -- make it rain automaton
-vim.keymap.set("n", "<leader>amr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 
 -- spelling
@@ -112,5 +112,5 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>aw", "<cmd>wa<CR>")
 
 -- go to last buffer
-vim.keymap.set("n", "<leader>m", "<cmd>e #<cr>", { desc = "Switch to last buffer" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>e #<cr>", { desc = "Switch to last buffer" })
 

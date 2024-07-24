@@ -33,3 +33,11 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.g.netrw_bufsettings = "noma nomod nu rnu"
+
+-- enable highlighting of cursorline
+vim.o.cursorline = true
+-- Customize the appearance of the cursor line
+-- vim.cmd [[
+-- highlight CursorLine cterm=NONE ctermbg=darkgrey guibg=lightgrey
+-- ]]
+

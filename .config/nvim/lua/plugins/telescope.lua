@@ -45,8 +45,16 @@ return {
             end
         end, {})
 
-        -- find directories in working dir
+        -- find directories in working dir (no hidden)
         vim.keymap.set('n', '<leader>df', function()
+            builtin.find_files({
+                prompt_title = "Find Directories",
+                find_command = { "fd", "--type", "d", "--follow", "." },
+            })
+        end, {})
+
+        -- find directories in working dir (including hidden)
+        vim.keymap.set('n', '<leader>da', function()
             builtin.find_files({
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },

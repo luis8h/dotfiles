@@ -8,11 +8,12 @@ return {
         lazy = false,
     },
 
-    "mg979/vim-visual-multi",
-
     "nvim-treesitter/nvim-treesitter-context",
 
     'mfussenegger/nvim-jdtls',
+
+    -- bind9 dns syntax highlighting
+    "egberts/vim-syntax-bind-named",
 
     -- :CellularAutomaton make_it_rain
     -- :CellularAutomaton game_of_life
