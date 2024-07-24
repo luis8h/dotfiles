@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 
 -- make it rain automaton
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set("n", "<leader>amr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 
 -- spelling
@@ -107,6 +107,10 @@ vim.keymap.set({"n", "o", "x"}, "<s-l>", "g_", { desc = "Jump to end of line" })
 -- Search for highlighted text in buffer
 vim.keymap.set("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
 
--- safe file
+-- save file
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>aw", "<cmd>wa<CR>")
+
+-- go to last buffer
+vim.keymap.set("n", "<leader>m", "<cmd>e #<cr>", { desc = "Switch to last buffer" })
+
