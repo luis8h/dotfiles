@@ -1,9 +1,18 @@
 
--- vim.filetype.add({
---   extension = {
---     frag = 'vs', -- This line adds a custom filetype for the extension .asy
---   },
--- })
+-------------------------------------------------------------------------------
+--- MARKDOWN ------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+local function detatch_ufo()
+    vim.opt.linebreak = true
+    vim.opt.wrap = true
+    vim.cmd('UfoDetach')
+end
+
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+    pattern = '*.md',
+    callback = detatch_ufo
+})
 
 
 -------------------------------------------------------------------------------

@@ -29,12 +29,10 @@ brew services start sketchybar
 
 ## new to learn/use
 -   neoclip
--   `//` for searching after selected text
--   H and L for jumping to begin/end of line
--   indenting in visual mode
--   fugitive gs
--   gitsigns (more view not do)
--   neogit
+-   outline nvim
+-   C-T/D/U in insert mode to indent
+-   folding zR zr zM zm tab zc ...
+-   more sorround keybinds
 
 ## how to use?
 

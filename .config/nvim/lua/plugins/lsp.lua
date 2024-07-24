@@ -42,6 +42,7 @@ return {
             -- 'terraformls',
             -- 'texlab',
             -- 'lua_ls',
+            -- 'marksman',
         })
 
         -- Fix Undefined global 'vim'

@@ -34,6 +34,10 @@ vim.opt.colorcolumn = "80"
 
 vim.g.netrw_bufsettings = "noma nomod nu rnu"
 
+-- folds
+-- vim.opt.nofoldenabled = true
+-- vim.opt.foldlevelstart = 99
+
 -- enable highlighting of cursorline
 vim.o.cursorline = true
 -- Customize the appearance of the cursor line
