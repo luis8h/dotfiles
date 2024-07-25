@@ -16,6 +16,9 @@ vim.g.maplocalleader = " "
 
 vim.g.markdown_folding = 1
 
+-- fix for colorizer plugin throwing an error at startup
+vim.opt.termguicolors = true
+
 require("lazy").setup("plugins", {
   change_detection = {
     notify = false,
