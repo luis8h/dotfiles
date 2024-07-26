@@ -5,6 +5,6 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
         require("colorizer").setup()
-        vim.keymap.set("n", "<leader>co", "<cmd>ColorizerToggle<cr>", { desc = "toggle colorizer" });
+        vim.keymap.set("n", "<leader>cs", "<cmd>ColorizerToggle<cr>", { desc = "toggle colorizer" });
     end,
 }

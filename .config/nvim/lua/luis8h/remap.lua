@@ -127,3 +127,9 @@ vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and 
 vim.keymap.set("i", ",", ",<c-g>u")
 vim.keymap.set("i", ".", ".<c-g>u")
 vim.keymap.set("i", ";", ";<c-g>u")
+
+-- navigate quickfix list
+vim.keymap.set("n", "<leader>co", "<cmd>copen<cr>", { desc = "open quickfix list" })
+vim.keymap.set("n", "<leader>cc", "<cmd>cclose<cr>", { desc = "close quickfix list" })
+vim.keymap.set("n", "<leader>cj", "<cmd>cnext<cr>", { desc = "quickfix list next" })
+vim.keymap.set("n", "<leader>ck", "<cmd>cprev<cr>", { desc = "quickfix list prev" })
