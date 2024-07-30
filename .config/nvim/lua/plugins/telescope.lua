@@ -45,6 +45,19 @@ return {
             end
         end, {})
 
+        -- find files in kbase directory (only if env variable is set)
+        vim.keymap.set('n', '<leader>ba', function()
+            local kbase_dir = os.getenv('KBASE_DIR')
+            if kbase_dir then
+                builtin.find_files({
+                    hidden = true, -- Include hidden files
+                    cwd = kbase_dir,
+                })
+            else
+                print("Environment variable KBASE_DIR is not set. (view readme for more info)")
+            end
+        end, {})
+
         -- find directories in working dir (no hidden)
         vim.keymap.set('n', '<leader>df', function()
             builtin.find_files({

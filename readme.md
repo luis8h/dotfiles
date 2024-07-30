@@ -4,7 +4,6 @@
 Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.
 
 ## macos notes
-
 #### modifier keys
 Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
 Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
@@ -35,7 +34,6 @@ brew services start sketchybar
 -   more sorround keybinds
 
 ## how to use?
-
 #### installation
 -   `sudo apt install stow build-essentials -y`
 -   `git clone https://github.com/luis8h/dotfiles.git ~/dotfiles`
@@ -58,13 +56,19 @@ Device specific configuration like environment variables are set in the
 automaticly sourced in the `.profile` file. <br>
 An example would be the data directory which is needed for the nvim-telescope
 find files command.
+**example:**
+```shell
+export "DATA_DIR"="/mnt/data"
+export "KBASE_DIR"="/mnt/data/kbase"
+```
+
 
 ## how to setup autocleaning of downloads directory at startup
 -   `crontab -e` to access cron config file
 -   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
 
-## documentation / keybindings
 
+## documentation / keybindings
 #### i3
 - ```leader``` alt
 - ```leader + shift + o``` cycle workspace between monitors

@@ -15,6 +15,16 @@ return {
             require('oil').open(downloads_dir)
         end, { silent = true })
 
+        -- open kbase dir
+        vim.keymap.set("n", "<leader>bk", function()
+            local kbase_dir = os.getenv("KBASE_DIR")
+            if kbase_dir then
+                require('oil').open(kbase_dir)
+            else
+                print("Environment variable KBASE_DIR is not set. (view readme for more info")
+            end
+        end, { silent = true })
+
         -- open floating oil buffer
         vim.keymap.set("n", "<leader>of", function()
             local current_file_dir = vim.fn.expand('%:p:h')
