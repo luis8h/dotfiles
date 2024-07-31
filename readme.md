@@ -58,6 +58,7 @@ An example would be the data directory which is needed for the nvim-telescope
 find files command.
 **example:**
 ```shell
+export DEVICE=yoga-laptop
 export "DATA_DIR"="/mnt/data"
 export "KBASE_DIR"="/mnt/data/kbase"
 ```
