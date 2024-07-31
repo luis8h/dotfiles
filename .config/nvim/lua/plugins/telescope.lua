@@ -46,7 +46,7 @@ return {
         end, {})
 
         -- find files in kbase directory (only if env variable is set)
-        vim.keymap.set('n', '<leader>ba', function()
+        vim.keymap.set('n', '<leader>fb', function()
             local kbase_dir = os.getenv('KBASE_DIR')
             if kbase_dir then
                 builtin.find_files({
