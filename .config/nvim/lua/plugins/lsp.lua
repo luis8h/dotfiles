@@ -41,23 +41,25 @@ return {
             -- 'bufls',
             -- 'terraformls',
             -- 'texlab',
-            -- 'lua_ls',
+            'lua_ls',
             -- 'marksman',
         })
 
         -- Fix Undefined global 'vim'
         lsp.nvim_workspace()
 
+        -- cmp setup
         local cmp = require('cmp')
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
         local cmp_mappings = lsp.defaults.cmp_mappings({
-            ["<CR>"] = cmp.config.disable,
+            ["<CR>"] = cmp.config.disable, -- disabled
             ["<C-p>"] = cmp.mapping.select_prev_item(),
             ["<C-n>"] = cmp.mapping.select_next_item(),
             ["<C-e>"] = cmp.mapping.abort(),
             ["<C-y>"] = cmp.mapping.confirm(),
         })
 
+        -- disabling keymaps
         cmp_mappings['<Tab>'] = nil
         cmp_mappings['<S-Tab>'] = nil
 
@@ -75,6 +77,7 @@ return {
             }
         })
 
+        -- keybinds
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
@@ -128,6 +131,12 @@ return {
                     plugins = {
                         pycodestyle = {
                             ignore = {'E501'},
+                        },
+                        rope_autoimport = {
+                            enabled = true
+                        },
+                        rope_completion = {
+                            enabled = true
                         }
                     }
                 }
