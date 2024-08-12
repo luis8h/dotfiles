@@ -5,6 +5,8 @@ export WHITE=0xffffffff
 # -- Cattpucchine Scheme --
 export BAR_COLOR=0xff1e1e2e
 export ITEM_BG_COLOR=0
+# export ITEM_HIGHLIGHT_COLOR=0xff6c7086
+# export ITEM_HIGHLIGHT_COLOR=0xffb4befe
 export ACCENT_COLOR=0xfffab387
 export DISPLAY_COLORS=("0xff94e2d5", "0xfffab387", "0xffa6e3a1", "0xffcba6f7")
 
