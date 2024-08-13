@@ -7,17 +7,35 @@ export DISPLAY_COLORS=("0xff94e2d5", "0xfffab387", "0xffa6e3a1", "0xffcba6f7")
 
 window_count=$(aerospace list-windows --workspace "$1" | wc -l)
 
-for monitor in $(aerospace list-monitors | awk '{print $1}'); do
-    for ws in $(aerospace list-workspaces --monitor "$monitor"); do
-        if [ "$ws" == "$1" ]; then
-            monitor_id="$monitor"
-            break
-        fi
-    done
-    if [ -n "$monitor_id" ]; then
-        break
-    fi
-done
+# # showing displays with different colors (very slow...)
+# for monitor in $(aerospace list-monitors | awk '{print $1}'); do
+#     for ws in $(aerospace list-workspaces --monitor "$monitor"); do
+#         if [ "$ws" == "$1" ]; then
+#             monitor_id="$monitor"
+#             break
+#         fi
+#     done
+#     if [ -n "$monitor_id" ]; then
+#         break
+#     fi
+# done
+
+
+# # Alternative but also slow
+# workspace_ids=()
+# monitor_ids=()
+# for monitor in $(aerospace list-monitors | awk '{print $1}'); do
+#     for workspace in $(aerospace list-workspaces --monitor $monitor --format "%{workspace}"); do
+#         workspace_ids+=("$workspace")
+#         monitor_ids+=("$monitor")
+#     done
+# done
+# for i in "${!workspace_ids[@]}"; do
+#     if [ ${workspace_ids[$i]} == $1 ]; then
+#         monitor_id=${monitor_ids[$i]}
+#         break;
+#     fi
+# done
 
 
 if [ "$window_count" -eq 0 ]; then
@@ -25,7 +43,7 @@ if [ "$window_count" -eq 0 ]; then
 else
     sketchybar --set $NAME \
         display=1 \
-        background.border_color=${DISPLAY_COLORS[$monitor_id - 1]} \
+        # background.border_color=${DISPLAY_COLORS[$monitor_id - 1]} \
 
 fi
 
