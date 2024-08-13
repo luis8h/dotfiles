@@ -8,7 +8,7 @@ export ITEM_BG_COLOR=0
 # export ITEM_HIGHLIGHT_COLOR=0xff6c7086
 # export ITEM_HIGHLIGHT_COLOR=0xffb4befe
 export ACCENT_COLOR=0xfffab387
-export DISPLAY_COLORS=("0xff94e2d5", "0xfffab387", "0xffa6e3a1", "0xffcba6f7")
+export DISPLAY_COLORS=("0xff94e2d5", "0xfffab387", "0xffa6e3a1", "0xffcba6f7") # somehow not working (need to change manually in aerospace.sh)
 
 # -- Teal Scheme --
 # export BAR_COLOR=0xff001f30
