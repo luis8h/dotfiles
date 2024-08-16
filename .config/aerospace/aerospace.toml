@@ -6,6 +6,9 @@ after-login-command = []
 # Run Sketchybar together with AeroSpace
 # sketchbar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
+
+# NOTE: for sketchybar to work: enable `desktop & dock -> displays have separate spaces` in system settings
+
 # after-startup-command = ['exec-and-forget sketchybar'] # sketchybar disabled currently because of bad performance
 
 # Notify Sketchybar about workspace change

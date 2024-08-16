@@ -20,6 +20,9 @@ The following code block is used to achieve this:
 ```
 If another application should also be added just add it to the array. The name (bundle identifier) can be found out using this command: `osascript -e 'id of app "Application Name"'`.
 
+#### sketchybar
+For sketchybar to work: enable `desktop & dock -> displays have separate spaces` in system settings of macos. **(possibly disabled because of aerospace)**
+
 #### yabay/skhd
 start skhd: `skhd --restart-service`
 start skhd: `yabai --restart-service`
