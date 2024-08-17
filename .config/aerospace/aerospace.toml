@@ -62,11 +62,11 @@ on-focus-changed = "move-mouse window-lazy-center"
 # outer.top =        0
 # outer.right =      0
 
-# for builting the gap is 0 because of the notch
-gaps.outer.top = [
-    { monitor."built-in" = 0 },
-    37,
-]
+# for builting the gap is 0 because of the notch (disabled because of sketchybar not active)
+# gaps.outer.top = [
+#     { monitor."built-in" = 0 },
+#     37,
+# ]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
