@@ -34,6 +34,9 @@ vim.opt.colorcolumn = "80"
 
 vim.g.netrw_bufsettings = "noma nomod nu rnu"
 
+-- enable autoread, so changes of other programs on a file will be applied automaticly
+vim.opt.autoread = true
+
 -- enable highlighting of cursorline
 vim.o.cursorline = true
 -- Customize the appearance of the cursor line
