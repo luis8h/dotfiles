@@ -3,26 +3,25 @@ return {
     branch = 'v1.x',
     dependencies = {
         -- LSP Support
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
 
         -- Autocompletion
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-buffer'},
-        {'hrsh7th/cmp-path'},
-        {'saadparwaiz1/cmp_luasnip'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/cmp-nvim-lua'},
-        {'hrsh7th/cmp-cmdline'},
-        {"kristijanhusak/vim-dadbod-completion"},
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/cmp-cmdline' },
+        { "kristijanhusak/vim-dadbod-completion" },
 
         -- Snippets
-        {'L3MON4D3/LuaSnip'},
-        {'rafamadriz/friendly-snippets'},
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
     },
     config = function()
-
         local lsp = require("lsp-zero")
 
         lsp.preset("recommended")
@@ -43,6 +42,7 @@ return {
             -- 'texlab',
             'lua_ls',
             -- 'marksman',
+            -- 'black',
         })
 
         -- Fix Undefined global 'vim'
@@ -50,7 +50,7 @@ return {
 
         -- cmp setup
         local cmp = require('cmp')
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local cmp_select = { behavior = cmp.SelectBehavior.Select }
         local cmp_mappings = lsp.defaults.cmp_mappings({
             ["<CR>"] = cmp.config.disable, -- disabled
             ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -88,6 +88,18 @@ return {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end)
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
+        vim.keymap.set("n", "<leader>vff", function() vim.lsp.buf.format({ async = true }) end)
+        vim.keymap.set("v", "<leader>vfr", function()
+            vim.lsp.buf.format({
+                async = true,
+                range = {
+                    ['start'] = vim.api.nvim_buf_get_mark(0, "<"),
+                    ['end'] = vim.api.nvim_buf_get_mark(0, ">"),
+                }
+            })
+        end)
+
+
 
         lsp.setup()
 
@@ -125,12 +137,15 @@ return {
         -----------------------------------------------------------------------
         -- python lsp ---------------------------------------------------------
         -----------------------------------------------------------------------
-        require'lspconfig'.pylsp.setup{
+        require 'lspconfig'.pylsp.setup {
             settings = {
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            ignore = {'E501'},
+                            ignore = { 'E501' },
+                        },
+                        black = {
+                            enabled = true
                         },
                         rope_autoimport = {
                             enabled = true
@@ -148,15 +163,15 @@ return {
         -----------------------------------------------------------------------
 
         -- Ensure correct filetype for .frag and .vert files
-        vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-            pattern = {"*.frag", "*.vert"},
+        vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+            pattern = { "*.frag", "*.vert" },
             callback = function()
                 vim.bo.filetype = "glsl"
             end
         })
 
         lspconfig.glsl_analyzer.setup({
-            filetypes = {'glsl', 'vert', 'frag'},
+            filetypes = { 'glsl', 'vert', 'frag' },
             on_attach = function(client, bufnr)
                 -- Custom keymaps or settings for this language server
                 local opts = { buffer = bufnr }
@@ -164,7 +179,5 @@ return {
                 -- vim.keymap.set('n', '<leader>gh', vim.lsp.buf.hover, opts)
             end,
         })
-
     end,
 }
-
