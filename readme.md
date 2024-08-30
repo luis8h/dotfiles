@@ -1,7 +1,7 @@
 # dotfiles repo
 
 ## manual setup
-For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope etc.
+For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope, ruff, flake, isort etc.
 
 ## lsp configuration
 Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.

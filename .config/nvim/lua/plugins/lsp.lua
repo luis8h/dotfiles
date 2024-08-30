@@ -143,22 +143,34 @@ return {
             settings = {
                 pylsp = {
                     plugins = {
-                        pycodestyle = {
-                            ignore = { 'E501' },
-                        },
-                        black = {
-                            enabled = true
-                        },
-                        rope_autoimport = {
-                            enabled = true
-                        },
-                        rope_completion = {
-                            enabled = true
-                        },
-                        pylsp_mypy = {
+                        -- formatter options
+                        black = { enabled = true },
+                        autopep8 = { enabled = false },
+                        yapf = { enabled = false },
+                        -- linter options
+                        pylint = {
                             enabled = true,
-                            live_mode = true  -- Optionally, you can disable live mode if it is too slow
+                            executable = "pylint",
+                            args = {
+                                "--max-line-length=99",
+                                "--disable=missing-module-docstring",
+                                "--disable=missing-function-docstring",
+                                "--disable=line-too-long",
+                            },
                         },
+                        flake8 = {
+                            enabled = true,
+                            maxLineLength = 99,
+                            ignore = {"E501"},
+                        },
+                        pyflakes = { enabled = false },
+                        pycodestyle = { enabled = false },
+                        -- type checker
+                        pylsp_mypy = { enabled = true },
+                        -- auto-completion options
+                        jedi_completion = { fuzzy = true },
+                        -- import sorting
+                        pyls_isort = { enabled = true },
                     }
                 }
             }
