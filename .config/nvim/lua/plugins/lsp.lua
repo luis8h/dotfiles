@@ -43,6 +43,8 @@ return {
             'lua_ls',
             -- 'marksman',
             -- 'black',
+            -- 'ruff',
+            -- 'mypy',
         })
 
         -- Fix Undefined global 'vim'
@@ -152,7 +154,11 @@ return {
                         },
                         rope_completion = {
                             enabled = true
-                        }
+                        },
+                        pylsp_mypy = {
+                            enabled = true,
+                            live_mode = true  -- Optionally, you can disable live mode if it is too slow
+                        },
                     }
                 }
             }
