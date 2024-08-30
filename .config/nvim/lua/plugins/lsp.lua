@@ -155,6 +155,7 @@ return {
                                 "--max-line-length=99",
                                 "--disable=missing-module-docstring",
                                 "--disable=missing-function-docstring",
+                                "--disable=missing-class-docstring",
                                 "--disable=line-too-long",
                             },
                         },
