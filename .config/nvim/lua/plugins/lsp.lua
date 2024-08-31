@@ -150,13 +150,15 @@ return {
                         -- linter options
                         pylint = {
                             enabled = true,
-                            executable = "pylint",
+                            -- executable = "pylint",
                             args = {
                                 "--max-line-length=99",
                                 "--disable=missing-module-docstring",
                                 "--disable=missing-function-docstring",
                                 "--disable=missing-class-docstring",
                                 "--disable=line-too-long",
+                                "--disable=import-error",
+                                "--disable=relative-beyond-top-level",
                             },
                         },
                         flake8 = {
@@ -167,7 +169,11 @@ return {
                         pyflakes = { enabled = false },
                         pycodestyle = { enabled = false },
                         -- type checker
-                        pylsp_mypy = { enabled = true },
+                        pylsp_mypy = {
+                            enabled = true,
+                            report_progress = true,
+                            overrides = {"--ignore-missing-imports", "--disable-error-code=import-untyped", true}
+                        },
                         -- auto-completion options
                         jedi_completion = { fuzzy = true },
                         -- import sorting
