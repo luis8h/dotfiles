@@ -23,6 +23,34 @@ The following code block is used to achieve this:
 ```
 If another application should also be added just add it to the array. The name (bundle identifier) can be found out using this command: `osascript -e 'id of app "Application Name"'`.
 
+#### clean downloads script
+-   add the file `~/Library/LaunchAgents/com.luis8h.cleandownloads.plist` with the following content:
+    ``` xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.luis8h.cleandownloads</string>
+
+        <key>ProgramArguments</key>
+        <array>
+            <string>~/dotfiles/.scripts/clean-downloads-macos-wrapper.sh</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true/>
+
+        <key>StandardOutPath</key>
+        <string>/tmp/clean-downloads.log</string>
+
+        <key>StandardErrorPath</key>
+        <string>/tmp/clean-downloads.error</string>
+    </dict>
+    </plist>
+
+    ```
+
 #### sketchybar
 For sketchybar to work: enable `desktop & dock -> displays have separate spaces` in system settings of macos. **(possibly disabled because of aerospace)**
 

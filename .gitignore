@@ -1,4 +1,5 @@
 .config/tmux/plugins/
 .scripts/monitor-setup.sh
 .dotfiles-settings
-./.config/nvim/lazy-lock.json
+.scripts/.last-clean-download-run
+logs/
