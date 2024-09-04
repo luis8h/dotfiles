@@ -159,6 +159,7 @@ return {
                                 "--disable=line-too-long",
                                 "--disable=import-error",
                                 "--disable=relative-beyond-top-level",
+                                "--disable=unused-argument",
                             },
                         },
                         flake8 = {

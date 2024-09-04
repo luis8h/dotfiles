@@ -38,13 +38,13 @@ vim.keymap.set("n", "<leader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = 
 -- replace selected text without overwriting clipboard
 vim.keymap.set("x", "<leader>lp", [["_dP]])
 
--- yank/paste into/from global register
+-- yank into global register
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>p", [["+p]])
-vim.keymap.set("n", "<leader>P", [["+P]])
-
+-- paste last copied text
+vim.keymap.set({"n", "v"}, "<leader>p", [["0p]])
+vim.keymap.set({"n", "v"}, "<leader>P", [["0P]])
 
 -- deletes into _ register
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
