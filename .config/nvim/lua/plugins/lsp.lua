@@ -149,7 +149,7 @@ return {
                         yapf = { enabled = false },
                         -- linter options
                         pylint = {
-                            enabled = true,
+                            enabled = false,
                             -- executable = "pylint",
                             args = {
                                 "--max-line-length=99",
