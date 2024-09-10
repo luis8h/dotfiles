@@ -144,7 +144,10 @@ return {
                 pylsp = {
                     plugins = {
                         -- formatter options
-                        black = { enabled = true },
+                        black = {
+                            enabled = true,
+                            line_length = 99
+                        },
                         autopep8 = { enabled = false },
                         yapf = { enabled = false },
                         -- linter options
