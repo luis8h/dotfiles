@@ -4,27 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "only kitty: remap command to control",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^net\\.kovidgoyal\\.kitty$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": { "key_code": "left_command" },
-                                "to": [{ "key_code": "left_control" }],
-                                "type": "basic"
-                            }
-                        ],
-                        "title": "Change control and Fn + letter keys to command and control keys"
-                    },
-                    {
-                        "description": "old - turned off: remap control to command everywhere but in kitty. when this is enabled the simple modifications maybe need to be adjusted",
-                        "enabled": false,
+                        "description": "Change left_control + letter to left_command + letter",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -100,14 +80,6 @@
                 {
                     "from": { "key_code": "caps_lock" },
                     "to": [{ "key_code": "escape" }]
-                },
-                {
-                    "from": { "key_code": "left_control" },
-                    "to": [{ "key_code": "left_command" }]
-                },
-                {
-                    "from": { "key_code": "left_command" },
-                    "to": [{ "key_code": "left_control" }]
                 }
             ]
         }
