@@ -1,7 +1,6 @@
-# xmodmap -e 'keysym Alt_R = Multi_key'
-
 alias c="clear"
 alias vim='nvim'
+alias vimo='vim'
 alias ls='ls --color=auto'
 
 export EDITOR="nvim"
@@ -9,10 +8,6 @@ export SHELL="zsh"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/sbin"
-
-# docker_rm_stopped() {
-#   docker rm $(docker ps -a -q)
-# }
 
 if ! type open > /dev/null ; then
   alias open=xdg-open
@@ -53,7 +48,7 @@ fi
 
 # only if os is not macos
 if [ "$(uname)" != "Darwin" ]; then
-    setxkbmap -layout us -option caps:escape
+    # setxkbmap -layout us -option caps:escape
 
     if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
     . "$HOME/.cargo/env"
