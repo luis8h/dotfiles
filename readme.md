@@ -76,7 +76,7 @@ brew services start sketchybar
 -   `git restore .`
 
 #### notes
--   if tmux plugins not working delete plugin directory and run the install with prefix + I in tmux.conf again
+-   if tmux plugins not working delete plugin directory reinstall tpm and run the install with prefix + I in tmux.conf again
 -   if local dns is not working disable ubuntu default dns server (bind9 doc)
 -   mounting ntfs file system on linux: `/dev/nvme1n1p2 /mnt/data ntfs-3g rw 0 0` in /etc/fstab
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
