@@ -50,7 +50,7 @@ return {
             local kbase_dir = os.getenv('KBASE_DIR')
             if kbase_dir then
                 builtin.find_files({
-                    hidden = true, -- Include hidden files
+                    hidden = false, -- Include hidden files
                     cwd = kbase_dir,
                 })
             else
