@@ -21,6 +21,8 @@ return {
 
     "christoomey/vim-tmux-navigator",
 
+    "AndrewRadev/dealwithit.vim",
+
     {
         "lervag/vimtex",
         lazy = false,     -- we don't want to lazy load VimTeX
