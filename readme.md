@@ -1,81 +1,7 @@
 # dotfiles repo
 
-## manual setup
-For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope, ruff, flake, isort etc.
 
-## lsp configuration
-Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.
-
-## macos notes
-#### modifier keys
-Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
-Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
-The following code block is used to achieve this:
-``` json
-"conditions": [
-    {
-        "bundle_identifiers": [
-            "^((?!net\\.kovidgoyal\\.kitty).)*$"
-        ],
-        "type": "frontmost_application_if"
-    }
-],
-```
-If another application should also be added just add it to the array. The name (bundle identifier) can be found out using this command: `osascript -e 'id of app "Application Name"'`.
-
-#### clean downloads script
--   add the file `~/Library/LaunchAgents/com.luis8h.cleandownloads.plist` with the following content:
-    ``` xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-        <key>Label</key>
-        <string>com.luis8h.cleandownloads</string>
-
-        <key>ProgramArguments</key>
-        <array>
-            <string>~/dotfiles/.scripts/clean-downloads-macos-wrapper.sh</string>
-        </array>
-
-        <key>RunAtLoad</key>
-        <true/>
-
-        <key>StandardOutPath</key>
-        <string>/tmp/clean-downloads.log</string>
-
-        <key>StandardErrorPath</key>
-        <string>/tmp/clean-downloads.error</string>
-    </dict>
-    </plist>
-
-    ```
-
-#### sketchybar
-For sketchybar to work: enable `desktop & dock -> displays have separate spaces` in system settings of macos. **(possibly disabled because of aerospace)**
-
-#### yabay/skhd
-start skhd: `skhd --restart-service`
-start skhd: `yabai --restart-service`
-brew services start sketchybar
-
-
-## new to learn/use
--   neoclip
--   outline nvim
--   C-T/D/U in insert mode to indent
--   folding zR zr zM zm tab zc ...
--   more sorround keybinds
-
-## how to use?
-#### installation
--   `sudo apt install stow build-essentials -y`
--   `git clone https://github.com/luis8h/dotfiles.git ~/dotfiles`
--   `cd ~/dotfiles`
--   `stow . -v --adopt`
--   `git restore .`
-
-#### notes
+## notes
 -   if tmux plugins not working delete plugin directory reinstall tpm and run the install with prefix + I in tmux.conf again
 -   if local dns is not working disable ubuntu default dns server (bind9 doc)
 -   mounting ntfs file system on linux: `/dev/nvme1n1p2 /mnt/data ntfs-3g rw 0 0` in /etc/fstab
@@ -83,6 +9,21 @@ brew services start sketchybar
 -   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
+-   For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope, ruff, flake, isort etc.
+
+
+## how to use?
+#### installation
+-   `sudo apt install stow build-essentials -y`
+-   `git clone https://github.com/luis8h/dotfiles.git ~/dotfiles`
+-   `cd ~/dotfiles`
+-   `stow . -v --adopt` **`--adopt` adopts the already existing files**
+-   `git restore .` **watch out, this goes back to the last commit and therefore deletes the changes adopted from the existing files**
+
+
+## lsp configuration
+Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.
+
 
 ## device specific configuration
 Device specific configuration like environment variables are set in the
@@ -101,6 +42,24 @@ export "KBASE_DIR"="/mnt/data/kbase"
 ## how to setup autocleaning of downloads directory at startup
 -   `crontab -e` to access cron config file
 -   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
+
+
+## macos notes
+#### modifier keys
+Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
+Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
+The following code block is used to achieve this:
+``` json
+"conditions": [
+    {
+        "bundle_identifiers": [
+            "^((?!net\\.kovidgoyal\\.kitty).)*$"
+        ],
+        "type": "frontmost_application_if"
+    }
+],
+```
+If another application should also be added just add it to the array. The name (bundle identifier) can be found out using this command: `osascript -e 'id of app "Application Name"'`.
 
 
 ## documentation / keybindings
@@ -302,7 +261,7 @@ will add attach session and rename window to the user menu.
 or watch online [here](https://github.com/sainnhe/tmux-fzf/issues/6#issuecomment-578750879)
 
 
-### regolith customization
+## regolith customization
 To change a regolith keybinding look into `/usr/share/regolith/...`.
 There are several files which are all included by the main file.
 The variables in these files can be set via the `.config/i3/Xresources` file.
