@@ -134,6 +134,19 @@ alias ....='cd ../../../'
 bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
 
+# Set fzf to search through command history with Ctrl+R
+if command -v fzf > /dev/null; then
+  # Use fzf for Ctrl+R (history search)
+  bindkey '^R' fzf-history-widget
+fi
+
+# Define the fzf-history-widget function
+fzf-history-widget() {
+  BUFFER=$(fc -l -n 1 | fzf)
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N fzf-history-widget
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
