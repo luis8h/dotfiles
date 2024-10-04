@@ -168,7 +168,7 @@ return {
                         flake8 = {
                             enabled = true,
                             maxLineLength = 99,
-                            ignore = {"E501"},
+                            ignore = {"E501", "W503"},
                         },
                         pyflakes = { enabled = false },
                         pycodestyle = { enabled = false },
