@@ -130,23 +130,27 @@ alias cd..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
-# Keybinds
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
 
-# Set fzf to search through command history with Ctrl+R
+## fuzzy find commands in history
 if command -v fzf > /dev/null; then
-  # Use fzf for Ctrl+R (history search)
   bindkey '^R' fzf-history-widget
 fi
 
-# Define the fzf-history-widget function
 fzf-history-widget() {
-  BUFFER=$(fc -l -n 1 | fzf)
+  BUFFER=$(fc -l -n -r 1 | fzf)  # Use '1' to include the full history
   CURSOR=$#BUFFER
   zle redisplay
 }
 zle -N fzf-history-widget
+
+# Define the ZLE widgets for line movement
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Bind keys for line movement
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
+
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
