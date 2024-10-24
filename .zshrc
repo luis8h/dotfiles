@@ -69,7 +69,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # exports
 export PATH="$PATH:/home/elliott/Library/flutter/bin"
-export PATH="$PATH:/home/luis8h/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/go/bin"
 export LD_LIBRARY_PATH=/usr/local/lib
 
 export LANG=en_US.UTF-8
