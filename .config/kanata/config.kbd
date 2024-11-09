@@ -48,7 +48,7 @@
 )
 
 (deflayer special-layer
-                  S-5 S-6 {   }   [   ]   S--
+                  S-5 S-6 S-[ S-] [   ]   S--
   S-1 S-2 S-3 S-4 _   _   S-7 S-8 S-9 S-0 -
   _ _                         S-\ S-= =
 )
