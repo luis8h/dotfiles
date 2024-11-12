@@ -45,7 +45,11 @@ export "KBASE_DIR"="/mnt/data/kbase"
 
 
 ## macos notes
-#### modifier keys
+#### iterm2 setup
+- install using brew
+- load settings from folder in dotfiles
+
+#### modifier keys (deprecated - not needed any more because iterm2 supports direct modifier remapping)
 Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
 Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
 The following code block is used to achieve this:
