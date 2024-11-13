@@ -5,7 +5,7 @@
 (defsrc
   esc                t y u i o p [
   caps a    s    d f g h j k l ; '
-       <    v              , . /
+       `    v              , . /
   fn   lctl lalt lmet
 )
 
@@ -24,7 +24,7 @@
   l (tap-hold $tap-time $hold-time l lalt)
   ; (tap-hold $tap-time $hold-time ; lctl)
   v (tap-hold $tap-time $hold-time v (layer-toggle move-layer))
-  < (tap-hold $tap-time $hold-time < (layer-toggle num-layer))
+  ` (tap-hold $tap-time $hold-time ` (layer-toggle num-layer))
   / (tap-hold $tap-time $hold-time / (layer-toggle num-layer))
   g (tap-hold $tap-time $hold-time g (layer-toggle special-layer))
   h (tap-hold $tap-time $hold-time h (layer-toggle special-layer))
@@ -33,7 +33,7 @@
 (deflayer base
   caps               _  _  _  _  _  _  _
   esc  @a @s   @d @f @g @h @j @k @l @; _
-       @< @v                  _  _  @/
+       @` @v                  _  _  @/
   lmet fn lctl lalt
 )
 
