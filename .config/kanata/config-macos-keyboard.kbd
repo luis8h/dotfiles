@@ -1,0 +1,58 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc
+  tab q w e r t y u i o p [
+  caps a s d f g h j k l ; '
+  lsft ` z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rmet
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lctl)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lmet)
+  j (tap-hold $tap-time $hold-time j lmet)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l lalt)
+  ; (tap-hold $tap-time $hold-time ; lctl)
+  ` (tap-hold $tap-time $hold-time ` (layer-toggle num-layer))
+  / (tap-hold $tap-time $hold-time / (layer-toggle num-layer))
+  g (tap-hold $tap-time $hold-time g (layer-toggle special-layer))
+  h (tap-hold $tap-time $hold-time h (layer-toggle special-layer))
+  lb (layer-switch base)
+  l2 (layer-switch special-layer)
+  l3 (layer-switch num-layer)
+)
+
+(deflayer base
+  caps
+  tab q w e r t y u i o p [
+  esc @a @s @d @f @g @h @j @k @l @; _
+  lsft @` z x c v b n m , . @/ rsft
+  lmet lctl @l2 spc rmet ralt
+)
+
+(deflayer special-layer
+  _
+  _ _ _ _ _ S-5                 S-6 S-[ S-] [ ] S--
+  _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
+  _ _ _ _ _ _ _                 n m S-\ S-= = _
+  _ _ @l3 @lb                   lmet ralt
+)
+
+(deflayer num-layer
+  _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ 1 2 3 4 5                   6 7 8 9 0 _
+  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ @l2 @lb                   lmet ralt
+)
