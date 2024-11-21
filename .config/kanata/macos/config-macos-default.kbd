@@ -1,0 +1,93 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  1 2 3 4 5 6 7 8 9 0
+  tab q w e r t y u i o p [
+  caps a s d f g h j k l ; '
+  lsft ` z x c v b n m , . / rsft
+  fn lctl lalt lmet spc rmet ralt
+)
+
+(platform (macos)
+    ;; Only on macos, use command arrows to jump/delete words
+    ;; because command is used for so many other things
+    ;; and it's weird that these cases use alt.
+    (defoverrides
+        (lmet bspc) (lalt bspc)
+        (lmet left) (lalt left)
+        (lmet right) (lalt right)
+    )
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lctl)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lmet)
+  j (tap-hold $tap-time $hold-time j lmet)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l lalt)
+  ; (tap-hold $tap-time $hold-time ; lctl)
+  ` (tap-hold $tap-time $hold-time ` (layer-toggle num-layer))
+  / (tap-hold $tap-time $hold-time / (layer-toggle num-layer))
+  g (tap-hold $tap-time $hold-time g (layer-toggle special-layer))
+  h (tap-hold $tap-time $hold-time h (layer-toggle special-layer))
+  lb (layer-switch base)
+  l2 (layer-switch special-layer)
+  l3 (layer-switch num-layer)
+  l4 (layer-switch mgt-layer)
+  oe (macro RA-u o)
+  ue (macro RA-u u)
+  ae (macro RA-u a)
+  Oe (macro (unshift ralt u) o)
+  Ue (macro (unshift ralt u) 50 u)  ;; I had to put in a delay of 50ms for u, otherwise it didn't work
+  Ae (macro (unshift ralt u) a)
+  _oe (fork @oe @Oe (lsft rsft))
+  _ue (fork @ue @Ue (lsft rsft))
+  _ae (fork @ae @Ae (lsft rsft))
+  sz RA-s
+)
+
+(deflayer base
+  caps f1 f2 f3 f4 f5 f6 @l4 f8 f9 f10 f11 f12
+  1 2 3 4 5 6 7 8 9 0
+  tab q w e r t y u i o p [
+  esc @a @s @d @f @g @h @j @k @l @; _
+  lsft @` z x c v b n m , . @/ rsft
+  lmet fn lctl @l2 spc rmet ralt
+)
+
+(deflayer special-layer
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _                     _ _ _ _ _
+  _ @_ae @_ue @_oe @sz _        _ S-[ S-] [ ] S--
+  esc S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
+  _ @l4 _ _ _ _ _                 n m S-\ S-= = _
+  _ _ _ @l3 @lb                 lmet ralt
+)
+
+(deflayer num-layer
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _                     _ _ _ _ _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  esc 1 2 3 4 5                   6 7 8 9 0 _
+  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ _ @l2 @lb                 lmet ralt
+)
+
+(deflayer mgt-layer
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  (lrld-num 1) (lrld-num 2) (lrld-num 3) _ _ _ _ _ _ _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ _ @l2 @lb                 lmet ralt
+)
