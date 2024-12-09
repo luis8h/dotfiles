@@ -36,10 +36,7 @@
   k (tap-hold $tap-time $hold-time k rsft)
   l (tap-hold $tap-time $hold-time l lalt)
   ; (tap-hold $tap-time $hold-time ; lctl)
-  ` (tap-hold $tap-time $hold-time ` (layer-toggle num-layer))
-  / (tap-hold $tap-time $hold-time / (layer-toggle num-layer))
-  g (tap-hold $tap-time $hold-time g (layer-toggle special-layer))
-  h (tap-hold $tap-time $hold-time h (layer-toggle special-layer))
+  z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
   lb (layer-switch base)
   l2 (layer-switch special-layer)
   l3 (layer-switch num-layer)
@@ -60,8 +57,8 @@
   caps @l4
   _ _ _ _ _ _ _ _ _ _
   tab q w e r t y u i o p [
-  esc @a @s @d @f @g @h @j @k @l @; _
-  lsft @` z x c v b n m , . @/ rsft
+  esc @a @s @d @f g h @j @k @l @; _
+  lsft ` @z x c v b n m , . / rsft
   lmet lctl @l2 spc rmet ralt
 )
 
@@ -70,7 +67,7 @@
   _ _ _ _ _ _ _ _ _ _
   _ @_ae @_ue @_oe @sz _        _ S-[ S-] [ ] S--
   _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
-  _ _ _ _ _ _ _                 n m S-\ S-= = _
+  _ _ @z _ _ _ _                 n m S-\ S-= = _
   _ _ @l3 @lb                   lmet ralt
 )
 
@@ -79,7 +76,16 @@
   _ _ _ _ _ _ _ _ _ _
   _ _ _ _ _ _                   _ _ _ _ _ _
   _ 1 2 3 4 5                   6 7 8 9 0 _
-  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ @z _ _ _ _                 _ _ _ _ _ _
+  _ _ @l2 @lb                   lmet ralt
+)
+
+(deflayer move-layer
+  _ _
+  _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _                   _ home end _ up _
+  _ _ _ _ _ _                   left down up right _ _
+  _ _ _ _ _ _ _                 down _ _ _ _ _
   _ _ @l2 @lb                   lmet ralt
 )
 
