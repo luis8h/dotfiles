@@ -1,20 +1,19 @@
 return {
     'nvim-telescope/telescope.nvim',
     version = '0.1.3',
-    dependencies = { {'nvim-lua/plenary.nvim'} },
+    dependencies = { { 'nvim-lua/plenary.nvim' } },
     config = function()
-
         local builtin = require('telescope.builtin')
 
         -- find files (no hidden)
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find files in working directory (no hidden)" })
 
         -- find files (include hidden)
         vim.keymap.set('n', '<leader>fa', function()
             builtin.find_files({
                 hidden = true, -- Include hidden files
             })
-        end, {})
+        end, { desc = "Telescope find files in working directory (hidden)" })
 
         -- find all files (whole system) - bad performance
         vim.keymap.set('n', '<leader>fr', function()
@@ -22,7 +21,7 @@ return {
                 hidden = true, -- Include hidden files
                 cwd = "/",
             })
-        end, {})
+        end, { desc = "Telescope find files in root" })
 
         -- find files in home dir
         vim.keymap.set('n', '<leader>fh', function()
@@ -30,7 +29,7 @@ return {
                 hidden = true, -- Include hidden files
                 cwd = "~",
             })
-        end, {})
+        end, { desc = "Telescope find files in home" })
 
         -- find files in data directory (only if env variable is set)
         vim.keymap.set('n', '<leader>fd', function()
@@ -43,7 +42,7 @@ return {
             else
                 print("Environment variable DATA_DIR is not set. (view readme for more info)")
             end
-        end, {})
+        end, { desc = "Telescope find files in data" })
 
         -- find files in kbase directory (only if env variable is set)
         vim.keymap.set('n', '<leader>fb', function()
@@ -56,7 +55,7 @@ return {
             else
                 print("Environment variable KBASE_DIR is not set. (view readme for more info)")
             end
-        end, {})
+        end, { desc = "Telescope find files in kbase" })
 
         -- find directories in working dir (no hidden)
         vim.keymap.set('n', '<leader>df', function()
@@ -64,7 +63,7 @@ return {
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--follow", "." },
             })
-        end, {})
+        end, { desc = "Telescope find directories in working dir (no hidden)" })
 
         -- find directories in working dir (including hidden)
         vim.keymap.set('n', '<leader>da', function()
@@ -72,7 +71,7 @@ return {
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
             })
-        end, {})
+        end, { desc = "Telescope find directories in working dir (hidden)" })
 
         -- find directories in home dir
         vim.keymap.set('n', '<leader>dh', function()
@@ -81,7 +80,7 @@ return {
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
                 cwd = os.getenv('HOME')
             })
-        end, {})
+        end, { desc = "Telescope find directories in home" })
 
         -- find all directories on system
         vim.keymap.set('n', '<leader>dr', function()
@@ -90,7 +89,7 @@ return {
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
                 cwd = '/'
             })
-        end, {})
+        end, { desc = "Telescope find directories in root" })
 
         -- find directories in data directory (only if env variable is set)
         vim.keymap.set('n', '<leader>dd', function()
@@ -104,47 +103,72 @@ return {
             else
                 print("Environment variable DATA_DIR is not set. (view readme for more info)")
             end
-        end, {})
+        end, { desc = "Telescope find directories in data" })
 
-        -- find directories in home dir
-        vim.keymap.set('n', '<leader>dh', function()
+        -- find directories in download dir
+        vim.keymap.set('n', '<leader>dl', function()
             builtin.find_files({
                 prompt_title = "Find Directories",
                 find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
                 cwd = os.getenv('HOME') .. '/Downloads'
             })
-        end, {})
+        end, { desc = "Telescope find directories in downloads" })
 
-        vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+        -- find files in current oil dir
+        vim.keymap.set('n', '<leader>fc', function()
+            local oil = require('oil')
 
+            local cwd = oil.get_current_dir()
+
+            builtin.find_files({ cwd = cwd })
+        end, { desc = "Telescope find files in Oil directory" })
+
+        -- find directories in current oil dir
+        vim.keymap.set('n', '<leader>dc', function()
+            local oil = require('oil')
+            local cwd = oil.get_current_dir()
+
+            builtin.find_files({
+                prompt_title = "Find Directories",
+                find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
+                cwd = cwd
+            })
+        end, { desc = "Telescope find directories in Oil directory" })
+
+        -- find files added to git
+        vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Telescope find files added to git" })
+
+        -- static grep in cwd (no hidden)
         vim.keymap.set('n', '<leader>sf', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end)
+        end, { desc = "static grep in cwd (no hidden)" })
 
+        -- static grep in cwd (hidden)
         vim.keymap.set('n', '<leader>sa', function()
             require('telescope.builtin').grep_string({
                 search = vim.fn.input("Grep > "),
                 additional_args = function(opts)
-                    return {"--hidden"}
+                    return { "--hidden" }
                 end
             })
-        end)
+        end, { desc = "static grep in cwd (hidden)" })
 
+        -- search help_tags
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-        vim.keymap.set('n', '<leader>lf', builtin.live_grep, {})
+        -- live grep in cwd (no hidden)
+        vim.keymap.set('n', '<leader>lf', builtin.live_grep, { desc = "live grep in cwd (no hidden)" })
 
+        -- live grep in cwd (hidden)
         vim.keymap.set('n', '<leader>la', function()
             builtin.live_grep({
                 additional_args = function(opts)
                     return { "--hidden" }
                 end
             })
-        end, {})
+        end, { desc = "live grep in cwd (hidden)" })
 
-        vim.keymap.set('n', '<leader>bf', builtin.buffers, {})
-
+        -- search open buffers
+        vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = "Telescope open buffers" })
     end,
 }
-
-
