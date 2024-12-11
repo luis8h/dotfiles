@@ -37,13 +37,14 @@
   8 (tap-hold $tap-time $hold-time 8 rsft)
   9 (tap-hold $tap-time $hold-time 9 lalt)
   0 (tap-hold $tap-time $hold-time 0 lmet)
+  nm (tap-hold $tap-time $hold-time S-\ (layer-toggle move-layer))
 )
 
 (deflayer base
   caps
   tab q w e r t y u i o p [
   esc @a @s @d @f g h @j @k @l @; _
-  lsft @z z x c v b n m , . / rsft
+  lsft < @z x c v b n m , . / rsft
   lctl lmet @l5 spc ralt rctl
 )
 
@@ -51,7 +52,7 @@
   _
   _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
   _ @1 @2 @3 @4 5               6 @7 @8 @9 @0 -
-  _ _ S-= S-\ [ ] _             , S-[ S-] . = \
+  _ _ @nm S-= [ ] _             , S-[ S-] . = \
   _ _ @l5 @lb                   lctl ralt
 )
 
