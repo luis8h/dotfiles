@@ -10,6 +10,10 @@
 -   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
 -   For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope, ruff, flake, isort etc.
+-   changing tabwidth in neovim:
+    * `:set tabstop=2`
+    * `:set shiftwidth=2`
+    * `:set expandtab`
 
 
 ## how to use?
