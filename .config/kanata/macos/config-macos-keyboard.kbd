@@ -36,11 +36,21 @@
   k (tap-hold $tap-time $hold-time k rsft)
   l (tap-hold $tap-time $hold-time l lalt)
   ; (tap-hold $tap-time $hold-time ; lctl)
+  1 (tap-hold $tap-time $hold-time 1 lctl)
+  2 (tap-hold $tap-time $hold-time 2 lalt)
+  3 (tap-hold $tap-time $hold-time 3 lsft)
+  4 (tap-hold $tap-time $hold-time 4 lmet)
+  7 (tap-hold $tap-time $hold-time 7 lmet)
+  8 (tap-hold $tap-time $hold-time 8 rsft)
+  9 (tap-hold $tap-time $hold-time 9 lalt)
+  0 (tap-hold $tap-time $hold-time 0 lctl)
   z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
+  nm (tap-hold $tap-time $hold-time S-\ (layer-toggle move-layer))
   lb (layer-switch base)
   l2 (layer-switch special-layer)
   l3 (layer-switch num-layer)
   l4 (layer-switch mgt-layer)
+  l5 (layer-switch special-num-layer)
   oe (macro RA-u o)
   ue (macro RA-u u)
   ae (macro RA-u a)
@@ -59,9 +69,43 @@
   tab q w e r t y u i o p [
   esc @a @s @d @f g h @j @k @l @; _
   lsft ` @z x c v b n m , . / rsft
-  lmet lctl @l2 spc rmet ralt
+  lmet lctl @l5 spc rmet ralt
 )
 
+(deflayer special-num-layer
+  _ _
+  _ _ _ _ _ _ _ _ _ _
+  _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
+  _ @1 @2 @3 @4 5               6 @7 @8 @9 @0 -
+  _ _ @nm S-= [ ] _             , S-[ S-] . = \
+  _ _ @l5 @lb                   lmet ralt
+)
+
+(deflayer move-layer
+  _ _
+  _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _                   _ home end _ up _
+  _ _ _ _ _ _                   left down up right _ _
+  _ _ _ _ _ _ _                 down _ _ _ _ _
+  _ _ @l5 @lb                   lmet ralt
+)
+
+;; layer to switch between different configs passed to kanata in the following order:
+;; 1: default builtin keyboard
+;; 2: moonlander
+;; 3: default external keyboard
+(deflayer mgt-layer
+  _ _
+  (lrld-num 1) (lrld-num 2) (lrld-num 3) _ _ _ _ _ _ _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ _ _                       _ _
+)
+
+
+
+;; unused
 (deflayer special-layer
   _ _
   _ _ _ _ _ _ _ _ _ _
@@ -78,26 +122,4 @@
   _ 1 2 3 4 5                   6 7 8 9 0 _
   _ _ @z _ _ _ _                 _ _ _ _ _ _
   _ _ @l2 @lb                   lmet ralt
-)
-
-(deflayer move-layer
-  _ _
-  _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _                   _ home end _ up _
-  _ _ _ _ _ _                   left down up right _ _
-  _ _ _ _ _ _ _                 down _ _ _ _ _
-  _ _ @l2 @lb                   lmet ralt
-)
-
-;; layer to switch between different configs passed to kanata in the following order:
-;; 1: default builtin keyboard
-;; 2: moonlander
-;; 3: default external keyboard
-(deflayer mgt-layer
-  _ _
-  (lrld-num 1) (lrld-num 2) (lrld-num 3) _ _ _ _ _ _ _
-  _ _ _ _ _ _                   _ _ _ _ _ _
-  _ _ _ _ _ _                   _ _ _ _ _ _
-  _ _ _ _ _ _ _                 _ _ _ _ _ _
-  _ _ _ _                       _ _
 )
