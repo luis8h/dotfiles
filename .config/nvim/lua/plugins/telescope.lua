@@ -120,7 +120,10 @@ return {
 
             local cwd = oil.get_current_dir()
 
-            builtin.find_files({ cwd = cwd })
+            builtin.find_files({
+                hidden = true, -- Include hidden files
+                cwd = cwd,
+            })
         end, { desc = "Telescope find files in Oil directory" })
 
         -- find directories in current oil dir
