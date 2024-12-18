@@ -54,5 +54,9 @@ return {
                 require("duck").cook_all()
             end, {})
         end
+    },
+
+    {
+        'rhysd/vim-syntax-christmas-tree'
     }
 }
