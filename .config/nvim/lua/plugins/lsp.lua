@@ -79,7 +79,7 @@ return {
             }
         })
 
-        -- keybinds
+        -- keybinds (IMPORTANT: different file for java lsp => java.lua)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
