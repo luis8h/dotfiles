@@ -5,6 +5,9 @@ return {
     config = function()
         local builtin = require('telescope.builtin')
 
+        -- search through all diagnostics
+        vim.keymap.set('n', '<leader>vcd', builtin.diagnostics, { desc = "Telescope LSP Diagnostics (workspace)" })
+
         -- find files (no hidden)
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find files in working directory (no hidden)" })
 
