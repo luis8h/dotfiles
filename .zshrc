@@ -134,7 +134,9 @@ alias ....='cd ../../../'
 
 ## fuzzy find commands in history
 if command -v fzf > /dev/null; then
-  bindkey '^R' fzf-history-widget
+  bindkey -M viins '^R' fzf-history-widget  # Bind for vi insert mode
+  bindkey -M vicmd '^R' fzf-history-widget  # Bind for vi normal mode
+  bindkey '^R' fzf-history-widget          # General binding
 fi
 
 fzf-history-widget() {
