@@ -49,9 +49,18 @@ export "KBASE_DIR"="/mnt/data/kbase"
 
 
 ## macos notes
+#### kanata
+- install karabiner elements (using brew)
+- activate karabiner in login items -> driver extensions (on info symbol)
+- open karabiner and then quit it
+- install kanata using cargo
+- start kanata with all three configs: `sudo kanata -c ./config1.kbd -c ./config2.kbd ...`
+- if error: under privacy and security add kanata (.cargo/kanata) to input monitoring
+
 #### iterm2 setup
 - install using brew
 - load settings from folder in dotfiles
+- when setting settings manually watch out that bracketed paste mode is activated on the copy paste command
 
 #### modifier keys (deprecated - not needed any more because iterm2 supports direct modifier remapping)
 Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
