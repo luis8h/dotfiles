@@ -9,12 +9,22 @@ return {
         vim.keymap.set('n', '<leader>vcd', builtin.diagnostics, { desc = "Telescope LSP Diagnostics (workspace)" })
 
         -- find files (no hidden)
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find files in working directory (no hidden)" })
+        vim.keymap.set('n', '<leader>ff', builtin.find_files,
+            { desc = "Telescope find files in working directory (no hidden)" })
+
+        -- find files (include hidden)
+        vim.keymap.set('n', '<leader>fi', function()
+            builtin.find_files({
+                hidden = true,            -- Include hidden files
+                no_ignore = true,         -- Include files ignored by .gitignore
+                no_ignore_parent = true,  -- Include files ignored by parent .gitignore
+            })
+        end, { desc = "Telescope find files in working directory (hidden, and gitignore)" })
 
         -- find files (include hidden)
         vim.keymap.set('n', '<leader>fa', function()
             builtin.find_files({
-                hidden = true, -- Include hidden files
+                hidden = true,            -- Include hidden files
             })
         end, { desc = "Telescope find files in working directory (hidden)" })
 
