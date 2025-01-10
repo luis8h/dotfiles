@@ -49,13 +49,16 @@ export "KBASE_DIR"="/mnt/data/kbase"
 
 
 ## macos notes
-#### kanata
+#### kanata (self built for newest version)
+- (brew has also newest version, but is currently not working -> no output when typing)
 - install karabiner elements (using brew)
 - activate karabiner in login items -> driver extensions (on info symbol)
 - open karabiner and then quit it
-- install kanata using cargo
+- `git clone https://github.com/jtroo/kanata && cd kanata`
+- `cargo build`   # --release optional, not really perf sensitive
+- `sudo target/debug/kanata --cfg <your_configuration_file>`
 - start kanata with all three configs: `sudo kanata -c ./config1.kbd -c ./config2.kbd ...`
-- if error: under privacy and security add kanata (.cargo/kanata) to input monitoring
+- if error: under privacy and security add kanata (path/to/kanata/binary) to input monitoring
 
 #### iterm2 setup
 - install using brew
