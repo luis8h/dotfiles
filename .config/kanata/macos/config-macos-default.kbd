@@ -85,7 +85,7 @@
   _ _ _ _ _ _ _ _ _ _ _ _ _
   _ _ _ _ _ _ _ _ _ _
   _ _ _ _ _ _                   _ home end _ up _
-  _ _ _ _ _ _                   left down up right _ _
+  esc _ _ _ _ _                 left down up right _ _
   _ _ _ _ _ _ _                 down _ _ _ _ _
   _ _ _ @l5 @lb                 lmet ralt
 )
@@ -94,7 +94,7 @@
   _ _ _ _ _ _ _ _ _ _ _ _ _
   (lrld-num 1) (lrld-num 2) (lrld-num 3) _ _ _ _ _ _ _
   _ _ _ _ _ _                   _ _ _ _ _ _
-  _ _ _ _ _ _                   _ _ _ _ _ _
+  esc _ _ _ _ _                 _ _ _ _ _ _
   _ _ _ _ _ _ _                 _ _ _ _ _ _
   _ _ _ @l5 @lb                 lmet ralt
 )
