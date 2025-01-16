@@ -59,6 +59,7 @@ export "KBASE_DIR"="/mnt/data/kbase"
 - `sudo target/debug/kanata --cfg <your_configuration_file>`
 - start kanata with all three configs: `sudo kanata -c ./config1.kbd -c ./config2.kbd ...`
 - if error: under privacy and security add kanata (path/to/kanata/binary) to input monitoring
+- command example: `sudo target/debug/kanata -c ~/dotfiles/.config/kanata/macos/config-macos-default.kbd -c ~/dotfiles/.config/kanata/macos/config-macos-moon.kbd -c ~/dotfiles/.config/kanata/macos/config-macos-keyboard.kbd`
 
 #### iterm2 setup
 - install using brew
@@ -66,8 +67,7 @@ export "KBASE_DIR"="/mnt/data/kbase"
 - when setting settings manually watch out that bracketed paste mode is activated on the copy paste command
 
 #### modifier keys (deprecated - not needed any more because iterm2 supports direct modifier remapping)
-Macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner.
-Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
+macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner. Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
 The following code block is used to achieve this:
 ``` json
 "conditions": [
