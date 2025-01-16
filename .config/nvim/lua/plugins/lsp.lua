@@ -102,7 +102,6 @@ return {
         end)
 
 
-
         lsp.setup()
 
         vim.diagnostic.config({
@@ -134,6 +133,21 @@ return {
 
 
         local lspconfig = require('lspconfig')
+
+        -----------------------------------------------------------------------
+        -- typescript lsp -----------------------------------------------------
+        -----------------------------------------------------------------------
+        require('lspconfig').ts_ls.setup {
+            on_attach = function(client, bufnr)
+                -- Organize Imports for TypeScript
+                vim.keymap.set("n", "<leader>co", function()
+                    vim.lsp.buf.execute_command({
+                        command = "_typescript.organizeImports",
+                        arguments = { vim.api.nvim_buf_get_name(0), { skipDestructiveCodeActions = false } },
+                    })
+                end, { buffer = bufnr, desc = "Organize Imports (TypeScript)" })
+            end,
+        }
 
 
         -----------------------------------------------------------------------
@@ -168,7 +182,7 @@ return {
                         flake8 = {
                             enabled = true,
                             maxLineLength = 99,
-                            ignore = {"E501", "W503"},
+                            ignore = { "E501", "W503" },
                         },
                         pyflakes = { enabled = false },
                         pycodestyle = { enabled = false },
@@ -176,7 +190,7 @@ return {
                         pylsp_mypy = {
                             enabled = true,
                             report_progress = true,
-                            overrides = {"--ignore-missing-imports", "--disable-error-code=import-untyped", true}
+                            overrides = { "--ignore-missing-imports", "--disable-error-code=import-untyped", true }
                         },
                         -- auto-completion options
                         jedi_completion = { fuzzy = true },
