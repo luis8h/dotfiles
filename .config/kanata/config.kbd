@@ -4,6 +4,7 @@
 
 (defsrc
   esc
+  `
   tab q w e r t y u i o p [
   caps a s d f g h j k l ; '
   lsft < z x c v b n m , . / rsft
@@ -42,6 +43,7 @@
 
 (deflayer base
   caps
+  `
   tab q w e r t y u i o p [
   esc @a @s @d @f g h @j @k @l @; _
   lsft < @z x c v b n m , . / rsft
@@ -50,13 +52,15 @@
 
 (deflayer special-num-layer
   _
-  _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
+  S-`
+  ` S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
   _ @1 @2 @3 @4 5               6 @7 @8 @9 @0 -
   _ _ @nm S-= [ ] _             , S-[ S-] . = \
   _ _ @l5 @lb                   lctl ralt
 )
 
 (deflayer move-layer
+  _
   _
   _ _ _ _ _ _                   _ home end _ up _
   _ _ _ _ _ _                   left down up right _ _
@@ -68,6 +72,7 @@
 ;;unused
 (deflayer special-layer
   _
+  _
   _ _ _ _ _ S-5                 S-6 S-[ S-] [ ] S--
   _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
   _ _ _ _ _ _ _                 n m S-\ S-= = _
@@ -75,6 +80,7 @@
 )
 
 (deflayer num-layer
+  _
   _
   _ _ _ _ _ _                   _ _ _ _ _ _
   _ 1 2 3 4 5                   6 7 8 9 0 _
