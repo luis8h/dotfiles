@@ -45,6 +45,7 @@ return {
             -- 'black',
             -- 'ruff',
             -- 'mypy',
+            -- 'ltex' -- maybe for grammar correction
         })
 
         -- Fix Undefined global 'vim'
@@ -131,8 +132,21 @@ return {
             })
         })
 
-
         local lspconfig = require('lspconfig')
+
+        -----------------------------------------------------------------------
+        -- tex lsp (ltex) -----------------------------------------------------
+        -----------------------------------------------------------------------
+        lspconfig.ltex.setup {
+            settings = {
+                ltex = {
+                    language = "en",
+                    additionalRules = {
+                        languageModel = "~/models/ngrams/",
+                    },
+                },
+            },
+        }
 
         -----------------------------------------------------------------------
         -- typescript lsp -----------------------------------------------------

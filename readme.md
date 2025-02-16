@@ -26,8 +26,12 @@
 
 
 ## lsp configuration
-Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for online docs or just run `:help lspconfig-all` in nvim.
+Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
 
+## latex/markdown grammar checking
+- download the ngramms model from [this link](https://languagetool.org/download/ngram-data/) (choose the desired languages)
+- put it into the directory `~/models/ngrams/<language-code>`
+- [full guide](https://medium.com/@Erik_Krieg/free-and-open-source-grammar-correction-in-neovim-using-ltex-and-n-grams-dea9d10bc964)
 
 ## device specific configuration
 Device specific configuration like environment variables are set in the
