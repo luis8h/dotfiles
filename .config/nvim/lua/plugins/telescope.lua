@@ -15,16 +15,16 @@ return {
         -- find files (include hidden)
         vim.keymap.set('n', '<leader>fi', function()
             builtin.find_files({
-                hidden = true,            -- Include hidden files
-                no_ignore = true,         -- Include files ignored by .gitignore
-                no_ignore_parent = true,  -- Include files ignored by parent .gitignore
+                hidden = true,           -- Include hidden files
+                no_ignore = true,        -- Include files ignored by .gitignore
+                no_ignore_parent = true, -- Include files ignored by parent .gitignore
             })
         end, { desc = "Telescope find files in working directory (hidden, and gitignore)" })
 
         -- find files (include hidden)
         vim.keymap.set('n', '<leader>fa', function()
             builtin.find_files({
-                hidden = true,            -- Include hidden files
+                hidden = true, -- Include hidden files
             })
         end, { desc = "Telescope find files in working directory (hidden)" })
 
@@ -174,6 +174,15 @@ return {
 
         -- live grep in cwd (no hidden)
         vim.keymap.set('n', '<leader>lf', builtin.live_grep, { desc = "live grep in cwd (no hidden)" })
+
+        -- live grep also in ignored fils
+        vim.keymap.set('n', '<leader>li', function()
+            require('telescope.builtin').live_grep({
+                additional_args = function(opts)
+                    return { "--hidden", "--no-ignore" }
+                end
+            })
+        end, { desc = "live grep in cwd (hidden, ignored)" })
 
         -- live grep in cwd (hidden)
         vim.keymap.set('n', '<leader>la', function()
