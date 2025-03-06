@@ -1,0 +1,90 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc
+  `
+  tab q w e r t y u i o p [
+  caps a s d f g h j k l ; '
+  lsft < z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rctl
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lmet)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j lctl)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l lalt)
+  ; (tap-hold $tap-time $hold-time ; lmet)
+  z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
+  lb (layer-switch base)
+  l2 (layer-switch special-layer) ;;unused
+  l3 (layer-switch num-layer) ;;unused
+  l5 (layer-switch special-num-layer)
+  1 (tap-hold $tap-time $hold-time 1 lmet)
+  2 (tap-hold $tap-time $hold-time 2 lalt)
+  3 (tap-hold $tap-time $hold-time 3 lsft)
+  4 (tap-hold $tap-time $hold-time 4 lctl)
+  7 (tap-hold $tap-time $hold-time 7 lctl)
+  8 (tap-hold $tap-time $hold-time 8 rsft)
+  9 (tap-hold $tap-time $hold-time 9 lalt)
+  0 (tap-hold $tap-time $hold-time 0 lmet)
+  nm (tap-hold $tap-time $hold-time S-\ (layer-toggle move-layer))
+)
+
+(deflayer base
+  caps
+  `
+  tab q w e r t y u i o p [
+  esc @a @s @d @f g h @j @k @l @; _
+  lsft < @z x c v b n m , . / rsft
+  lctl lmet @l5 spc ralt rctl
+)
+
+(deflayer special-num-layer
+  _
+  S-`
+  ` S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
+  _ @1 @2 @3 @4 5               6 @7 @8 @9 @0 -
+  _ _ @nm S-= [ ] _             , S-[ S-] . = \
+  _ _ @l5 @lb                   lctl ralt
+)
+
+(deflayer move-layer
+  _
+  _
+  _ _ _ _ _ _                   _ home end _ up _
+  _ _ _ _ _ _                   left down up right _ _
+  _ _ _ _ _ _ _                 down _ _ _ _ _
+  _ _ @l5 @lb                   lctl ralt
+)
+
+
+;;unused
+(deflayer special-layer
+  _
+  _
+  _ _ _ _ _ S-5                 S-6 S-[ S-] [ ] S--
+  _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
+  _ _ _ _ _ _ _                 n m S-\ S-= = _
+  _ _ @l3 @lb                   lctl ralt
+)
+
+(deflayer num-layer
+  _
+  _
+  _ _ _ _ _ _                   _ _ _ _ _ _
+  _ 1 2 3 4 5                   6 7 8 9 0 _
+  _ _ _ _ _ _ _                 _ _ _ _ _ _
+  _ _ @l2 @lb                   lctl ralt
+)
+

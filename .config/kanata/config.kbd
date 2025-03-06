@@ -3,88 +3,168 @@
 )
 
 (defsrc
-  esc
-  `
-  tab q w e r t y u i o p [
-  caps a s d f g h j k l ; '
-  lsft < z x c v b n m , . / rsft
-  lctl lmet lalt spc ralt rctl
+  f7 1 2 3 4
+  q w e r t     y u i o p
+  a s d f g     h j k l ;
+  z x c v b     n m , . /
+  lalt spc      ralt rctl
 )
 
 (defvar
   tap-time 150
   hold-time 200
+  oneshot-timeout 2000
 )
 
+;; alias base
 (defalias
-  a (tap-hold $tap-time $hold-time a lmet)
-  s (tap-hold $tap-time $hold-time s lalt)
-  d (tap-hold $tap-time $hold-time d lsft)
-  f (tap-hold $tap-time $hold-time f lctl)
-  j (tap-hold $tap-time $hold-time j lctl)
-  k (tap-hold $tap-time $hold-time k rsft)
-  l (tap-hold $tap-time $hold-time l lalt)
-  ; (tap-hold $tap-time $hold-time ; lmet)
-  z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
-  lb (layer-switch base)
-  l2 (layer-switch special-layer) ;;unused
-  l3 (layer-switch num-layer) ;;unused
-  l5 (layer-switch special-num-layer)
-  1 (tap-hold $tap-time $hold-time 1 lmet)
-  2 (tap-hold $tap-time $hold-time 2 lalt)
-  3 (tap-hold $tap-time $hold-time 3 lsft)
-  4 (tap-hold $tap-time $hold-time 4 lctl)
-  7 (tap-hold $tap-time $hold-time 7 lctl)
-  8 (tap-hold $tap-time $hold-time 8 rsft)
-  9 (tap-hold $tap-time $hold-time 9 lalt)
-  0 (tap-hold $tap-time $hold-time 0 lmet)
-  nm (tap-hold $tap-time $hold-time S-\ (layer-toggle move-layer))
+  b_a (tap-hold $tap-time $hold-time a lmet)
+  b_s (tap-hold $tap-time $hold-time s lalt)
+  b_d (tap-hold $tap-time $hold-time d lsft)
+  b_f (tap-hold $tap-time $hold-time f lctl)
+  b_j (tap-hold $tap-time $hold-time j lctl)
+  b_k (tap-hold $tap-time $hold-time k rsft)
+  b_l (tap-hold $tap-time $hold-time l lalt)
+  b_; (tap-hold $tap-time $hold-time bspc lmet)
+
+  b_esc (tap-hold $tap-time $hold-time esc (layer-toggle esc-layer))
+  b_spc (tap-hold $tap-time $hold-time spc (layer-toggle num-h-layer))
+  b_sym (one-shot $oneshot-timeout (layer-while-held sym-layer))
+  b_lsft (one-shot $oneshot-timeout lsft)
+  b_numt (layer-switch num-t-layer)
+
+  b_mgt (layer-switch mgt-layer)
+
+  b_z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
+  b_x (tap-hold $tap-time $hold-time x (layer-toggle symspec-layer))
+  b_. (tap-hold $tap-time $hold-time . (layer-toggle symspec-layer))
+  b_o (tap-hold $tap-time $hold-time o (layer-toggle wor-a-layer))
+  b_u (tap-hold $tap-time $hold-time u (layer-toggle wor-ac-layer))
 )
 
 (deflayer base
-  caps
-  `
-  tab q w e r t y u i o p [
-  esc @a @s @d @f g h @j @k @l @; _
-  lsft < @z x c v b n m , . / rsft
-  lctl lmet @l5 spc ralt rctl
-)
-
-(deflayer special-num-layer
-  _
-  S-`
-  ` S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 S--
-  _ @1 @2 @3 @4 5               6 @7 @8 @9 @0 -
-  _ _ @nm S-= [ ] _             , S-[ S-] . = \
-  _ _ @l5 @lb                   lctl ralt
+  @b_mgt 1 2 3 4
+  q w e r t                 y @b_u i @b_o p
+  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
+  @b_z @b_x c v b           n m , @b_. @b_numt
+  @b_esc @b_spc             @b_lsft @b_sym
 )
 
 (deflayer move-layer
-  _
-  _
-  _ _ _ _ _ _                   _ home end _ up _
-  _ _ _ _ _ _                   left down up right _ _
-  _ _ _ _ _ _ _                 down _ _ _ _ _
-  _ _ @l5 @lb                   lctl ralt
+  @b_mgt 1 2 3 4
+  q w e r t                 y u i o p
+  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
+  @b_z x c v b              n m , . /
+  @b_esc @b_spc             @b_lsft @b_sym
+)
+
+(deflayer esc-layer
+  _ _ _ _ _
+  C-c C-v C-spc f8 _        y @b_u i @b_o p
+  tab del lsft bspc _       h @b_j @b_k @b_l @b_;
+  ret _ _ _ _               n m , @b_. @b_numt
+  _ _                       ret ralt
+)
+
+;; alias sym
+(defalias
+  sy_a (tap-hold $tap-time $hold-time - lmet)
+  sy_s (tap-hold $tap-time $hold-time ' lalt)
+  sy_d (tap-hold $tap-time $hold-time S-[ lsft)
+  sy_f (tap-hold $tap-time $hold-time S-] lctl)
+  sy_j (tap-hold $tap-time $hold-time / lctl)
+  sy_k (tap-hold $tap-time $hold-time S-' rsft)
+  sy_l (tap-hold $tap-time $hold-time S-; lalt)
+
+  sy_spc (tap-hold $tap-time $hold-time (layer-switch base) (layer-toggle num-h-layer))
+
+  sy_z (tap-hold $tap-time $hold-time S-- (layer-toggle move-layer))
+  sy_x (tap-hold $tap-time $hold-time ; (layer-toggle symspec-layer))
+  sy_o (tap-hold $tap-time $hold-time S-9 (layer-toggle wor-a-layer))
+  sy_u (tap-hold $tap-time $hold-time S-7 (layer-toggle wor-ac-layer))
+)
+(deflayer sym-layer
+  _ _ _ _ _
+  S-1 S-2 S-3 S-4 S-5           S-6 @sy_u S-8 @sy_o S-0
+  @sy_a @sy_s @sy_d @sy_f `     S-= @sy_j @sy_k @sy_l @b_;
+  @sy_z @sy_x [ ] =             S-` \ , @b_. @b_numt
+  _ @sy_spc                     @b_lsft @b_sym
+)
+
+;; alias num-h
+(defalias
+  nh_a (tap-hold $tap-time $hold-time - lalt)
+  nh_s (tap-hold $tap-time $hold-time 4 lmet)
+  nh_d (tap-hold $tap-time $hold-time 5 lsft)
+  nh_f (tap-hold $tap-time $hold-time 6 lctl)
+  nh_j (tap-hold $tap-time $hold-time / lctl)
+  nh_k (tap-hold $tap-time $hold-time S-, rsft)
+  nh_l (tap-hold $tap-time $hold-time S-. lalt)
+
+  nh_x (tap-hold $tap-time $hold-time 1 (layer-toggle symspec-layer))
+  nh_o (tap-hold $tap-time $hold-time S-9 (layer-toggle wor-a-layer))
+  nh_u (tap-hold $tap-time $hold-time S-\ (layer-toggle wor-ac-layer))
+  nh_m (layer-switch symspec-layer)
+)
+(deflayer num-h-layer
+  _ _ _ _ _
+  S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
+  @nh_a @nh_s @nh_d @nh_f 0     S-= @nh_j @nh_k @nh_l _
+  @sy_z @nh_x 2 3 =             n @nh_m , @b_. @b_numt
+  _ @sy_spc                     @b_lsft @b_sym
+)
+
+(deflayer num-t-layer
+  _ _ _ _ _
+  S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
+  @nh_a @nh_s @nh_d @nh_f 0     h @nh_j @nh_k @nh_l @b_;
+  @sy_z @nh_x 2 3 =             n @nh_m , _ _
+  _ @sy_spc                     @b_lsft @b_sym
+)
+
+(deflayer wor-a-layer
+  _ _ _ _ _
+  _ A-7 A-8 A-9 _                 _ _ _ _ _
+  lsft A-4 A-5 A-6 _              _ _ _ _ _
+  _ A-1 A-2 A-3 _                 _ _ _ _ _
+  _ _                           @b_lsft @b_sym
 )
 
 
-;;unused
-(deflayer special-layer
-  _
-  _
-  _ _ _ _ _ S-5                 S-6 S-[ S-] [ ] S--
-  _ S-1 S-2 S-3 S-4 S-5         S-6 S-7 S-8 S-9 S-0 -
-  _ _ _ _ _ _ _                 n m S-\ S-= = _
-  _ _ @l3 @lb                   lctl ralt
+(deflayer wor-ac-layer
+  _ _ _ _ _
+  _ C-A-7 C-A-8 C-A-9 _                 _ _ _ _ _
+  lsft C-A-4 C-A-5 C-A-6 _              _ _ _ _ _
+  _ C-A-1 C-A-2 C-A-3 _                 _ _ _ _ _
+  _ _                                   @b_lsft @b_sym
 )
 
-(deflayer num-layer
-  _
-  _
-  _ _ _ _ _ _                   _ _ _ _ _ _
-  _ 1 2 3 4 5                   6 7 8 9 0 _
-  _ _ _ _ _ _ _                 _ _ _ _ _ _
-  _ _ @l2 @lb                   lctl ralt
+
+;; alias symspec
+(defalias
+  ss_ue (macro RA-u S-')
+  ss_oe (macro RA-o S-')
+  ss_ae (macro RA-a S-')
+  ss_ss (macro RA-s s)
+)
+(deflayer symspec-layer
+  _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ @b_;
+  _ _ @ss_ae @ss_ue @ss_oe          _ _ @ss_ss _ _
+  @b_esc @sy_spc                       @b_lsft @b_sym
 )
 
+
+;; layer to switch between different configs passed to kanata in the following order:
+;; 1: default builtin keyboard
+;; 2: moonlander
+;; 3: default external keyboard
+;; order comes from start command
+(deflayer mgt-layer
+  _ (lrld-num 1) (lrld-num 2) (lrld-num 3) (lrld-num 4)
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _                       _ _
+)
