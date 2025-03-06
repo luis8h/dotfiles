@@ -47,7 +47,7 @@
   q w e r t                 y @b_u i @b_o p
   @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
   @b_z @b_x c v b           n m , @b_. @b_numt
-  @b_esc @b_spc             @b_lsft @b_sym
+  @b_esc @b_spc             @b_sym @b_lsft
 )
 
 ;;alias move
@@ -65,7 +65,7 @@
   q w up r t                 y u i o up
   @b_a @mo_s @mo_d @mo_f g     h @mo_j @mo_k @mo_l @b_;
   @b_z x c v b              down m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  @b_esc @b_spc             @b_sym @b_lsft
 )
 
 (deflayer esc-layer
@@ -73,7 +73,7 @@
   M-c M-v M-spc f8 _        y @b_u i @b_o p
   tab del lsft bspc _       h @b_j @b_k @b_l @b_;
   ret _ _ _ _               n m , @b_. @b_numt
-  _ _                       ret ralt
+  @b_esc @b_spc             ret ralt
 )
 
 ;; alias sym
@@ -98,7 +98,7 @@
   S-1 S-2 S-3 S-4 S-5           S-6 @sy_u S-8 @sy_o S-0
   @sy_a @sy_s @sy_d @sy_f `     S-= @sy_j @sy_k @sy_l @b_;
   @sy_z @sy_x [ ] =             S-` \ , @b_. @b_numt
-  _ @sy_spc                     @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 ;; alias num-h
@@ -121,7 +121,7 @@
   S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
   @nh_a @nh_s @nh_d @nh_f 0     S-= @nh_j @nh_k @nh_l _
   @sy_z @nh_x 2 3 =             n @nh_m , @b_. @b_numt
-  _ @sy_spc                     @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 (deflayer num-t-layer
@@ -129,15 +129,15 @@
   S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
   @nh_a @nh_s @nh_d @nh_f 0     h @nh_j @nh_k @nh_l @b_;
   @sy_z @nh_x 2 3 =             n @nh_m , _ _
-  _ @sy_spc                     @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 (deflayer wor-a-layer
   _ _ _ _ _
   _ A-7 A-8 A-9 _                 _ _ _ _ _
-  lsft A-4 A-5 A-6 _              _ _ _ _ _
+  lsft A-4 A-5 A-6 A-0              _ _ _ _ _
   _ A-1 A-2 A-3 _                 _ _ _ _ _
-  _ _                           @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 
@@ -146,7 +146,7 @@
   _ M-A-7 M-A-8 M-A-9 _                 _ _ _ _ _
   lsft M-A-4 M-A-5 M-A-6 _              _ _ _ _ _
   _ M-A-1 M-A-2 M-A-3 _                 _ _ _ _ _
-  _ _                                   @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 
@@ -168,7 +168,7 @@
   _ _ _ _ _                 _ _ _ _ _
   _ _ _ _ _                 _ _ _ _ @b_;
   _ _ @ss_ae @ss_ue @ss_oe          _ _ @ss_ss _ _
-  @b_esc @sy_spc                       @b_lsft @b_sym
+  @b_esc @sy_spc                 @b_sym @b_lsft
 )
 
 (platform (macos)
