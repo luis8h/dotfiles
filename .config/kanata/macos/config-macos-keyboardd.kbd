@@ -50,19 +50,29 @@
   @b_esc @b_spc             @b_lsft @b_sym
 )
 
+;;alias move
+(defalias
+  mo_s (tap-hold $tap-time $hold-time left lalt)
+  mo_d (tap-hold $tap-time $hold-time down lsft)
+  mo_f (tap-hold $tap-time $hold-time right lmet)
+  mo_j (tap-hold $tap-time $hold-time down lmet)
+  mo_k (tap-hold $tap-time $hold-time up rsft)
+  mo_l (tap-hold $tap-time $hold-time right lalt)
+)
+
 (deflayer move-layer
   @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
+  q w up r t                 y u i o up
+  @b_a @mo_s @mo_d @mo_f g     h @mo_j @mo_k @mo_l @b_;
+  @b_z x c v b              down m , . /
   @b_esc @b_spc             @b_lsft @b_sym
 )
 
 (deflayer esc-layer
   _ _ _ _ _
-  C-c C-v C-spc f8 _        _ _ _ _ _
-  tab del lsft bspc _       _ _ _ _ _
-  ret _ _ _ _               _ _ _ _ _
+  M-c M-v M-spc f8 _        y @b_u i @b_o p
+  tab del lsft bspc _       h @b_j @b_k @b_l @b_;
+  ret _ _ _ _               n m , @b_. @b_numt
   _ _                       ret ralt
 )
 
@@ -72,7 +82,7 @@
   sy_s (tap-hold $tap-time $hold-time ' lalt)
   sy_d (tap-hold $tap-time $hold-time S-[ lsft)
   sy_f (tap-hold $tap-time $hold-time S-] lmet)
-  sy_j (tap-hold $tap-time $hold-time ` lmet)
+  sy_j (tap-hold $tap-time $hold-time / lmet)
   sy_k (tap-hold $tap-time $hold-time S-' rsft)
   sy_l (tap-hold $tap-time $hold-time S-; lalt)
 
@@ -86,49 +96,79 @@
 (deflayer sym-layer
   _ _ _ _ _
   S-1 S-2 S-3 S-4 S-5           S-6 @sy_u S-8 @sy_o S-0
-  @sy_a @sy_s @sy_d @sy_f g     h @sy_j @sy_k @sy_l _
-  @sy_z @sy_x [ ] =             n m , _
-  _ @sy_spc               _ _
+  @sy_a @sy_s @sy_d @sy_f `     S-= @sy_j @sy_k @sy_l @b_;
+  @sy_z @sy_x [ ] =             S-` \ , @b_. @b_numt
+  _ @sy_spc                     @b_lsft @b_sym
 )
 
+;; alias num-h
+(defalias
+  nh_a (tap-hold $tap-time $hold-time - lalt)
+  nh_s (tap-hold $tap-time $hold-time 4 lctl)
+  nh_d (tap-hold $tap-time $hold-time 5 lsft)
+  nh_f (tap-hold $tap-time $hold-time 6 lmet)
+  nh_j (tap-hold $tap-time $hold-time / lmet)
+  nh_k (tap-hold $tap-time $hold-time S-, rsft)
+  nh_l (tap-hold $tap-time $hold-time S-. lalt)
+
+  nh_x (tap-hold $tap-time $hold-time 1 (layer-toggle symspec-layer))
+  nh_o (tap-hold $tap-time $hold-time S-9 (layer-toggle wor-a-layer))
+  nh_u (tap-hold $tap-time $hold-time S-\ (layer-toggle wor-ac-layer))
+  nh_m (layer-switch symspec-layer)
+)
 (deflayer num-h-layer
-  @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  _ _ _ _ _
+  S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
+  @nh_a @nh_s @nh_d @nh_f 0     S-= @nh_j @nh_k @nh_l _
+  @sy_z @nh_x 2 3 =             n @nh_m , @b_. @b_numt
+  _ @sy_spc                     @b_lsft @b_sym
 )
 
 (deflayer num-t-layer
-  @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  _ _ _ _ _
+  S-1 7 8 9 S-5                 S-6 @nh_u S-8 @nh_o S-0
+  @nh_a @nh_s @nh_d @nh_f 0     h @nh_j @nh_k @nh_l @b_;
+  @sy_z @nh_x 2 3 =             n @nh_m , _ _
+  _ @sy_spc                     @b_lsft @b_sym
 )
 
 (deflayer wor-a-layer
-  @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  _ _ _ _ _
+  _ A-7 A-8 A-9 _                 _ _ _ _ _
+  lsft A-4 A-5 A-6 _              _ _ _ _ _
+  _ A-1 A-2 A-3 _                 _ _ _ _ _
+  _ _                           @b_lsft @b_sym
 )
+
 
 (deflayer wor-ac-layer
-  @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  _ _ _ _ _
+  _ C-A-7 C-A-8 C-A-9 _                 _ _ _ _ _
+  lsft C-A-4 C-A-5 C-A-6 _              _ _ _ _ _
+  _ C-A-1 C-A-2 C-A-3 _                 _ _ _ _ _
+  _ _                                   @b_lsft @b_sym
 )
 
+
+;; alias symspec
+(defalias
+  oe (macro RA-u o)
+  ue (macro RA-u u)
+  ae (macro RA-u a)
+  Oe (macro (unshift ralt u) o)
+  Ue (macro (unshift ralt u) 50 u)  ;; I had to put in a delay of 50ms for u, otherwise it didn't work
+  Ae (macro (unshift ralt u) a)
+  ss_oe (fork @oe @Oe (lsft rsft))
+  ss_ue (fork @ue @Ue (lsft rsft))
+  ss_ae (fork @ae @Ae (lsft rsft))
+  ss_ss RA-s
+)
 (deflayer symspec-layer
-  @b_mgt 1 2 3 4
-  q w e r t                 y u i o p
-  @b_a @b_s @b_d @b_f g     h @b_j @b_k @b_l @b_;
-  @b_z x c v b              n m , . /
-  @b_esc @b_spc             @b_lsft @b_sym
+  _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ @b_;
+  _ _ @ss_ae @ss_ue @ss_oe          _ _ @ss_ss _ _
+  @b_esc @sy_spc                       @b_lsft @b_sym
 )
 
 (platform (macos)
@@ -140,37 +180,6 @@
         (lmet left) (lalt left)
         (lmet right) (lalt right)
     )
-)
-
-(defalias
-  a (tap-hold $tap-time $hold-time a lctl)
-  s (tap-hold $tap-time $hold-time s lalt)
-  d (tap-hold $tap-time $hold-time d lsft)
-  f (tap-hold $tap-time $hold-time f lmet)
-  j (tap-hold $tap-time $hold-time j lmet)
-  k (tap-hold $tap-time $hold-time k rsft)
-  l (tap-hold $tap-time $hold-time l lalt)
-  ; (tap-hold $tap-time $hold-time ; lctl)
-  1 (tap-hold $tap-time $hold-time 1 lctl)
-  2 (tap-hold $tap-time $hold-time 2 lalt)
-  3 (tap-hold $tap-time $hold-time 3 lsft)
-  4 (tap-hold $tap-time $hold-time 4 lmet)
-  7 (tap-hold $tap-time $hold-time 7 lmet)
-  8 (tap-hold $tap-time $hold-time 8 rsft)
-  9 (tap-hold $tap-time $hold-time 9 lalt)
-  0 (tap-hold $tap-time $hold-time 0 lctl)
-  z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
-  nm (tap-hold $tap-time $hold-time S-\ (layer-toggle move-layer))
-  oe (macro RA-u o)
-  ue (macro RA-u u)
-  ae (macro RA-u a)
-  Oe (macro (unshift ralt u) o)
-  Ue (macro (unshift ralt u) 50 u)  ;; I had to put in a delay of 50ms for u, otherwise it didn't work
-  Ae (macro (unshift ralt u) a)
-  _oe (fork @oe @Oe (lsft rsft))
-  _ue (fork @ue @Ue (lsft rsft))
-  _ae (fork @ae @Ae (lsft rsft))
-  sz RA-s
 )
 
 ;; layer to switch between different configs passed to kanata in the following order:
