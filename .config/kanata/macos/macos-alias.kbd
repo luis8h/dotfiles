@@ -1,0 +1,22 @@
+(defalias
+    c_lctl lmet
+    c_lmet lctl
+
+    c_copy M-c
+    c_paste M-v
+    c_tmux M-spc
+)
+
+(defalias
+    oe (macro RA-u o)
+    ue (macro RA-u u)
+    ae (macro RA-u a)
+    Oe (macro (unshift ralt u) o)
+    Ue (macro (unshift ralt u) 50 u)  ;; I had to put in a delay of 50ms for u, otherwise it didn't work
+    Ae (macro (unshift ralt u) a)
+    ss_oe (fork @oe @Oe (lsft rsft))
+    ss_ue (fork @ue @Ue (lsft rsft))
+    ss_ae (fork @ae @Ae (lsft rsft))
+    ss_ss RA-s
+)
+

@@ -1,0 +1,36 @@
+(defalias
+    b_a (tap-hold $tap-time $hold-time a @c_lmet)
+    b_s (tap-hold $tap-time $hold-time s lalt)
+    b_d (tap-hold $tap-time $hold-time d lsft)
+    b_f (tap-hold $tap-time $hold-time f @c_lctl)
+    b_j (tap-hold $tap-time $hold-time j @c_lctl)
+    b_k (tap-hold $tap-time $hold-time k rsft)
+    b_l (tap-hold $tap-time $hold-time l lalt)
+    b_; (tap-hold $tap-time $hold-time bspc @c_lmet)
+
+    b_spc (tap-hold $tap-time $hold-time spc (layer-toggle num-h-layer))
+    b_sym (one-shot $oneshot-timeout (layer-while-held sym-layer))
+    b_lsft (one-shot $oneshot-timeout lsft)
+    b_/ (layer-switch num-t-layer)
+
+    b_t1 (tap-hold $tap-time $hold-time esc (layer-toggle esc-layer))
+    b_t2 (tap-hold $tap-time $hold-time spc (layer-toggle num-h-layer))
+    b_t3 (one-shot $oneshot-timeout (layer-while-held sym-layer))
+    b_t4 (one-shot $oneshot-timeout lsft)
+
+    b_f7 (layer-switch mgt-layer)
+
+    b_z (tap-hold $tap-time $hold-time z (layer-toggle move-layer))
+    b_x (tap-hold $tap-time $hold-time x (layer-toggle symspec-layer))
+    b_. (tap-hold $tap-time $hold-time . (layer-toggle symspec-layer))
+    b_o (tap-hold $tap-time $hold-time o (layer-toggle wor-a-layer))
+    b_u (tap-hold $tap-time $hold-time u (layer-toggle wor-ac-layer))
+)
+
+(deflayer base
+    @b_f7 1 2 3 4
+    q w e r t                   y @b_u i @b_o p
+    @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_;
+    @b_z @b_x c v b             n m , @b_. @b_/
+    @b_t1 @b_t2                 @b_t3 @b_t4
+)

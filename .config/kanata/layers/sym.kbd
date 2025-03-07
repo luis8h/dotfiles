@@ -1,0 +1,23 @@
+(defalias
+    sy_a (tap-hold $tap-time $hold-time - @c_lctl)
+    sy_s (tap-hold $tap-time $hold-time ' lalt)
+    sy_d (tap-hold $tap-time $hold-time S-[ lsft)
+    sy_f (tap-hold $tap-time $hold-time S-] @c_lmet)
+    sy_j (tap-hold $tap-time $hold-time / @c_lmet)
+    sy_k (tap-hold $tap-time $hold-time S-' rsft)
+    sy_l (tap-hold $tap-time $hold-time S-; lalt)
+
+    sy_z (tap-hold $tap-time $hold-time S-- (layer-toggle move-layer))
+    sy_x (tap-hold $tap-time $hold-time ; (layer-toggle symspec-layer))
+    sy_o (tap-hold $tap-time $hold-time S-9 (layer-toggle wor-a-layer))
+    sy_u (tap-hold $tap-time $hold-time S-7 (layer-toggle wor-ac-layer))
+)
+
+(deflayer sym-layer
+    @b_f7 1 2 3 4
+    S-1 S-2 S-3 S-4 S-5             S-6 @sy_u S-8 @sy_o S-0
+    @sy_a @sy_s @sy_d @sy_f `       S-= @sy_j @sy_k @sy_l @b_;
+    @sy_z @sy_x [ ] =               S-` \ , @b_. @b_/
+    @to_base @b_t2                  @b_t3 @b_t4
+)
+

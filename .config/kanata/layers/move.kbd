@@ -1,0 +1,16 @@
+(defalias
+    mo_s (tap-hold $tap-time $hold-time left lalt)
+    mo_d (tap-hold $tap-time $hold-time down lsft)
+    mo_f (tap-hold $tap-time $hold-time right @c_lctl)
+    mo_j (tap-hold $tap-time $hold-time down @c_lctl)
+    mo_k (tap-hold $tap-time $hold-time up rsft)
+    mo_l (tap-hold $tap-time $hold-time right lalt)
+)
+
+(deflayer move-layer
+    @b_f7 1 2 3 4
+    q w up r t                    y u i o up
+    @b_a @mo_s @mo_d @mo_f g      left @mo_j @mo_k @mo_l @b_;
+    @b_z x c v b                  down m , . /
+    @b_t1 @b_t2                   @b_t3 @b_t4
+)

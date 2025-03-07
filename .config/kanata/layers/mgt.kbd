@@ -1,0 +1,13 @@
+;; layer to switch between different configs passed to kanata in the following order:
+;; order depends on how the kanata command is executed (first config is number 1)
+;; 1: default builtin keyboard
+;; 2: moonlander
+;; 3: default external keyboard
+;; order comes from start command
+(deflayer mgt-layer
+  _ (lrld-num 1) (lrld-num 2) (lrld-num 3) (lrld-num 4)
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _ _ _ _                 _ _ _ _ _
+  _ _                       _ _
+)

@@ -1,0 +1,24 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+  oneshot-timeout 2000
+)
+
+(platform (macos)
+    ;; Only on macos, use command arrows to jump/delete words
+    ;; because command is used for so many other things
+    ;; and it's weird that these cases use alt.
+    (defoverrides
+        (lmet bspc) (lalt bspc)
+        (lmet left) (lalt left)
+        (lmet right) (lalt right)
+    )
+)
+
+(defalias
+    to_base (layer-switch base)
+)
