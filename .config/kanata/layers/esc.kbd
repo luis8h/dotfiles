@@ -1,7 +1,7 @@
 (deflayer esc-layer
     @b_f7 1 2 3 4
-    @c_copy @c_paste @c_tmux f8 _       y @b_u i @b_o p
+    @c_copy @c_paste @c_tmux f8 _       y @b_u i @b_o @b_p
     tab del lsft bspc _                 h @b_j @b_k @b_l @b_;
-    ret _ _ _ _                         n m , @b_. @b_/
+    ret _ _ _ _                         n @b_m , @b_. @b_/
     @b_t1 @b_t2                         ret ralt _
 )
