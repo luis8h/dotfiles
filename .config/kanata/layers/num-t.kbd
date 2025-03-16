@@ -8,18 +8,18 @@
     nt_l (tap-hold $tap-time $hold-time S-. lalt)
 
     nt_z (tap-hold $tap-time $hold-time S-- (layer-toggle move-layer))
-    nt_x (tap-hold $tap-time $hold-time 1 (layer-toggle symspec-layer))
+    nt_x (tap-hold $tap-time $hold-time 7 (layer-toggle symspec-layer))
     nt_o (tap-hold $tap-time $hold-time S-9 (layer-toggle wor-a-layer))
     nt_u (tap-hold $tap-time $hold-time S-\ (layer-toggle wor-ac-layer))
     nt_m (tap-hold $tap-time $hold-time (layer-switch symspec-layer) ralt)
-    nt_v (tap-hold $tap-time $hold-time 3 ralt)
+    nt_v (tap-hold $tap-time $hold-time 9 ralt)
     nt_p (tap-hold $tap-time $hold-time S-0 @c_lmet)
 )
 
 (deflayer num-t-layer
     @b_f7 1 2 3 4
-    S-1 7 8 9 S-5                 S-6 @nt_u S-8 @nt_o @nt_p
+    S-1 1 2 3 S-5                 S-6 @nt_u S-8 @nt_o @nt_p
     @nt_a @nt_s @nt_d @nt_f 0     h @nt_j @nt_k @nt_l @b_;
-    @nt_z @nt_x 2 @nt_v =             n @nt_m , _ _
+    @nt_z @nt_x 8 @nt_v =             n @nt_m , _ _
     @to_base @b_t2                  @b_t3 @b_t4 _
 )

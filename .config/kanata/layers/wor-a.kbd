@@ -1,8 +1,8 @@
 
 (deflayer wor-a-layer
     @b_f7 1 2 3 4
-    _ A-7 A-8 A-9 _                 _ _ _ _ _
-    lsft A-4 A-5 A-6 A-0              _ _ _ _ _
     _ A-1 A-2 A-3 _                 _ _ _ _ _
+    lsft A-4 A-5 A-6 A-0              _ _ _ _ _
+    _ A-7 A-8 A-9 _                 _ _ _ _ _
     @b_t1 @b_t2                 @b_t3 @b_t4 _
 )
