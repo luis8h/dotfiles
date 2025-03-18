@@ -171,6 +171,9 @@ return {
             settings = {
                 pylsp = {
                     plugins = {
+                        rope_autoimport = {
+                            enabled = true,
+                        },
                         -- formatter options
                         black = {
                             enabled = true,
