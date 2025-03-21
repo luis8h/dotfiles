@@ -207,7 +207,8 @@ return {
                         pylsp_mypy = {
                             enabled = true,
                             report_progress = true,
-                            overrides = { "--ignore-missing-imports", "--disable-error-code=import-untyped", true }
+                            live_mode = true,
+                            overrides = { "--ignore-missing-imports", "--disable-error-code=import-untyped", "--explicit-package-bases", true }
                         },
                         -- auto-completion options
                         jedi_completion = { fuzzy = true },

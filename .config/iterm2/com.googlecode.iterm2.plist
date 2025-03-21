@@ -1119,6 +1119,10 @@
 	<integer>11</integer>
 	<key>LeftControl</key>
 	<integer>7</integer>
+	<key>NeverWarnAboutShortLivedSessions_729D15AA-5768-44B3-8804-52A50B5775A5</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_729D15AA-5768-44B3-8804-52A50B5775A5_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>

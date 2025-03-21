@@ -28,6 +28,10 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+zinit load 'zsh-users/zsh-history-substring-search'
+zinit ice wait atload'_history_substring_search_config'
 
 ZVM_INIT_MODE=sourcing # very important fix for zsh vi mode working with tmux (resurect)
 
@@ -145,6 +149,10 @@ fzf-history-widget() {
   zle redisplay
 }
 zle -N fzf-history-widget
+
+bindkey "^[[5~" history-substring-search-up
+bindkey "^[[6~" history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_FUZZY=1
 
 # Define the ZLE widgets for line movement
 zle -N up-line-or-beginning-search
