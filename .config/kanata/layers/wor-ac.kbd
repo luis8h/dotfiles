@@ -1,9 +1,9 @@
 
 (deflayer wor-ac-layer
     @b_f7 1 2 3 4
-    _ M-A-1 M-A-2 M-A-3 _           _ _ _ _ _
-    lsft M-A-4 M-A-5 M-A-6 M-A-0    _ _ _ _ _
-    _ M-A-7 M-A-8 M-A-9 _           _ _ _ _ _
+    _ @ac_1 @ac_2 @ac_3 _           _ _ _ _ _
+    lsft @ac_4 @ac_5 @ac_6 @ac_0    _ _ _ _ _
+    _ @ac_7 @ac_8 @ac_9 _           _ _ _ _ _
     @b_t1 @b_t2                     @b_t3 @b_t4 _
 )
 

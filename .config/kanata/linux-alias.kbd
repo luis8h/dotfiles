@@ -5,6 +5,17 @@
     c_copy C-c
     c_paste C-v
     c_tmux C-spc
+
+    ac_1 C-A-1
+    ac_2 C-A-2
+    ac_3 C-A-3
+    ac_4 C-A-4
+    ac_5 C-A-5
+    ac_6 C-A-6
+    ac_7 C-A-7
+    ac_8 C-A-8
+    ac_9 C-A-9
+    ac_0 C-A-0
 )
 
 (defalias
