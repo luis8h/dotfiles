@@ -25,6 +25,7 @@ require("lazy").setup("plugins", {
   },
 })
 
+vim.lsp.enable({ "lua_ls", "gopls" })
 
 require("luis8h")
 

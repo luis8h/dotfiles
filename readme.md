@@ -15,7 +15,6 @@
     * `:set shiftwidth=2`
     * `:set expandtab`
 
-
 ## how to use?
 #### installation
 -   `sudo apt install stow build-essentials -y`
@@ -27,6 +26,23 @@
 
 ## lsp configuration
 Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
+#### typical lsp servers:
+- 'tsserver',
+- 'rust_analyzer',
+- 'pyright',
+- 'angularls',
+- 'csharp_ls',
+- 'jdtls',
+- 'pyright',
+- 'bufls',
+- 'terraformls',
+- 'texlab',
+- 'lua_ls',
+- 'marksman',
+- 'black',
+- 'ruff',
+- 'mypy',
+- 'ltex'
 
 ## latex/markdown grammar checking
 - download the ngramms model from [this link](https://languagetool.org/download/ngram-data/) (choose the desired languages)
