@@ -23,6 +23,27 @@
 -   `cd ~/dotfiles`
 -   `stow . -v --adopt` **`--adopt` adopts the already existing files**
 -   `git restore .` **watch out, this goes back to the last commit and therefore deletes the changes adopted from the existing files**
+-   Mason downloads:
+    * clang-format
+    * clangd
+    * css-lsp cssls
+    * eslint-lsp eslint
+    * gopls
+    * html-lsp html
+    * htmx-lsp htmx
+    * jdtls
+    * json-lsp jsonls
+    * ltex-ls ltex
+    * lua-language-server lua_ls
+    * marksman
+    * prettier
+    * prettierd
+    * pyright
+    * rust-analyzer rust_analyzer
+    * tailwindcss-language-server tailwindcss
+    * templ
+    * texlab
+    * typescript-language-server ts_ls
 
 
 ## lsp configuration
