@@ -16,6 +16,7 @@
         (lmet bspc) (lalt bspc)
         (lmet left) (lalt left)
         (lmet right) (lalt right)
+        (lmet tab) (lctl tab)
     )
 )
 

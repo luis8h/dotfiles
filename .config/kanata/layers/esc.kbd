@@ -1,6 +1,16 @@
+(defalias
+  ;; This example is similar to the default caps-word behaviour but it moves the
+  ;; 0-9 keys to the capitalized key list from the extra non-terminating key list.
+  cwc (caps-word-custom
+    2000
+    (a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 -)
+    (kp1 kp2 kp3 kp4 kp5 kp6 kp7 kp8 kp9 bspc del up down left rght)
+  )
+)
+
 (deflayer esc-layer
     @b_f7 1 2 3 4
-    @c_copy @c_paste @c_tmux f8 _       y @b_u i @b_o @b_p
+    @c_copy @c_paste @c_tmux f8 _       y @cwc i @b_o @b_p
     tab del lsft bspc _                 h @b_j @b_k @b_l @b_;
     ret _ _ _ _                         n @b_m , @b_. @b_/
     @b_t1 @b_t2                         ret ralt _
