@@ -19,13 +19,40 @@ return {
     -- :CellularAutomaton game_of_life
     "eandrju/cellular-automaton.nvim",
 
-    "christoomey/vim-tmux-navigator",
+    {
+        "christoomey/vim-tmux-navigator",
+        -- not working on macos
+        -- cmd = {
+        --     "TmuxNavigateLeft",
+        --     "TmuxNavigateDown",
+        --     "TmuxNavigateUp",
+        --     "TmuxNavigateRight",
+        --     "TmuxNavigatePrevious",
+        --     "TmuxNavigatorProcessList",
+        -- },
+        -- keys = {
+        --     { "<c-h>",     "<cmd><C-U>TmuxNavigateLeft<cr>" },
+        --     { "<c-j>",     "<cmd><C-U>TmuxNavigateDown<cr>" },
+        --     { "<c-k>",     "<cmd><C-U>TmuxNavigateUp<cr>" },
+        --     { "<c-i>",     "<cmd><C-U>TmuxNavigateRight<cr>" },
+        --
+        --     { "<M-Left>",  "<cmd>TmuxNavigateLeft<cr>" },
+        --     { "<M-Down>",  "<cmd>TmuxNavigateDown<cr>" },
+        --     { "<M-Up>",    "<cmd>TmuxNavigateUp<cr>" },
+        --     { "<M-Right>", "<cmd>TmuxNavigateRight<cr>" },
+        --
+        --     { "<C-Left>",  "<cmd>TmuxNavigateLeft<cr>" },
+        --     { "<C-Down>",  "<cmd>TmuxNavigateDown<cr>" },
+        --     { "<C-Up>",    "<cmd>TmuxNavigateUp<cr>" },
+        --     { "<C-Right>", "<cmd>TmuxNavigateRight<cr>" },
+        -- },
+    },
 
     "AndrewRadev/dealwithit.vim",
 
     {
         "lervag/vimtex",
-        lazy = false,     -- we don't want to lazy load VimTeX
+        lazy = false, -- we don't want to lazy load VimTeX
         init = function()
             -- vim.g.vimtex_compiler_latexmk = { aux_dir = "auxiliary" out_dir = "output" } -- configured in .latexmkrc file in project root
             vim.g.vimtex_quickfix_enabled = 0
