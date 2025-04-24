@@ -16,6 +16,11 @@
     ac_8 M-A-8
     ac_9 M-A-9
     ac_0 M-A-1
+
+    tm_h M-h
+    tm_j M-j
+    tm_k M-k
+    tm_l M-l
 )
 
 (defalias

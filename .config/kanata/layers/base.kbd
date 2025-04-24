@@ -1,5 +1,5 @@
 (defalias
-    b_a (tap-hold $tap-time $hold-time a @c_lmet)
+    b_q (tap-hold $tap-time $hold-time q @c_lmet)
     b_s (tap-hold $tap-time $hold-time s lalt)
     b_d (tap-hold $tap-time $hold-time d lsft)
     b_f (tap-hold $tap-time $hold-time f @c_lctl)
@@ -25,12 +25,16 @@
     b_m (tap-hold $tap-time $hold-time m ralt)
     b_v (tap-hold $tap-time $hold-time v ralt)
     b_p (tap-hold $tap-time $hold-time p @c_lmet)
+
+    b_a (tap-hold $tap-time $hold-time a (layer-toggle vim-move-layer))
+    b_g (tap-hold $tap-time $hold-time g (layer-toggle vim-move-layer))
+    b_r (tap-hold $tap-time $hold-time r (layer-toggle tmux-move-layer))
 )
 
 (deflayer base
     @b_f7 1 2 3 4
-    q w e r t                   y @b_u i @b_o @b_p
-    @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_;
+    @b_q w e @b_r t                   y @b_u i @b_o @b_p
+    @b_a @b_s @b_d @b_f @b_g       h @b_j @b_k @b_l @b_;
     @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
     @b_t1 @b_t2                 @b_t3 @b_t4 _
 )

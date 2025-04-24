@@ -1,0 +1,9 @@
+
+(deflayer vim-move-layer
+    @b_f7 1 2 3 4
+    _ _ _ _ _           _ _ _ _ _
+    _ _ _ _ _           left down up right _
+    _ _ _ _ _           _ _ _ _ _
+    @b_t1 @b_t2         @b_t3 @b_t4 _
+)
+
