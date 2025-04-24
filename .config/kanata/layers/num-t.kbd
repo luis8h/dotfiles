@@ -18,7 +18,7 @@
 
 (deflayer num-t-layer
     @b_f7 1 2 3 4
-    . 1 2 3 ,                 S-6 @nt_u S-9 @nt_o @nt_p
+    . 1 2 3 ,                 S-/ @nt_u S-9 @nt_o @nt_p
     @nt_a @nt_s @nt_d @nt_f 0     h @nt_j @nt_k @nt_l @b_;
     @nt_z @nt_x 8 @nt_v =             n @nt_m , _ _
     @to_base @b_t2                  @b_t3 @b_t4 _
