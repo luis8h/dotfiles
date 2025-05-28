@@ -12,7 +12,7 @@
 (include ./layers/wor-a.kbd)
 (include ./layers/wor-ac.kbd)
 (include ./layers/mgt.kbd)
-linclude ./layers/tmux-move.kbd)
+(include ./layers/tmux-move.kbd)
 (include ./layers/vim-move.kbd)
 
 (defsrc
