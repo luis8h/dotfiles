@@ -12,6 +12,6 @@
     @b_f7 1 2 3 4
     q w up r t                    y home i end @mo_p
     @b_a @mo_s @mo_d @mo_f g      left @mo_j @mo_k @mo_l @b_;
-    @b_z x c @b_v b               down @b_m , . /
+    @b_z x pgup pgdn b               down @b_m , . /
     @b_t1 @b_t2                   @b_t3 @b_t4 _
 )
