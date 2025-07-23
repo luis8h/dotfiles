@@ -46,27 +46,27 @@ return {
 
         -- find files in data directory (only if env variable is set)
         vim.keymap.set('n', '<leader>fd', function()
-            local data_dir = os.getenv('DATA_DIR')
+            local data_dir = os.getenv('H8_DATA_DIR')
             if data_dir then
                 builtin.find_files({
                     hidden = true, -- Include hidden files
                     cwd = data_dir,
                 })
             else
-                print("Environment variable DATA_DIR is not set. (view readme for more info)")
+                print("Environment variable H8_DATA_DIR is not set. (view readme for more info)")
             end
         end, { desc = "Telescope find files in data" })
 
         -- find files in kbase directory (only if env variable is set)
         vim.keymap.set('n', '<leader>fb', function()
-            local kbase_dir = os.getenv('KBASE_DIR')
+            local kbase_dir = os.getenv('H8_KBASE_DIR')
             if kbase_dir then
                 builtin.find_files({
                     hidden = false, -- Include hidden files
                     cwd = kbase_dir,
                 })
             else
-                print("Environment variable KBASE_DIR is not set. (view readme for more info)")
+                print("Environment variable H8_KBASE_DIR is not set. (view readme for more info)")
             end
         end, { desc = "Telescope find files in kbase" })
 
@@ -106,7 +106,7 @@ return {
 
         -- find directories in data directory (only if env variable is set)
         vim.keymap.set('n', '<leader>dd', function()
-            local data_dir = os.getenv('DATA_DIR')
+            local data_dir = os.getenv('H8_DATA_DIR')
             if data_dir then
                 builtin.find_files({
                     prompt_title = "Find Directories",
@@ -114,7 +114,7 @@ return {
                     find_command = { "fd", "--type", "d", "--hidden", "--follow", "." },
                 })
             else
-                print("Environment variable DATA_DIR is not set. (view readme for more info)")
+                print("Environment variable H8_DATA_DIR is not set. (view readme for more info)")
             end
         end, { desc = "Telescope find directories in data" })
 
