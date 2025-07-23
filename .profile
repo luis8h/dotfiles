@@ -46,15 +46,22 @@ if [ "${H8_DEVICE}" = "yoga-laptop" ]; then
 fi
 
 
-# only if os is not macos
+# Only if OS is not macOS
 if [ "$(uname)" != "Darwin" ]; then
-    # setxkbmap -layout us -option caps:escape
+    # Optional: setxkbmap -layout us -option caps:escape
 
-    if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-    . "$HOME/.cargo/env"
+    # Load Nix environment if available
+    if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+        . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    fi
 
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    # Load Rust (Cargo) environment if available
+    if [ -f "$HOME/.cargo/env" ]; then
+        . "$HOME/.cargo/env"
+    fi
 
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    # Load Linuxbrew environment if it's installed
+    if [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
 fi
-
