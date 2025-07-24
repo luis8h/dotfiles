@@ -62,9 +62,9 @@ An example would be the data directory which is needed for the nvim-telescope
 find files command.
 **example:**
 ```shell
-export DEVICE=yoga-laptop
-export "DATA_DIR"="/mnt/data"
-export "KBASE_DIR"="/mnt/data/kbase"
+export H8_DEVICE=yoga-laptop
+export "H8_DATA_DIR"="/mnt/data"
+export "H8_KBASE_DIR"="/mnt/data/kbase"
 ```
 
 
