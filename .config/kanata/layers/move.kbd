@@ -1,10 +1,10 @@
 (defalias
-    mo_s (tap-hold $tap-time $hold-time left lalt)
+    mo_s (tap-hold $tap-time $hold-time left @c_lmet)
     mo_d (tap-hold $tap-time $hold-time down lsft)
     mo_f (tap-hold $tap-time $hold-time right @c_lctl)
     mo_j (tap-hold $tap-time $hold-time down @c_lctl)
     mo_k (tap-hold $tap-time $hold-time up rsft)
-    mo_l (tap-hold $tap-time $hold-time right lalt)
+    mo_l (tap-hold $tap-time $hold-time right @c_lmet)
     mo_p(tap-hold $tap-time $hold-time up ralt)
 )
 

@@ -1,11 +1,11 @@
 (defalias
-    b_q (tap-hold $tap-time $hold-time q @c_lmet)
-    b_s (tap-hold $tap-time $hold-time s lalt)
+    b_q (tap-hold $tap-time $hold-time q lalt)
+    b_s (tap-hold $tap-time $hold-time s @c_lmet)
     b_d (tap-hold $tap-time $hold-time d lsft)
     b_f (tap-hold $tap-time $hold-time f @c_lctl)
     b_j (tap-hold $tap-time $hold-time j @c_lctl)
     b_k (tap-hold $tap-time $hold-time k rsft)
-    b_l (tap-hold $tap-time $hold-time l lalt)
+    b_l (tap-hold $tap-time $hold-time l @c_lmet)
     b_; bspc
 
     b_/ (one-shot $oneshot-timeout (layer-while-held num-t-layer))
@@ -24,7 +24,7 @@
     b_u (tap-hold $tap-time $hold-time u (layer-toggle wor-ac-layer))
     b_m (tap-hold $tap-time $hold-time m ralt)
     b_v (tap-hold $tap-time $hold-time v ralt)
-    b_p (tap-hold $tap-time $hold-time p @c_lmet)
+    b_p (tap-hold $tap-time $hold-time p lalt)
 
     b_a (tap-hold $tap-time $hold-time a (layer-toggle move-layer))
     b_g (tap-hold $tap-time $hold-time g (layer-toggle move-layer))

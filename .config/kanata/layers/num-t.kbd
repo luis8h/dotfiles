@@ -1,11 +1,11 @@
 (defalias
-    nt_a (tap-hold $tap-time $hold-time - lalt)
-    nt_s (tap-hold $tap-time $hold-time 4 @c_lmet)
+    nt_a (tap-hold $tap-time $hold-time - @c_lmet)
+    nt_s (tap-hold $tap-time $hold-time 4 lalt)
     nt_d (tap-hold $tap-time $hold-time 5 lsft)
     nt_f (tap-hold $tap-time $hold-time 6 @c_lctl)
     nt_j (tap-hold $tap-time $hold-time / @c_lctl)
     nt_k (tap-hold $tap-time $hold-time S-, rsft)
-    nt_l (tap-hold $tap-time $hold-time S-. lalt)
+    nt_l (tap-hold $tap-time $hold-time S-. @c_lmet)
 
     nt_z (tap-hold $tap-time $hold-time S-- (layer-toggle move-layer))
     nt_x (tap-hold $tap-time $hold-time 7 (layer-toggle symspec-layer))
@@ -13,7 +13,7 @@
     nt_u (tap-hold $tap-time $hold-time S-\ (layer-toggle wor-ac-layer))
     nt_m (tap-hold $tap-time $hold-time (layer-switch symspec-layer) ralt)
     nt_v (tap-hold $tap-time $hold-time 9 ralt)
-    nt_p (tap-hold $tap-time $hold-time S-8 @c_lmet)
+    nt_p (tap-hold $tap-time $hold-time S-8 lalt)
 )
 
 (deflayer num-t-layer

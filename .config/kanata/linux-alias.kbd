@@ -6,16 +6,27 @@
     c_paste C-v
     c_tmux C-spc
 
-    ac_1 C-A-1
-    ac_2 C-A-2
-    ac_3 C-A-3
-    ac_4 C-A-4
-    ac_5 C-A-5
-    ac_6 C-A-6
-    ac_7 C-A-7
-    ac_8 C-A-8
-    ac_9 C-A-9
-    ac_0 C-A-0
+    ac_1 C-M-1
+    ac_2 C-M-2
+    ac_3 C-M-3
+    ac_4 C-M-4
+    ac_5 C-M-5
+    ac_6 C-M-6
+    ac_7 C-M-7
+    ac_8 C-M-8
+    ac_9 C-M-9
+    ac_0 C-M-0
+
+    a_1 M-1
+    a_2 M-2
+    a_3 M-3
+    a_4 M-4
+    a_5 M-5
+    a_6 M-6
+    a_7 M-7
+    a_8 M-8
+    a_9 M-9
+    a_0 M-0
 
     tm_h C-h
     tm_j C-j
