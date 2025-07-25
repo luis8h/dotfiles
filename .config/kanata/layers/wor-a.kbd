@@ -2,7 +2,7 @@
 (deflayer wor-a-layer
     @b_f7 1 2 3 4
     _ @a_1 @a_2 @a_3 _                 _ _ _ _ _
-    lsft @a_4 @a_5 @a_6 @a_1              _ _ _ _ _
+    lsft @a_4 @a_5 @a_6 @a_0              _ _ _ _ _
     _ @a_7 @a_8 @a_9 _                 _ _ _ _ _
     @b_t1 @b_t2                 @b_t3 @b_t4 _
 )
