@@ -1,21 +1,15 @@
 -- require("luis8h.lazy")
 require("luis8h.set")
 require("luis8h.remap")
-
--- DO NOT INCLUDE THIS
-vim.opt.rtp:append("~/personal/streamer-tools")
--- DO NOT INCLUDE THIS
+require("luis8h.lsp")
 
 local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+local luis8h_group = augroup('luis8h', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
-function R(name)
-    require("plenary.reload").reload_module(name)
-end
-
+-- shortly highlights text when yanking
 autocmd('TextYankPost', {
     group = yank_group,
     pattern = '*',
@@ -27,12 +21,10 @@ autocmd('TextYankPost', {
     end,
 })
 
+-- removes trailing whitespaces on save
+-- use `:noa w` to save without using this
 autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+    group = luis8h_group,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
