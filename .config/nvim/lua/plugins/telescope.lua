@@ -5,8 +5,8 @@ return {
     config = function()
         local builtin = require('telescope.builtin')
 
-        -- TODO: new shortcut
-        -- builtin.lsp_references
+        -- lsp references
+        vim.keymap.set('n', '<leader>vr', function () builtin.lsp_references() end, { desc = 'Telescope lsp references' })
 
         -- diagnostics
         vim.keymap.set('n', '<leader>vcd', function() builtin.diagnostics() end, { desc = 'Telescope workspace diagnostics' })
