@@ -10,15 +10,6 @@
 -- aucommand on every lsp attach
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-        -- autocompletion
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-            vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-            vim.keymap.set('i', '<C-Space>', function() vim.lsp.completion.get() end)
-        end
-
         -- keymaps
         vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Show diagnostics in float' })
         vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format() end)
