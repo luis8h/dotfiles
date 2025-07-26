@@ -1,12 +1,15 @@
 return {
     'nvim-telescope/telescope.nvim',
-    version = '0.1.3',
+    tag = '0.1.8',
     dependencies = { { 'nvim-lua/plenary.nvim' } },
     config = function()
         local builtin = require('telescope.builtin')
 
-        -- search through all diagnostics
-        vim.keymap.set('n', '<leader>vcd', builtin.diagnostics, { desc = "Telescope LSP Diagnostics (workspace)" })
+        -- TODO: new shortcut
+        -- builtin.lsp_references
+
+        -- diagnostics
+        vim.keymap.set('n', '<leader>vcd', function() builtin.diagnostics() end, { desc = 'Telescope workspace diagnostics' })
 
         -- find files (no hidden)
         vim.keymap.set('n', '<leader>ff', builtin.find_files,
