@@ -22,7 +22,7 @@ if not status then
 end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 
-local config = {
+return {
     cmd = {
         'java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
@@ -74,32 +74,3 @@ local config = {
         bundles = {},
     },
 }
-require('jdtls').start_or_attach(config)
-
--- vim.keymap.set('n', '<leader>co', "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = 'Organize Imports' })
--- vim.keymap.set('n', '<leader>crv', "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = 'Extract Variable' })
--- vim.keymap.set('v', '<leader>crv', "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", { desc = 'Extract Variable' })
--- vim.keymap.set('n', '<leader>crc', "<Cmd>lua require('jdtls').extract_constant()<CR>", { desc = 'Extract Constant' })
--- vim.keymap.set('v', '<leader>crc', "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", { desc = 'Extract Constant' })
--- vim.keymap.set('v', '<leader>crm', "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", { desc = 'Extract Method' })
---
--- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
--- vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
--- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
--- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end)
--- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end)
--- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end)
--- vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end)
--- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end)
--- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end)
--- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
--- vim.keymap.set("n", "<leader>vff", function() vim.lsp.buf.format({ async = true }) end)
--- vim.keymap.set("v", "<leader>vfr", function()
---     vim.lsp.buf.format({
---         async = true,
---         range = {
---             ['start'] = vim.api.nvim_buf_get_mark(0, "<"),
---             ['end'] = vim.api.nvim_buf_get_mark(0, ">"),
---         }
---     })
--- end)

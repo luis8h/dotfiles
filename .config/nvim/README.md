@@ -11,4 +11,3 @@
 
 ##### java
 - for java (jdtls) a separate plugin was added to unlock all capabilities
-- the configuration for this plugin lives in the `./ftplugin/java.lua` file and gets executed everytime a `.java` file is opened
