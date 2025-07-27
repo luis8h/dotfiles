@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- keymaps
         vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Show diagnostics in float' })
         vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format() end)
-        vim.keymap.set('n', '<leader>va', function() vim.lsp.buf.code_action() end)
     end,
 })
 
