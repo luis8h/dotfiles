@@ -7,6 +7,7 @@ export EDITOR="nvim"
 export SHELL="zsh"
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/usr/local/sbin"
 
 if ! type open > /dev/null ; then
