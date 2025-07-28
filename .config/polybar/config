@@ -1,3 +1,14 @@
+[fonts]
+opensansreg = Droid Sans:style=Regular:size=8
+opensanssemibold = Droid Sans:style=Bold:size=8
+opensansbold = Droid Sans:style=Bold:size=8
+opensansboldhigh = Droid Sans:style=Bold:size=11
+opensansital = Droid Sans:style=Regular:size=9
+xos = xos4 Terminus:size=14;0
+nerd = Terminess Nerd Font:size=12;0
+fontawesome = Font Awesome 6 Free:style=Solid:size=12;0
+
+
 [colors]
 base = #1e1e2e
 mantle = #181825
@@ -26,8 +37,6 @@ pink = #f5c2e7
 flamingo = #f2cdcd
 rosewater = #f5e0dc
 transparent = #FF00000
-
-[colors]
 background = ${colors.base}
 background-alt = ${colors.blue}
 foreground = ${colors.text}
@@ -36,47 +45,168 @@ secondary = ${colors.mantle}
 alert = ${colors.red}
 disabled = ${colors.subtext1}
 
+light-red = #D95B5B
+light-green = #249824
+light-purple = #A44BA0
+
+menucol-yellow = #F7F272
+menucol-blue = #1771F1
+menucol-orange = #FFAF60
+menucol-red = #F85C50
+menucol-green = #77BD8B
+menucol-sealine = #00CF91
+menucol-purple = #9A76B3
+menucol-pink = #FF77BF
+menucol-deepblue = #6560FF
+menucol-lightblue = #60FFF7
+
+fav-purple = #6633FF
+dark = #111
+dark-red = #311
+dark-green = #131
+dark-purple = #201134
+light = #eee
+gray = #999
+dark-gray = #333
+
+
 [bar/toph]
+dpi = ${xrdb:Xft.dpi:-1}
+override-redirect = false
 monitor = ${env:MONITOR:}
+enable-ipc = true
+
 width = 100%
-height = 18pt
-radius = 0
-
-; dpi = 96
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
+height = 30pt
 bottom = false
-top = true
-line-size = 6pt
 
-#border-size = 4pt
-border-color = #00000000
+background = ${colors.dark}
+foreground = ${colors.light}
+
+line-color = ${colors.light-purple}
+line-size = 2
+
+separator = "   "
+
+font-0 = ${fonts.opensansreg}
+font-1 = ${fonts.opensanssemibold}
+font-2 = ${fonts.opensansbold}
+font-3 = ${fonts.opensansital}
+font-4 = ${fonts.xos}
+font-5 = ${fonts.nerd}
+font-6 = ${fonts.opensansboldhigh}
+font-7 = ${fonts.fontawesome}
+
+wm-restack = i3
+tray-position = right
+
 
 padding-left = 0
 padding-right = 1
 
 module-margin = 1
 
-separator = |
-separator-foreground = ${colors.flamingo}
-
-font-0 = FiraCodeNerdFont:size=8;2
-
-modules-left = xworkspaces xwindow
-modules-right = pulseaudio battery memory cpu date
+modules-left = workspaces xwindow
+modules-center = date
+modules-right = systray pulseaudio battery memory cpu brightness
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
-enable-ipc = true
 
 ; wm-restack = generic
 ; wm-restack = bspwm
 ; wm-restack = i3
 
-; override-redirect = true
+
+
+[module/brightness]
+type = internal/xbacklight
+format = <label>
+format-padding = 2
+format-prefix = 
+format-underline = ${colors.menucol-yellow}
+format-prefix-foreground = ${colors.menucol-yellow}
+
+label = " %percentage%"
+label-font = 3
+
+
+
+[module/memory]
+type = internal/memory
+interval = 3
+format = <label>
+format-padding = 2
+format-underline = ${colors.menucol-purple}
+
+format-prefix = 
+format-prefix-foreground = ${colors.menucol-purple}
+
+label = " %gb_used%"
+label-font = 3
+[module/memory]
+
+
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+format = <ramp> <label>
+format-padding = 2
+format-underline = ${colors.menucol-deepblue}
+
+format-warn = <ramp> <label-warn>
+label = %temperature-c%
+label-font = 3
+
+label-warn = "%temperature-c% "
+label-warn-font = 3
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-font = 7
+ramp-foreground = ${colors.menucol-deepblue}
+
+
+
+[module/workspaces]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+format = <label-state> <label-mode>
+
+;On editing mode (resize for ex)
+label-mode = %mode%
+label-mode-background = ${colors.dark-purple}
+label-mode-padding = 2
+label-mode-font = 7
+
+label-focused = %index%
+label-focused-background = ${colors.surface2}
+label-focused-padding = 3
+label-focused-font = 7
+
+label-unfocused = %index%
+label-unfocused-foreground = ${colors.gray}
+label-unfocused-padding = 3
+label-unfocused-font = 7
+
+label-visible = %index%
+label-visible-background = ${colors.dark-purple}
+label-visible-padding = 3
+label-visible-font = 7
+
+label-urgent = %index%
+label-urgent-background = ${colors.dark-red}
+label-urgent-padding = 3
+label-urgent-font = 7
+
 
 [module/systray]
 type = internal/tray
@@ -84,41 +214,13 @@ type = internal/tray
 format-margin = 8pt
 tray-spacing = 16pt
 
-[module/xworkspaces]
-type = internal/xworkspaces
 
-pin-workspaces = true
-label-active = %name%
-label-active-background = ${colors.mauve}
-label-active-foreground = ${colors.crust}
-label-active-underline= ${colors.lauve}
-label-active-padding = 1
-
-label-occupied = %name%
-label-occupied-padding = 1
-
-label-urgent = %name%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-
-label-empty = %name%
-label-empty-foreground = ${colors.disabled}
-label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
 
-[module/filesystem]
-type = internal/fs
-interval = 25
 
-mount-0 = /
-
-label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
-
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.disabled}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -132,31 +234,22 @@ label-volume = %percentage%%
 label-muted = muted
 label-muted-foreground = ${colors.disabled}
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
 
-label-layout = %layout%
-label-layout-foreground = ${colors.primary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-foreground = ${colors.background}
-label-indicator-background = ${colors.secondary}
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = "RAM "
-format-prefix-foreground = ${colors.primary}
-label = %percentage_used:2%%
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.primary}
-label = %percentage:2%%
+interval = 0.5
+format = <label>
+format-padding = 2
+format-underline = ${colors.menucol-red}
+
+format-prefix = 
+format-prefix-foreground = ${colors.menucol-red}
+
+label = " %percentage%"
+label-font = 3
+
+
 
 [module/battery]
 type = internal/battery
@@ -183,6 +276,8 @@ battery = BAT1
 adapter = ACAD
 poll-interval = 5
 
+
+
 [network-base]
 type = internal/network
 interval = 5
@@ -190,24 +285,39 @@ format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 label-disconnected = %{F#F0C674}%ifname%%{F#707880} connected
 
+
+
 [module/wlan]
 inherit = network-base
 interface-type = wireless
 label-connected = %{F#F0C674}%ifname%%{F-} %essid%
+
+
 
 [module/eth]
 inherit = network-base
 interface-type = wired
 label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
 
+
+
 [module/date]
 type = internal/date
-interval = 1
 
-date = %Y-%m-%d %r
-date-alt = %Y-%m-%d %r
-label = %date%
-label-foreground = ${colors.primary}
+time = %H:%M
+date = %A, %B %d
+date-alt = %A, %B %d, %Y
+time-alt = %H:%M:%S
+
+format-prefix = " "
+format-padding = 2
+format-underline = ${colors.menucol-orange}
+format-foreground = ${colors.menucol-orange}
+interval = 20
+
+label = %date%, %time%
+label-font = 2
+label-foreground = ${colors.light}
 
 [settings]
 screenchange-reload = true
