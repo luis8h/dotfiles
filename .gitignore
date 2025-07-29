@@ -3,3 +3,4 @@
 .dotfiles-settings
 .scripts/.last-clean-download-run
 logs/
+.Xresources

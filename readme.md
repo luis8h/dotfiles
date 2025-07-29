@@ -15,6 +15,12 @@
     * `:set shiftwidth=2`
     * `:set expandtab`
 
+## .Xresources (example)
+```bash
+Xcursor.size: 8
+Xft.dpi: 150
+```
+
 
 ## how to use?
 #### installation
