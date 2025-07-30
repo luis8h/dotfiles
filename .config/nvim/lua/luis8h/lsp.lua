@@ -44,4 +44,5 @@ vim.diagnostic.config({
     },
     signs = true,
     underline = true,
+    severity_sort = true
 })
