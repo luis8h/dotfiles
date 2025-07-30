@@ -1,0 +1,12 @@
+(defvar monitor "")
+
+(defpoll workspaces :interval "1s"
+  :initial "Loading..."
+  "path/to/workspaces.py ${monitor}")
+
+(defwidget bar []
+  (box :orientation "h" :spacing 10
+    (for ws in (split " " workspaces)
+      (button :onclick "i3-msg workspace \"${ws}\""
+              (label :text ws)))))
+
