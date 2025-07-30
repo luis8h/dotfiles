@@ -16,7 +16,7 @@ return {
         },
         {
             "xzbdmw/colorful-menu.nvim",
-            opts = { },
+            opts = {},
         },
     },
     version = "1.*",
