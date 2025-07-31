@@ -8,7 +8,6 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			-- { "j-hui/fidget.nvim", opts = {} },
 			"b0o/SchemaStore.nvim",
-			"rrethy/vim-illuminate",
 		},
 		opts = {
             ensure_installed = { "lua_ls", "rust_analyzer", "jdtls", "gopls", "ty", "ruff", "cssls", "html", "jsonls", "ts_ls", "basedpyright" },

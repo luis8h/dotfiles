@@ -31,18 +31,18 @@ return {
             nerd_font_variant = "mono",
         },
         completion = {
-            keyword = { range = 'full' },
-            ghost_text = {
-                show_with_selection = true,
-                show_with_menu = true,
-                show_without_menu = false,
-                show_without_selection = false,
-                enabled = true,
-            },
+            keyword = { range = 'prefix' },
+            -- ghost_text = {
+            --     show_with_selection = true,
+            --     show_with_menu = true,
+            --     show_without_menu = false,
+            --     show_without_selection = false,
+            --     enabled = true,
+            -- },
             list = {
                 selection = {
-                    preselect = true,
-                    auto_insert = false,
+                    preselect = false,
+                    auto_insert = true,
                 },
             },
             menu = {
