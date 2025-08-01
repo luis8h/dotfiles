@@ -1,31 +1,28 @@
-;; ~/.config/eww/eww.yuck
 
-;; Widget that renders workspace buttons for a given monitor,
-;; polling only that monitor’s workspaces every second:
-(defwidget bar-content [monitor]
-  (box :orientation "h" :spacing 8 :margin 4
-    ;; Inline poll so `monitor` is in scope:
-    (poll workspaces :interval "1s"
-      :command (sprintf "%s/workspaces.py %s" (cwd) monitor)
-      :initial "Loading…"
-      (then
-        (for ws in (split " " workspaces)
-          (button
-            :onclick (sprintf "i3-msg workspace \"%s\"" ws)
-            (label :text ws)
-          )
-        )
-      )
+(defwindow powermenu [arg1]
+  :stacking "bg"
+  :reserve (struts :distance "50px" :side "top")
+  :geometry (geometry
+               :x      "0%"
+               :y      "6px"
+               :width  "100%"
+               :height { arg1 == "small" ? "30px" : "40px" }
+               :anchor "top center")
+  :windowtype: "dock"
+  (greeter :name "luis8h"))
+
+
+(defwidget greeter [?text name]
+  (box :orientation "horizontal"
+       :halign "center"
+    text
+    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet"
     )
   )
 )
 
-;; Now declare the window named “bar” that takes [monitor]:
-(defwindow bar [monitor]
-  :screen monitor
-  :exclusive true
-  :geometry (geometry :x "0" :y "0" :width "100%" :height "28px")
-  ;; Render our widget, passing the monitor arg:
-  (bar-content :monitor monitor)
-)
 
+(defpoll time :interval "5s"
+  :initial `date +'{"hour":"%H","min":"%M"}'`
+  `date +'{"hour":"%H","min":"%M"}'`)
