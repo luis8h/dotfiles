@@ -21,6 +21,14 @@ Xcursor.size: 8
 Xft.dpi: 150
 ```
 
+## gtk theme
+- get selected theme `gsettings get org.gnome.desktop.interface gtk-theme`
+- get selected mode (dark/default) `gsettings get org.gnome.desktop.interface color-scheme`
+- list available themes `ls /usr/share/themes ls ~/.themes`
+- set theme `gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha'`
+- set dark mode `gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'`
+- enable folder colors `papirus-folders -C cat-mocha-lavender -t Papirus`
+
 ## known issues
 - when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
 
