@@ -290,10 +290,10 @@ bindsym $mod+Shift+p exec gnome-calculator
 #bindsym $mod+p exec ~/.scripts/dmshot
 
 ## This will switch the current layout to the 'us'.
-#bindsym $mod+l exec "setxkbmap -layout us && sleep 0.1 && setxkbmap -option grp:caps_toggle 'us,ru' -option grp_led:caps && sleep 0.1 && i3lock --blur 5"
+bindsym $mod+Shift+u exec "setxkbmap -layout us && sleep 0.1 && setxkbmap -option grp:caps_toggle 'us,ru' -option grp_led:caps && sleep 0.1 && i3lock --color=11111b"
 
 ## This keybind will lock the screen. The lockscreen.
-bindsym $mod+Shift+u exec "sleep 0.1 && i3lock --blur 5"
+# bindsym $mod+Shift+u exec "sleep 0.1 && i3lock --blur 5"
 
 ## suspend
 bindsym $mod+Shift+period exec systemctl suspend
@@ -320,6 +320,10 @@ bindsym $mod+Shift+Control+Mod1+w exec flameshot gui
 #exec xrandr --auto --output HDMI-1 --mode 1920x1080 --above HDMI-2
 
 exec feh --bg-fill ~/.config/i3/wallpaper.png
+
+
+# automatically runs i3lock when system suspends
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=11111b
 
 exec --no-startup-id dunst
 exec --no-startup-id picom
