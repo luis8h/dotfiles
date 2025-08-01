@@ -21,6 +21,9 @@ Xcursor.size: 8
 Xft.dpi: 150
 ```
 
+## known issues
+- when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
+
 
 ## how to use?
 #### installation
