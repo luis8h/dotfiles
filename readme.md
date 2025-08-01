@@ -15,6 +15,9 @@
     * `:set shiftwidth=2`
     * `:set expandtab`
 
+## laptop
+- for high dpi displays set dpi in Sresources like below and set the window scaling to be bigger `gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "[{'Gdk/WindowScalingFactor', <2>}]"`
+
 ## .Xresources (example)
 ```bash
 Xcursor.size: 8
