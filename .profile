@@ -49,7 +49,8 @@ fi
 
 # Only if OS is not macOS
 if [ "$(uname)" != "Darwin" ]; then
-    # Optional: setxkbmap -layout us -option caps:escape
+    setxkbmap -layout us -option caps:escape
+    setxkbmap -option compose:ralt
 
     # Load Nix environment if available
     if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
