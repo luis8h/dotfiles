@@ -28,14 +28,11 @@
 
     b_a (tap-hold $tap-time $hold-time a (layer-toggle move-layer))
     b_g (tap-hold $tap-time $hold-time g (layer-toggle move-layer))
-
-    b_t (tap-hold-press $tap-time $hold-time t (multi lsft lctl lalt lmet))
-    b_y (tap-hold-press $tap-time $hold-time y (multi lsft lctl lalt lmet))
 )
 
 (deflayer base
     @b_f7 1 2 3 4
-    @b_q w e r @b_t             @b_y @b_u i @b_o @b_p
+    @b_q w e r t             y @b_u i @b_o @b_p
     @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_;
     @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
     @b_t1 @b_t2                 @b_t3 @b_t4 _

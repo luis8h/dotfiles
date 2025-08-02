@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.have_nerd_font = true
+
 vim.g.markdown_folding = 1
 
 -- fix for colorizer plugin throwing an error at startup
@@ -27,5 +29,3 @@ require("lazy").setup("plugins", {
 
 
 require("luis8h")
-
-

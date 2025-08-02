@@ -48,4 +48,3 @@ vim.o.cursorline = true
 -- vim.cmd [[
 -- highlight CursorLine cterm=NONE ctermbg=darkgrey guibg=lightgrey
 -- ]]
-

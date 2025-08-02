@@ -1,0 +1,28 @@
+
+(defwindow powermenu [arg1]
+  :stacking "bg"
+  :reserve (struts :distance "50px" :side "top")
+  :geometry (geometry
+               :x      "0%"
+               :y      "6px"
+               :width  "100%"
+               :height { arg1 == "small" ? "30px" : "40px" }
+               :anchor "top center")
+  :windowtype: "dock"
+  (greeter :name "luis8h"))
+
+
+(defwidget greeter [?text name]
+  (box :orientation "horizontal"
+       :halign "center"
+    text
+    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet"
+    )
+  )
+)
+
+
+(defpoll time :interval "5s"
+  :initial `date +'{"hour":"%H","min":"%M"}'`
+  `date +'{"hour":"%H","min":"%M"}'`)
