@@ -1,86 +1,36 @@
 # dotfiles repo
 
 
-## notes
--   if tmux plugins not working delete plugin directory reinstall tpm and run the install with prefix + I in tmux.conf again
--   if local dns is not working disable ubuntu default dns server (bind9 doc)
--   mounting ntfs file system on linux: `/dev/nvme1n1p2 /mnt/data ntfs-3g rw 0 0` in /etc/fstab
--   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
--   changing resolution of displays: `xrandr --output <display-output-name> --scale 1.4x1.4`
--   getting display output names: `xrandr | grep connected | grep -v disconnected | awk '{print $1}'`
--   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
--   For me the pylsp_mypy, for type checking in python, was not automaticly installed. Until i fixed this, you need to manualy call `PylspInstall pylsp_mypy` in the neovim commandline. The same issue appear with other pylsp plugins like black, rope, ruff, flake, isort etc.
--   changing tabwidth in neovim:
-    * `:set tabstop=2`
-    * `:set shiftwidth=2`
-    * `:set expandtab`
-
-## laptop
-- for high dpi displays set dpi in Sresources like below and set the window scaling to be bigger `gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "[{'Gdk/WindowScalingFactor', <2>}]"`
-- change powerbutton behavior in `/etc/systemd/logind.conf` like this:
-    ```ini
-    HandlePowerKey=suspend
-    HandlePowerKeyLongPress=poweroff
-    ```
-    and reload the config `systemctl kill -s HUP systemd-logind`
-
-## .Xresources (example)
-```bash
-Xcursor.size: 8
-Xft.dpi: 150
-```
-
-## gtk theme
-- get selected theme `gsettings get org.gnome.desktop.interface gtk-theme`
-- get selected mode (dark/default) `gsettings get org.gnome.desktop.interface color-scheme`
-- list available themes `ls /usr/share/themes ls ~/.themes`
-- set theme `gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha'`
-- set dark mode `gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'`
-- enable folder colors `papirus-folders -C cat-mocha-lavender -t Papirus`
-
-## known issues
-- when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
-
-
-## how to use?
+## getting started
 #### installation
 -   `sudo apt install stow build-essentials -y`
 -   `git clone https://github.com/luis8h/dotfiles.git ~/dotfiles`
 -   `cd ~/dotfiles`
 -   `stow . -v --adopt` **`--adopt` adopts the already existing files**
 -   `git restore .` **watch out, this goes back to the last commit and therefore deletes the changes adopted from the existing files**
--   Mason downloads:
-    * clang-format
-    * clangd
-    * css-lsp cssls
-    * eslint-lsp eslint
-    * gopls
-    * html-lsp html
-    * htmx-lsp htmx
-    * jdtls
-    * json-lsp jsonls
-    * ltex-ls ltex
-    * lua-language-server lua_ls
-    * marksman
-    * prettier
-    * prettierd
-    * pyright
-    * rust-analyzer rust_analyzer
-    * tailwindcss-language-server tailwindcss
-    * templ
-    * texlab
-    * typescript-language-server ts_ls
 
+## known issues
+#### nvim
+-   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
 
-## lsp configuration
-Use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
+#### tmux
+- when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
 
-## latex/markdown grammar checking
+## usefull tips
+#### nvim
+-   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
+-   changing tabwidth in neovim:
+    * `:set tabstop=2`
+    * `:set shiftwidth=2`
+    * `:set expandtab`
+- lsp configuration: use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
+
+#### latex/markdown grammar checking
 - download the ngramms model from [this link](https://languagetool.org/download/ngram-data/) (choose the desired languages)
 - put it into the directory `~/models/ngrams/<language-code>`
 - [full guide](https://medium.com/@Erik_Krieg/free-and-open-source-grammar-correction-in-neovim-using-ltex-and-n-grams-dea9d10bc964)
 
-## device specific configuration
+#### device specific configuration
 Device specific configuration like environment variables are set in the
 `.dotfiles-settings` file in the home directory. If existing, this file is
 automaticly sourced in the `.profile` file. <br>
@@ -93,13 +43,7 @@ export "H8_DATA_DIR"="/mnt/data"
 export "H8_KBASE_DIR"="/mnt/data/kbase"
 ```
 
-
-## how to setup autocleaning of downloads directory at startup
--   `crontab -e` to access cron config file
--   append the following line: `@reboot ~/.scripts/clean-downloads.sh`
-
-
-## macos notes
+## macos
 #### kanata (self built for newest version)
 - (brew has also newest version, but is currently not working -> no output when typing)
 - install karabiner elements (using brew)
@@ -170,7 +114,7 @@ will add attach session and rename window to the user menu.
 or watch online [here](https://github.com/sainnhe/tmux-fzf/issues/6#issuecomment-578750879)
 
 
-## regolith customization
+## regolith customization (deprecated - not used any more)
 To change a regolith keybinding look into `/usr/share/regolith/...`.
 There are several files which are all included by the main file.
 The variables in these files can be set via the `.config/i3/Xresources` file.
