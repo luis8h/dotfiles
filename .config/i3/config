@@ -223,6 +223,9 @@ set $base #1e1e2e
 set $mantle #181825
 set $crust #11111b
 
+# Gaps between windows
+gaps inner 2
+
 # target                 title     bg    text   indicator  border
 client.focused           $lavender $base $text  $rosewater $lavender
 client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
@@ -243,6 +246,12 @@ client.unfocused        #000000 #000000 #888888 #000000   #000000
 client.urgent           #000000 #000000 #ffffff #000000   #000000
 client.placeholder      #000000 #000000 #ffffff #000000   #000000
 client.background       #ffffff
+
+#                      border  backgr. text
+client.focused_workspace  #d9d9d9 #16a085 #292F34
+
+# only borders in workspaces with 2 or more windows
+smart_borders on
 
 ########################################################################
 ########################################################################
