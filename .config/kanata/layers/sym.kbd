@@ -19,7 +19,7 @@
 (deflayer sym-layer
     @b_f7 1 2 3 4
     S-1 S-2 S-3 S-4 S-5             S-6 @sy_u S-9 @sy_o @sy_p
-    @sy_a @sy_s @sy_d @sy_f `       S-= @sy_j @sy_k @sy_l @b_;
+    @sy_a @sy_s @sy_d @sy_f `       S-= @sy_j @sy_k @sy_l ;
     @sy_z @sy_x [ @sy_v =               S-` @sy_m , @b_. @b_/
     @to_base @b_t2                  @b_t3 @b_t4 _
 )
