@@ -1,9 +1,31 @@
+(defalias
+    1 1
+    2 2
+    3 3
+    4 4
+    5 5
+    6 6
+    7 7
+    8 8
+    9 9
+    0 0
+    tm_1 (macro @c_tmux 100 @1)
+    tm_2 (macro @c_tmux 100 @2)
+    tm_3 (macro @c_tmux 100 @3)
+    tm_4 (macro @c_tmux 100 @4)
+    tm_5 (macro @c_tmux 100 @5)
+    tm_6 (macro @c_tmux 100 @6)
+    tm_7 (macro @c_tmux 100 @7)
+    tm_8 (macro @c_tmux 100 @8)
+    tm_9 (macro @c_tmux 100 @9)
+    tm_0 (macro @c_tmux 100 @0)
+)
 
 (deflayer tmux-move-layer
     @b_f7 1 2 3 4
-    _ _ _ _ _           _ _ _ _ _
-    _ _ _ _ _           @tm_h @tm_j @tm_k @tm_l _
-    _ _ _ _ _           _ _ _ _ _
+    _ @tm_1 @tm_2 @tm_3 _           _ _ _ _ _
+    _ @tm_4 @tm_5 @tm_6 @tm_0           _ _ _ _ _
+    _ @tm_7 @tm_8 @tm_9 _           _ _ _ _ _
     @b_t1 @b_t2         @b_t3 @b_t4 _
 )
 

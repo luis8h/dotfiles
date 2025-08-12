@@ -22,6 +22,7 @@
     b_. (tap-hold $tap-time $hold-time . (layer-toggle symspec-layer))
     b_o (tap-hold $tap-time $hold-time o (layer-toggle wor-a-layer))
     b_u (tap-hold $tap-time $hold-time u (layer-toggle wor-ac-layer))
+    b_i (tap-hold $tap-time $hold-time i (layer-toggle tmux-move-layer))
     b_m (tap-hold $tap-time $hold-time m ralt)
     b_v (tap-hold $tap-time $hold-time v ralt)
     b_p (tap-hold $tap-time $hold-time p lalt)
@@ -32,7 +33,7 @@
 
 (deflayer base
     @b_f7 1 2 3 4
-    @b_q w e r t             y @b_u i @b_o @b_p
+    @b_q w e r t             y @b_u @b_i @b_o @b_p
     @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_;
     @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
     @b_t1 @b_t2                 @b_t3 @b_t4 _
