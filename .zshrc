@@ -197,3 +197,6 @@ export NVM_DIR="$HOME/.nvm"
 autoload -U compinit
 compinit
 source <(jj util completion zsh)
+
+# password-store (pass)
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
