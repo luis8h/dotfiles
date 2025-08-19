@@ -158,19 +158,19 @@ return {
         vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Telescope find files added to git" })
 
         -- static grep in cwd (no hidden)
-        vim.keymap.set('n', '<leader>sf', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end, { desc = "static grep in cwd (no hidden)" })
+        -- vim.keymap.set('n', '<leader>sf', function()
+        --     builtin.grep_string({ search = vim.fn.input("Grep > ") })
+        -- end, { desc = "static grep in cwd (no hidden)" })
 
         -- static grep in cwd (hidden)
-        vim.keymap.set('n', '<leader>sa', function()
-            require('telescope.builtin').grep_string({
-                search = vim.fn.input("Grep > "),
-                additional_args = function(opts)
-                    return { "--hidden" }
-                end
-            })
-        end, { desc = "static grep in cwd (hidden)" })
+        -- vim.keymap.set('n', '<leader>sa', function()
+        --     require('telescope.builtin').grep_string({
+        --         search = vim.fn.input("Grep > "),
+        --         additional_args = function(opts)
+        --             return { "--hidden" }
+        --         end
+        --     })
+        -- end, { desc = "static grep in cwd (hidden)" })
 
         -- search help_tags
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})

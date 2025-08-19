@@ -70,7 +70,10 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 
 -- search/replace current word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Case-insensitive search for word under cursor
+vim.keymap.set("n", "<leader>s", [[:/\c\<\<<C-r><C-w>\><CR>]])
 
 
 -- chmod file to be executable
