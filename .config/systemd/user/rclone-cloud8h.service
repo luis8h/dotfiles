@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount cloud8h webdav with rclone
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rclone mount cloud8h: /home/luis8h/cloud8h/ \
+  --vfs-cache-mode writes
+ExecStop=/bin/fusermount -u /home/luis8h/cloud8h/
+Restart=always
+
+[Install]
+WantedBy=default.target
