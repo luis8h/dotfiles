@@ -17,11 +17,31 @@ return {
 
         -- open kbase dir
         vim.keymap.set("n", "<leader>bk", function()
-            local kbase_dir = os.getenv("KBASE_DIR")
+            local kbase_dir = os.getenv("H8_KBASE_DIR")
             if kbase_dir then
                 require('oil').open(kbase_dir)
             else
-                print("Environment variable KBASE_DIR is not set. (view readme for more info")
+                print("Environment variable H8_KBASE_DIR is not set. (view readme for more info")
+            end
+        end, { silent = true })
+
+        -- open data dir
+        vim.keymap.set("n", "<leader>od", function()
+            local kbase_dir = os.getenv("H8_DATA_DIR")
+            if kbase_dir then
+                require('oil').open(kbase_dir)
+            else
+                print("Environment variable H8_DATA_DIR is not set. (view readme for more info")
+            end
+        end, { silent = true })
+
+        -- open cloud
+        vim.keymap.set("n", "<leader>oc", function()
+            local kbase_dir = os.getenv("H8_CLOUD_DIR")
+            if kbase_dir then
+                require('oil').open(kbase_dir)
+            else
+                print("Environment variable H8_CLOUD_DIR is not set. (view readme for more info")
             end
         end, { silent = true })
 
