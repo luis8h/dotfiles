@@ -33,7 +33,7 @@ set $term kitty
 bindsym $mod+Return exec $term
 
 # start a webbrowser
-bindsym $mod+shift+Return exec zen-browser
+bindsym $mod+shift+Return exec brave
 
 # kill focused window
 bindsym $mod+shift+q kill
