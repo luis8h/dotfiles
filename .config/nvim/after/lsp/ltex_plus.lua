@@ -1,8 +1,8 @@
 return {
     settings = {
         ltex = {
-            -- language = "en"
-            language = "de-DE"
+            language = "en"
+            -- language = "de-DE"
         }
     },
 }
