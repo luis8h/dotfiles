@@ -35,6 +35,7 @@ obj.__index = obj
 obj.app_folders = {
   "/Applications",
   "/System/Applications",
+  "/System/Library/CoreServices/",
   "/System/Applications/Utilities",
   -- pwd for the spoon is ~/.hammerspoon, so this equals to ~/Applications
   "../Applications",
