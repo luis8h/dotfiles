@@ -1,4 +1,3 @@
-
 return {
     'stevearc/oil.nvim',
 
@@ -7,7 +6,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
-
         -- open downloads dir
         vim.keymap.set("n", "<leader>do", function()
             local home_dir = os.getenv("HOME")
@@ -81,13 +79,17 @@ return {
                 if string.match(entry.name, "%.zip$") then
                     local archive_name = string.gsub(entry.name, "%.zip$", "")
                     extract_dir = dir .. archive_name
-                    command = string.format("unzip -q -d %s %s", vim.fn.shellescape(extract_dir), vim.fn.shellescape(path))
+                    command = string.format("unzip -q -d %s %s", vim.fn.shellescape(extract_dir),
+                        vim.fn.shellescape(path))
                 elseif string.match(entry.name, "%.tar.gz$") or string.match(entry.name, "%.tgz$") then
-                    command = string.format("mkdir -p %s && tar -xzf %s -C %s", vim.fn.shellescape(extract_dir), vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
+                    command = string.format("mkdir -p %s && tar -xzf %s -C %s", vim.fn.shellescape(extract_dir),
+                        vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
                 elseif string.match(entry.name, "%.tar.bz2$") or string.match(entry.name, "%.tbz2$") then
-                    command = string.format("mkdir -p %s && tar -xjf %s -C %s", vim.fn.shellescape(extract_dir), vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
+                    command = string.format("mkdir -p %s && tar -xjf %s -C %s", vim.fn.shellescape(extract_dir),
+                        vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
                 elseif string.match(entry.name, "%.tar$") then
-                    command = string.format("mkdir -p %s && tar -xf %s -C %s", vim.fn.shellescape(extract_dir), vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
+                    command = string.format("mkdir -p %s && tar -xf %s -C %s", vim.fn.shellescape(extract_dir),
+                        vim.fn.shellescape(path), vim.fn.shellescape(extract_dir))
                 else
                     print("Unsupported archive format:", entry.name)
                     return
@@ -95,7 +97,7 @@ return {
 
                 -- execute command
                 vim.cmd("!" .. command) -- execute command in vim cmd
-                vim.cmd("edit") -- refreshing buffer
+                vim.cmd("edit")         -- refreshing buffer
             else
                 print("invalid archive")
             end
@@ -106,11 +108,20 @@ return {
             delete_to_trash = true,
             skip_confirm_for_simple_edits = true,
             keymaps = {
-                ["<C-h>"] = false,
-                ["<C-l>"] = false,
-                ["<C-p>"] = false,
-                ["<C-r>"] = "actions.refresh",
-                ["q"]     = "actions.close",
+                ["<C-h>"]       = false,
+                ["<C-l>"]       = false,
+                ["<C-p>"]       = false,
+                ["<C-r>"]       = "actions.refresh",
+                ["q"]           = "actions.close",
+                ["<leader>mao"] = function()
+                    local oil = require("oil")
+                    local filename = oil.get_cursor_entry().name
+                    local dir = oil.get_current_dir()
+                    oil.close()
+
+                    local img_clip = require("img-clip")
+                    img_clip.paste_image({}, dir .. filename)
+                end
             },
             float = {
                 -- Padding around the floating window
@@ -158,6 +169,5 @@ return {
 
         -- Map the custom action to a key in normal mode when in oil.nvim buffer
         -- vim.api.nvim_set_keymap('n', '<leader>cab', [[:lua custom_action()<CR>]], { noremap = true, silent = true })
-
     end,
 }
