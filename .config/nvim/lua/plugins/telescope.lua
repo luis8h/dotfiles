@@ -5,11 +5,20 @@ return {
     config = function()
         local builtin = require('telescope.builtin')
 
+        -- document symbols
+        vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_document_symbols() end, { desc = 'Telescope document symbols' })
+        vim.keymap.set('n', '<leader>vsw', function() builtin.lsp_workspace_symbols() end, { desc = 'Telescope document symbols in workspace' })
+        vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_dynamic_workspace_symbols() end, { desc = 'Telescope document symbols in workspace dynamic' })
+
+        -- git commits
+        vim.keymap.set('n', '<leader>gfc', function() builtin.git_commits() end, { desc = 'Telescope git commits' })
+
         -- lsp references
-        vim.keymap.set('n', '<leader>vr', function () builtin.lsp_references() end, { desc = 'Telescope lsp references' })
+        vim.keymap.set('n', '<leader>vr', function() builtin.lsp_references() end, { desc = 'Telescope lsp references' })
 
         -- diagnostics
-        vim.keymap.set('n', '<leader>vcd', function() builtin.diagnostics() end, { desc = 'Telescope workspace diagnostics' })
+        vim.keymap.set('n', '<leader>vcd', function() builtin.diagnostics() end,
+            { desc = 'Telescope workspace diagnostics' })
 
         -- find files (no hidden)
         vim.keymap.set('n', '<leader>ff', builtin.find_files,
@@ -142,6 +151,18 @@ return {
             })
         end, { desc = "Telescope find files in Oil directory" })
 
+        -- live grep in current oil dir
+        vim.keymap.set("n", "<leader>lc", function()
+            local oil = require("oil")
+            local cwd = oil.get_current_dir()
+
+            builtin.live_grep({
+                cwd = cwd,
+                additional_args = function()
+                    return { "--hidden" }
+                end,
+            })
+        end, { desc = "Telescope live grep in Oil directory" })
         -- find directories in current oil dir
         vim.keymap.set('n', '<leader>dc', function()
             local oil = require('oil')
