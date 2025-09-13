@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# "paste" command for X11 with xclip
+# Handles: file paths, images (PNG/JPEG/GIF/WEBP), and plain text
+# Avoids overwriting existing files by auto-incrementing filenames
+# Optional first parameter: base name for saved file
+
+set -euo pipefail
+
+# Base name from first argument, default to "pasted"
+base_name="${1:-pasted}"
+
+# Check available MIME targets in clipboard
+mime=$(xclip -selection clipboard -t TARGETS -o 2>/dev/null || true)
+
+increment_filename() {
+    local base="$1"
+    local ext="$2"
+    local file
+    if [ -n "$ext" ]; then
+        file="$base.$ext"
+    else
+        file="$base"
+    fi
+    local i=1
+    while [ -e "$file" ]; do
+        if [ -n "$ext" ]; then
+            file="${base}_$i.$ext"
+        else
+            file="${base}_$i"
+        fi
+        ((i++))
+    done
+    echo "$file"
+}
+
+save_image() {
+    local ext="$1"
+    local base="$2"
+    local outfile
+    outfile=$(increment_filename "$base" "$ext")
+    if xclip -selection clipboard -t "image/$ext" -o > "$outfile" 2>/dev/null; then
+        echo "Saved image as $outfile"
+        exit 0
+    fi
+}
+
+# copy file when path is specified
+if echo "$mime" | grep -q 'x-special/gnome-copied-files'; then
+    # Nautilus / file manager file copy
+    paths=$(xclip -selection clipboard -t x-special/gnome-copied-files -o | tail -n +2 | sed 's|^file://||')
+    for f in $paths; do
+        dest=$(increment_filename "$base_name" "")
+        cp -r -- "$f" "$dest"
+        echo "Copied: $f -> $dest"
+    done
+    exit 0
+fi
+
+# paste image
+if echo "$mime" | grep -q 'image/'; then
+    # Try common formats
+    for ext in png jpeg jpg gif webp; do
+        save_image "$ext" "$base_name"
+    done
+fi
+
+# Fallback: maybe it’s just a plain path
+clip=$(xclip -selection clipboard -o 2>/dev/null || true)
+if [ -n "$clip" ] && [ -e "$clip" ]; then
+    dest=$(increment_filename "$base_name" "")
+    cp -r -- "$clip" "$dest"
+    echo "Copied: $clip -> $dest"
+    exit 0
+fi
+
+# Fallback: save as text
+if [ -n "$clip" ]; then
+    dest=$(increment_filename "$base_name" "txt")
+    echo "$clip" > "$dest"
+    echo "Saved clipboard text to $dest"
+    exit 0
+fi
+
+echo "Clipboard is empty or unsupported"
+exit 1
