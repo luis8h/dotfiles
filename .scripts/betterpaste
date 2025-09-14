@@ -6,8 +6,20 @@
 
 set -euo pipefail
 
-# Base name from first argument, default to "pasted"
-base_name="${1:-pasted}"
+# Handle argument as either directory or base name
+if [ $# -gt 0 ]; then
+    if [ -d "$1" ]; then
+        save_dir="$1"
+        base_name="pasted"
+    else
+        save_dir=$(dirname "$1")
+        base_name=$(basename "$1")
+        [ "$save_dir" = "." ] && save_dir="$(pwd)"
+    fi
+else
+    save_dir="$(pwd)"
+    base_name="pasted"
+fi
 
 # Check available MIME targets in clipboard
 mime=$(xclip -selection clipboard -t TARGETS -o 2>/dev/null || true)
@@ -16,17 +28,19 @@ increment_filename() {
     local base="$1"
     local ext="$2"
     local file
+
     if [ -n "$ext" ]; then
-        file="$base.$ext"
+        file="$save_dir/$base.$ext"
     else
-        file="$base"
+        file="$save_dir/$base"
     fi
+
     local i=1
     while [ -e "$file" ]; do
         if [ -n "$ext" ]; then
-            file="${base}_$i.$ext"
+            file="$save_dir/${base}_$i.$ext"
         else
-            file="${base}_$i"
+            file="$save_dir/${base}_$i"
         fi
         ((i++))
     done

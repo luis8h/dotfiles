@@ -115,12 +115,38 @@ return {
                 ["q"]           = "actions.close",
                 ["<leader>mao"] = function()
                     local oil = require("oil")
-                    local filename = oil.get_cursor_entry().name
                     local dir = oil.get_current_dir()
-                    oil.close()
 
-                    local img_clip = require("img-clip")
-                    img_clip.paste_image({}, dir .. filename)
+                    if not dir then
+                        vim.notify("No directory found (are you inside Oil?)", vim.log.levels.WARN)
+                        return
+                    end
+
+                    -- ask for a file name
+                    local filename = vim.fn.input("File name (leave empty for 'pasted'): ")
+                    if filename == "" then
+                        filename = "pasted"
+                    end
+
+                    -- run betterpaste
+                    vim.fn.jobstart({ "betterpaste", dir .. "/" .. filename }, {
+                        stdout_buffered = true,
+                        stderr_buffered = true,
+                        on_stdout = function(_, data)
+                            if data and #data > 0 then
+                                vim.notify(table.concat(data, "\n"), vim.log.levels.INFO)
+                            end
+                        end,
+                        on_stderr = function(_, data)
+                            if data and #data > 0 then
+                                vim.notify(table.concat(data, "\n"), vim.log.levels.ERROR)
+                            end
+                        end,
+                        on_exit = function()
+                            -- refresh oil buffer
+                            require("oil.actions").refresh.callback()
+                        end,
+                    })
                 end
             },
             float = {
