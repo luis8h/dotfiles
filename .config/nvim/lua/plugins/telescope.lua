@@ -8,7 +8,7 @@ return {
         -- document symbols
         vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_document_symbols() end, { desc = 'Telescope document symbols' })
         vim.keymap.set('n', '<leader>vsw', function() builtin.lsp_workspace_symbols() end, { desc = 'Telescope document symbols in workspace' })
-        vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_dynamic_workspace_symbols() end, { desc = 'Telescope document symbols in workspace dynamic' })
+        -- vim.keymap.set('n', '<leader>vsc', function() builtin.lsp_dynamic_workspace_symbols() end, { desc = 'Telescope document symbols in workspace dynamic' })
 
         -- git commits
         vim.keymap.set('n', '<leader>gfc', function() builtin.git_commits() end, { desc = 'Telescope git commits' })
