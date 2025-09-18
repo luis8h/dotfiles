@@ -60,6 +60,7 @@ export "H8_KBASE_DIR"="/mnt/data/kbase"
 - install using brew
 - load settings from folder in dotfiles
 - when setting settings manually watch out that bracketed paste mode is activated on the copy paste command
+- change text size: `LMET=`
 
 #### modifier keys (deprecated - not needed any more because iterm2 supports direct modifier remapping)
 macos has some keybinds on command key and some on ctrl which are normally only on ctrl. To make this like any other os i used karabiner. Karabiner remaps the control+letter keys to command+letter in all applications. Only kitty is excluded, because tmux and nvim need the default ctrl behavior to work.
