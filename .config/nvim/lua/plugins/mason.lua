@@ -10,7 +10,7 @@ return {
             "b0o/SchemaStore.nvim",
         },
         opts = {
-            ensure_installed = { "lua_ls", "rust_analyzer", "jdtls", "gopls", "ty", "ruff", "cssls", "html", "jsonls", "ts_ls", "basedpyright", "ltex_plus", "texlab" },
+            ensure_installed = { "lua_ls", "rust_analyzer", "jdtls", "gopls", "ty", "ruff", "cssls", "html", "jsonls", "ts_ls", "basedpyright", "ltex_plus", "texlab", "tailwindcss" },
         }
     },
 }
