@@ -200,3 +200,10 @@ source <(jj util completion zsh)
 
 # password-store (pass)
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+
+# bun completions
+[ -s "/home/luis8h/.bun/_bun" ] && source "/home/luis8h/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
