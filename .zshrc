@@ -123,9 +123,9 @@ alias vim='nvim'
 alias sudo='sudo '
 alias vimk="nvim ~/kbase/"
 alias dco="docker-compose"
-alias ls="exa --icons"
-alias l="exa --icons -lh"
-alias la="exa --icons -lah"
+alias ls="lsd"
+alias l="lsd -lh"
+alias la="lsd -lah"
 
 alias ..='cd ..'
 alias cd..='cd ..'
