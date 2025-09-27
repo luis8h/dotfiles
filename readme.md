@@ -16,6 +16,10 @@
 #### tmux
 - when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
 
+#### macos
+- the iterm2 remap modifier trick does only work if it does not have permissions in apple system settings (otherwise window management will also use the other key...)
+- disable in "privacy security -> Accessebility -> iterm (disable)"
+
 ## usefull tips
 #### nvim
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
