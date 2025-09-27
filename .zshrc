@@ -31,7 +31,7 @@ zinit light jeffreytse/zsh-vi-mode
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 zinit load 'zsh-users/zsh-history-substring-search'
-zinit ice wait atload'_history_substring_search_config'
+# zinit ice wait atload'_history_substring_search_config'
 
 ZVM_INIT_MODE=sourcing # very important fix for zsh vi mode working with tmux (resurect)
 
@@ -118,17 +118,14 @@ cdra() {
 
 
 # Aliases
-alias ls='ls --color'
 alias vim='nvim'
 
 alias sudo='sudo '
 alias vimk="nvim ~/kbase/"
 alias dco="docker-compose"
-alias gico="git commit -m"
-alias giad="git add ."
-alias gipu="git push"
-alias gitmp="sh ~/.scripts/tmp-commit.sh"
-alias l="ls --color -a -l"
+alias ls="exa --icons"
+alias l="exa --icons -lh"
+alias la="exa --icons -lah"
 
 alias ..='cd ..'
 alias cd..='cd ..'
