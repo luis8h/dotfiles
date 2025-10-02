@@ -204,3 +204,5 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"

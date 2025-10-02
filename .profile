@@ -65,3 +65,5 @@ if [ "$(uname)" != "Darwin" ]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 fi
+
+. "$HOME/.local/share/../bin/env"
