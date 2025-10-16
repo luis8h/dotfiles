@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# "paste" command for X11 with xclip
-# Handles: file paths, images (PNG/JPEG/GIF/WEBP), and plain text
-# Avoids overwriting existing files by auto-incrementing filenames
-# Optional first parameter: base name for saved file
+# paste-from-clipboard.sh
+# Cross-platform paste utility (X11, Wayland, macOS)
+# Handles images, file paths, and text
 
 set -euo pipefail
 
-# Handle argument as either directory or base name
+# --- Parse arguments ---
 if [ $# -gt 0 ]; then
     if [ -d "$1" ]; then
         save_dir="$1"
@@ -21,9 +20,19 @@ else
     base_name="pasted"
 fi
 
-# Check available MIME targets in clipboard
-mime=$(xclip -selection clipboard -t TARGETS -o 2>/dev/null || true)
+# --- Detect clipboard backend ---
+if command -v xclip >/dev/null 2>&1; then
+    backend="xclip"
+elif command -v wl-paste >/dev/null 2>&1; then
+    backend="wl"
+elif command -v pbpaste >/dev/null 2>&1; then
+    backend="pb"
+else
+    echo "No supported clipboard command found (xclip, wl-paste, pbpaste)" >&2
+    exit 1
+fi
 
+# --- Helpers ---
 increment_filename() {
     local base="$1"
     local ext="$2"
@@ -49,51 +58,100 @@ increment_filename() {
 
 save_image() {
     local ext="$1"
-    local base="$2"
-    local outfile
-    outfile=$(increment_filename "$base" "$ext")
-    if xclip -selection clipboard -t "image/$ext" -o > "$outfile" 2>/dev/null; then
-        echo "Saved image as $outfile"
+    local outfile="$2"
+    echo "Saving image as $outfile ($ext)"
+    cat > "$outfile"
+    echo "Saved $outfile"
+}
+
+# --- Backend-specific functions ---
+
+paste_xclip() {
+    mime=$(xclip -selection clipboard -t TARGETS -o 2>/dev/null || true)
+
+    # Handle file paths (from file manager)
+    if echo "$mime" | grep -q 'x-special/gnome-copied-files'; then
+        paths=$(xclip -selection clipboard -t x-special/gnome-copied-files -o | tail -n +2 | sed 's|^file://||')
+        for f in $paths; do
+            dest=$(increment_filename "$base_name" "")
+            cp -r -- "$f" "$dest"
+            echo "Copied: $f -> $dest"
+        done
+        exit 0
+    fi
+
+    # Handle images
+    for ext in png jpeg jpg gif webp; do
+        if echo "$mime" | grep -q "image/$ext"; then
+            outfile=$(increment_filename "$base_name" "$ext")
+            if xclip -selection clipboard -t "image/$ext" -o > "$outfile" 2>/dev/null; then
+                echo "Saved image as $outfile"
+                exit 0
+            fi
+        fi
+    done
+
+    # Handle plain text
+    clip=$(xclip -selection clipboard -o 2>/dev/null || true)
+    if [ -n "$clip" ]; then
+        dest=$(increment_filename "$base_name" "txt")
+        echo "$clip" > "$dest"
+        echo "Saved clipboard text to $dest"
         exit 0
     fi
 }
 
-# copy file when path is specified
-if echo "$mime" | grep -q 'x-special/gnome-copied-files'; then
-    # Nautilus / file manager file copy
-    paths=$(xclip -selection clipboard -t x-special/gnome-copied-files -o | tail -n +2 | sed 's|^file://||')
-    for f in $paths; do
-        dest=$(increment_filename "$base_name" "")
-        cp -r -- "$f" "$dest"
-        echo "Copied: $f -> $dest"
-    done
-    exit 0
-fi
+paste_wl() {
+    # Try detecting image MIME
+    mime=$(wl-paste --list-types | head -n 1 || true)
 
-# paste image
-if echo "$mime" | grep -q 'image/'; then
-    # Try common formats
     for ext in png jpeg jpg gif webp; do
-        save_image "$ext" "$base_name"
+        if echo "$mime" | grep -q "image/$ext"; then
+            outfile=$(increment_filename "$base_name" "$ext")
+            wl-paste --type "image/$ext" > "$outfile" && {
+                echo "Saved image as $outfile"
+                exit 0
+            }
+        fi
     done
-fi
 
-# Fallback: maybe it’s just a plain path
-clip=$(xclip -selection clipboard -o 2>/dev/null || true)
-if [ -n "$clip" ] && [ -e "$clip" ]; then
-    dest=$(increment_filename "$base_name" "")
-    cp -r -- "$clip" "$dest"
-    echo "Copied: $clip -> $dest"
-    exit 0
-fi
+    # Fallback to text
+    clip=$(wl-paste 2>/dev/null || true)
+    if [ -n "$clip" ]; then
+        dest=$(increment_filename "$base_name" "txt")
+        echo "$clip" > "$dest"
+        echo "Saved clipboard text to $dest"
+        exit 0
+    fi
+}
 
-# Fallback: save as text
-if [ -n "$clip" ]; then
-    dest=$(increment_filename "$base_name" "txt")
-    echo "$clip" > "$dest"
-    echo "Saved clipboard text to $dest"
-    exit 0
-fi
+paste_pb() {
+    # On macOS, use pngpaste for images
+    if command -v pngpaste >/dev/null 2>&1; then
+        outfile=$(increment_filename "$base_name" "png")
+        if pngpaste "$outfile" 2>/dev/null; then
+            echo "Saved image as $outfile"
+            exit 0
+        fi
+    fi
+
+    # Fallback to text
+    clip=$(pbpaste 2>/dev/null || true)
+    if [ -n "$clip" ]; then
+        dest=$(increment_filename "$base_name" "txt")
+        echo "$clip" > "$dest"
+        echo "Saved clipboard text to $dest"
+        exit 0
+    fi
+}
+
+# --- Dispatch ---
+case "$backend" in
+    xclip) paste_xclip ;;
+    wl)    paste_wl ;;
+    pb)    paste_pb ;;
+esac
 
 echo "Clipboard is empty or unsupported"
 exit 1
+
