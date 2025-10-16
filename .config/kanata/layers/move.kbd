@@ -6,13 +6,13 @@
     mo_k (tap-hold $tap-time $hold-time up rsft)
     mo_l (tap-hold $tap-time $hold-time right @c_lmet)
     mo_p (tap-hold $tap-time $hold-time up ralt)
-    mo_x A-left
-    mo_b A-right
+    mo_x @www_b
+    mo_b @www_f
 )
 
 (deflayer move-layer
     @b_f7 1 2 3 4
-    q w up r t                    y home i end @mo_p
+    q w up r t                    y @mo_home i @mo_end @mo_p
     @b_a @mo_s @mo_d @mo_f g      left @mo_j @mo_k @mo_l @b_;
     @b_z @mo_x pgup pgdn @mo_b               down @b_m , . /
     @b_t1 @b_t2                   @b_t3 @b_t4 _

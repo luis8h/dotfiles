@@ -32,6 +32,12 @@
     tm_j C-j
     tm_k C-k
     tm_l C-l
+
+    www_b A-left
+    www_f A-right
+
+    mo_home home
+    mo_end end
 )
 
 (defalias
