@@ -5,9 +5,14 @@ spoon.FuzzySwitcher:start()
 hs.loadSpoon("MyImageSpoon")
 spoon.MyImageSpoon:bindHotkeys()
 
+
 hs.loadSpoon("ClipboardTool")
--- spoon.ClipboardTool.show_copied_alert = false
+
 spoon.ClipboardTool.show_in_menubar = true
+spoon.ClipboardTool.show_copied_alert = false
+spoon.ClipboardTool.paste_on_select = false
+spoon.ClipboardTool.hist_size = 100
+spoon.ClipboardTool.expiration_time = 300
 spoon.ClipboardTool:bindHotkeys({
   toggle_clipboard = { { "cmd", "ctrl" }, "v" }
 })

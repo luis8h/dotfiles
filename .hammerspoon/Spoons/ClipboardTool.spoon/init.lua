@@ -60,6 +60,16 @@ obj.paste_on_select = getSetting('paste_on_select', false)
 --- Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.
 obj.logger = hs.logger.new('ClipboardTool')
 
+--- ClipboardTool.auto_expire_entries
+--- Variable
+--- Whether to automatically remove entries older than 1 minute. Defaults to `true`.
+obj.auto_expire_entries = true
+
+--- ClipboardTool.expiration_time
+--- Variable
+--- Time in seconds after which entries should be automatically removed. Defaults to 60 (1 minute).
+obj.expiration_time = 60
+
 --- ClipboardTool.ignoredIdentifiers
 --- Variable
 --- Types of clipboard entries to ignore, see http://nspasteboard.org. Code from https://github.com/asmagill/hammerspoon-config/blob/master/utils/_menus/newClipper.lua.
@@ -115,6 +125,8 @@ obj.selectorobj = nil
 obj.prevFocusedWindow = nil
 -- Internal variable - Timer object to look for pasteboard changes
 obj.timer = nil
+-- Internal variable - Timer object for expiration checking
+obj.expiration_timer = nil
 
 local pasteboard = require("hs.pasteboard") -- http://www.hammerspoon.org/docs/hs.pasteboard.html
 local hashfn   = require("hs.hash").MD5
@@ -127,6 +139,29 @@ local clipboard_history = nil
 -- Internal function - persist the current history so it survives across restarts
 function _persistHistory()
    setSetting("items",clipboard_history)
+end
+
+-- Internal function - remove expired entries
+function _removeExpiredEntries()
+    if not obj.auto_expire_entries then
+        return
+    end
+
+    local current_time = os.time()
+    local removed_count = 0
+
+    for i = #clipboard_history, 1, -1 do
+        local entry = clipboard_history[i]
+        if entry.timestamp and (current_time - entry.timestamp) > obj.expiration_time then
+            table.remove(clipboard_history, i)
+            removed_count = removed_count + 1
+        end
+    end
+
+    if removed_count > 0 then
+        _persistHistory()
+        obj.logger.df("Removed %d expired entries", removed_count)
+    end
 end
 
 --- ClipboardTool:togglePasteOnSelect()
@@ -145,6 +180,17 @@ function obj:toggleMaxSize()
    hs.notify.show("ClipboardTool", "Max Size is now " .. (self.max_size and "enabled" or "disabled"), "")
 end
 
+--- ClipboardTool:toggleAutoExpire()
+--- Method
+--- Toggle the value of `ClipboardTool.auto_expire_entries`
+---
+--- Parameters:
+---  * None
+function obj:toggleAutoExpire()
+   self.auto_expire_entries = setSetting("auto_expire_entries", not self.auto_expire_entries)
+   hs.notify.show("ClipboardTool", "Auto-expire entries is now " .. (self.auto_expire_entries and "enabled" or "disabled"), "")
+end
+
 -- Internal method - process the selected item from the chooser. An item may invoke special actions, defined in the `actions` variable.
 function obj:_processSelectedItem(value)
    local actions = {
@@ -152,6 +198,7 @@ function obj:_processSelectedItem(value)
       clear = hs.fnutils.partial(self.clearAll, self),
       toggle_paste_on_select = hs.fnutils.partial(self.togglePasteOnSelect, self),
       toggle_max_size = hs.fnutils.partial(self.toggleMaxSize, self),
+      toggle_auto_expire = hs.fnutils.partial(self.toggleAutoExpire, self),
    }
    if self.prevFocusedWindow ~= nil then
       self.prevFocusedWindow:focus()
@@ -162,7 +209,7 @@ function obj:_processSelectedItem(value)
       elseif value.text then
          if value.type == "text" then
             pasteboard.setContents(value.data)
-         elseif value.type == "image" then 
+         elseif value.type == "image" then
             pasteboard.writeObjects(hs.image.imageFromURL(value.data))
          end
 --         self:pasteboardToClipboard(value.text)
@@ -225,7 +272,11 @@ end
 --- Returns:
 ---  * None
 function obj:pasteboardToClipboard(item_type, item)
-   table.insert(clipboard_history, 1, {type=item_type, content=item})
+   table.insert(clipboard_history, 1, {
+      type = item_type,
+      content = item,
+      timestamp = os.time()  -- Add timestamp when entry is created
+   })
    clipboard_history = self:dedupe_and_resize(clipboard_history)
    _persistHistory() -- updates the saved history
 end
@@ -335,6 +386,11 @@ function obj:_populateChooser(query)
                    action = 'toggle_max_size',
                    image = (self.max_size and hs.image.imageFromName('NSSwitchEnabledOn') or hs.image.imageFromName('NSSwitchEnabledOff'))
    })
+   table.insert(menuData, {
+                   text="《" .. (self.auto_expire_entries and "Disable" or "Enable") .. " Auto-expire (1min)》",
+                   action = 'toggle_auto_expire',
+                   image = (self.auto_expire_entries and hs.image.imageFromName('NSSwitchEnabledOn') or hs.image.imageFromName('NSSwitchEnabledOff'))
+   })
    self.logger.df("Returning menuData = %s", hs.inspect(menuData))
    return menuData
 end
@@ -432,6 +488,16 @@ end
 function obj:start()
    obj.logger.level = 0
    clipboard_history = self:dedupe_and_resize(getSetting("items", {})) -- If no history is saved on the system, create an empty history
+
+   -- Add timestamps to existing entries that don't have them (for backward compatibility)
+   local current_time = os.time()
+   for i, entry in ipairs(clipboard_history) do
+      if not entry.timestamp then
+         entry.timestamp = current_time
+      end
+   end
+   _persistHistory()
+
    last_change = pasteboard.changeCount() -- keeps track of how many times the pasteboard owner has changed // Indicates a new copy has been made
    self.selectorobj = hs.chooser.new(hs.fnutils.partial(self._processSelectedItem, self))
    self.selectorobj:choices(hs.fnutils.partial(self._populateChooser, self, ""))
@@ -442,6 +508,11 @@ function obj:start()
    --Checks for changes on the pasteboard. Is it possible to replace with eventtap?
    self.timer = hs.timer.new(self.frequency, hs.fnutils.partial(self.checkAndStorePasteboard, self))
    self.timer:start()
+
+   -- Start expiration timer to check for old entries every 30 seconds
+   self.expiration_timer = hs.timer.new(30, _removeExpiredEntries)
+   self.expiration_timer:start()
+
    if self.show_in_menubar then
       self.menubaritem = hs.menubar.new()
          :setTitle(obj.menubar_title)
@@ -457,6 +528,8 @@ end
 ---  * None
 function obj:showClipboard()
    if self.selectorobj ~= nil then
+      -- Remove expired entries before showing the clipboard
+      _removeExpiredEntries()
       self.selectorobj:refreshChoicesCallback()
       self.prevFocusedWindow = hs.window.focusedWindow()
       self.selectorobj:show()
@@ -497,4 +570,3 @@ function obj:bindHotkeys(mapping)
 end
 
 return obj
-
