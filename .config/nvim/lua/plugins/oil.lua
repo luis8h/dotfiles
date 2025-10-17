@@ -279,10 +279,17 @@ return {
         end
 
         require("oil").setup({
+            columns = {
+                "icon",
+                -- "permissions",
+                -- "size",
+                -- "mtime",
+            },
             default_file_explorer = true,
             delete_to_trash = true,
             skip_confirm_for_simple_edits = true,
             keymaps = {
+                ["`"]           = false,
                 ["<C-h>"]       = false,
                 ["<C-l>"]       = false,
                 ["<C-p>"]       = false,
