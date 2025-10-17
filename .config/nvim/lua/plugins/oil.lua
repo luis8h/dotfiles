@@ -7,14 +7,20 @@ return {
 
     config = function()
         -- open downloads dir
-        vim.keymap.set("n", "<leader>do", function()
+        vim.keymap.set("n", "<leader>qh", function()
+            local home_dir = os.getenv("HOME")
+            require('oil').open(home_dir)
+        end, { silent = true })
+
+        -- open downloads dir
+        vim.keymap.set("n", "<leader>qd", function()
             local home_dir = os.getenv("HOME")
             local downloads_dir = home_dir .. "/Downloads"
             require('oil').open(downloads_dir)
         end, { silent = true })
 
         -- open kbase dir
-        vim.keymap.set("n", "<leader>bk", function()
+        vim.keymap.set("n", "<leader>qb", function()
             local kbase_dir = os.getenv("H8_KBASE_DIR")
             if kbase_dir then
                 require('oil').open(kbase_dir)
@@ -24,7 +30,7 @@ return {
         end, { silent = true })
 
         -- open data dir
-        vim.keymap.set("n", "<leader>od", function()
+        vim.keymap.set("n", "<leader>qa", function()
             local kbase_dir = os.getenv("H8_DATA_DIR")
             if kbase_dir then
                 require('oil').open(kbase_dir)
@@ -34,7 +40,7 @@ return {
         end, { silent = true })
 
         -- open cloud
-        vim.keymap.set("n", "<leader>oc", function()
+        vim.keymap.set("n", "<leader>qc", function()
             local kbase_dir = os.getenv("H8_CLOUD_DIR")
             if kbase_dir then
                 require('oil').open(kbase_dir)
@@ -103,6 +109,175 @@ return {
             end
         end, { silent = true })
 
+        local pickers = require("telescope.pickers")
+        local entry_display = require("telescope.pickers.entry_display")
+        local oil = require("oil")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
+
+        -- Parse a .desktop file and return a table with relevant fields.
+        -- Returns nil if it's not an Application or it should be ignored.
+        local function parse_desktop_file(path)
+            local f, err = io.open(path, "r")
+            if not f then return nil end
+
+            local inside_desktop_entry = false
+            local t = { path = path, id = nil, name = nil, exec = nil, nodisplay = false, type = nil }
+
+            for line in f:lines() do
+                -- trim
+                local s = line:match("^%s*(.-)%s*$")
+                if s ~= "" then
+                    -- section header
+                    if s:match("^%[") then
+                        inside_desktop_entry = (s:lower() == "[desktop entry]")
+                    elseif inside_desktop_entry then
+                        local k, v = s:match("^([^=]+)=(.*)$")
+                        if k and v then
+                            k = k:match("^%s*(.-)%s*$")
+                            v = v:match("^%s*(.-)%s*$")
+                            if k == "Type" then
+                                t.type = v
+                                if v ~= "Application" then
+                                    -- not an application -> bail
+                                    f:close()
+                                    return nil
+                                end
+                            elseif k == "NoDisplay" and (v == "true" or v == "1") then
+                                t.nodisplay = true
+                            elseif k == "Name" and not t.name then
+                                -- take first Name= line (no localization handling for simplicity)
+                                t.name = v
+                            elseif k == "Exec" and not t.exec then
+                                t.exec = v
+                            end
+                        end
+                    end
+                end
+            end
+
+            f:close()
+
+            -- require at least a name and that it's an Application
+            if t.type ~= "Application" or not t.name then
+                return nil
+            end
+
+            -- compute desktop id (basename without .desktop)
+            local id = path:match("([^/]+)%.desktop$")
+            if not id then return nil end
+            t.id = id
+
+            return t
+        end
+
+        -- Get available apps from standard dirs, dedupe, prefer visible ones
+        local function get_available_desktop_apps()
+            local app_dirs = {
+                "/usr/share/applications",
+                vim.fn.expand("~/.local/share/applications"),
+            }
+
+            local apps_by_id = {}
+
+            for _, dir in ipairs(app_dirs) do
+                if vim.fn.isdirectory(dir) == 1 then
+                    -- use Vim's glob to avoid shell escaping issues
+                    local files = vim.fn.globpath(dir, "*.desktop", false, true) -- returns list
+                    for _, file in ipairs(files) do
+                        local parsed = parse_desktop_file(file)
+                        if parsed then
+                            local existing = apps_by_id[parsed.id]
+                            if not existing then
+                                apps_by_id[parsed.id] = parsed
+                            else
+                                -- prefer the one with NoDisplay = false (visible launchers)
+                                if existing.nodisplay and not parsed.nodisplay then
+                                    apps_by_id[parsed.id] = parsed
+                                end
+                                -- otherwise keep existing (could add more heuristics)
+                            end
+                        end
+                    end
+                end
+            end
+
+            local apps = {}
+            for id, meta in pairs(apps_by_id) do
+                table.insert(apps, meta)
+            end
+
+            table.sort(apps, function(a, b)
+                return (a.name:lower() or "") < (b.name:lower() or "")
+            end)
+
+            return apps
+        end
+
+        -- The telescope picker
+        local function open_with_telescope()
+            local entry = oil.get_cursor_entry()
+            if not entry then
+                vim.notify("No entry under cursor", vim.log.levels.WARN)
+                return
+            end
+
+            -- Build full path to selected file/dir. oil.get_current_dir() returns dir with trailing slash.
+            local cwd = oil.get_current_dir() or vim.loop.cwd() .. "/"
+            local filepath = cwd .. entry.name
+
+            local apps = get_available_desktop_apps()
+            if vim.tbl_isempty(apps) then
+                vim.notify("No .desktop applications found", vim.log.levels.WARN)
+                return
+            end
+
+            local displayer = entry_display.create({
+                separator = " ▏ ",
+                items = {
+                    { width = 40 },
+                    { remaining = true },
+                },
+            })
+
+            local function make_entry(item)
+                return {
+                    value = item,
+                    display = function(entry)
+                        return displayer({
+                            entry.value.name,
+                            "(" .. entry.value.id .. ")",
+                        })
+                    end,
+                    ordinal = (item.name or "") .. " " .. (item.id or ""),
+                }
+            end
+
+            pickers.new({}, {
+                prompt_title = "Open with...",
+                finder = finders.new_table {
+                    results = apps,
+                    entry_maker = make_entry,
+                },
+                sorter = conf.generic_sorter({}),
+                attach_mappings = function(prompt_bufnr, map)
+                    actions.select_default:replace(function()
+                        actions.close(prompt_bufnr)
+                        local selection = action_state.get_selected_entry()
+                        if not selection or not selection.value then return end
+                        local app_id = selection.value.id
+                        -- Use gtk-launch to open the file with the chosen desktop id
+                        -- gtk-launch accepts: gtk-launch <desktop-id> [files...]
+                        -- We pass the filepath as a single arg.
+                        vim.fn.jobstart({ "gtk-launch", app_id, filepath }, { detach = true })
+                    end)
+                    return true
+                end,
+            }):find()
+        end
+
         require("oil").setup({
             default_file_explorer = true,
             delete_to_trash = true,
@@ -113,6 +288,7 @@ return {
                 ["<C-p>"]       = false,
                 ["<C-r>"]       = "actions.refresh",
                 ["q"]           = "actions.close",
+                ["gX"]          = open_with_telescope,
                 ["<leader>mao"] = function()
                     local oil = require("oil")
                     local dir = oil.get_current_dir()
