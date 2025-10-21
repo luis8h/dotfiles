@@ -117,6 +117,40 @@ return {
         local actions = require("telescope.actions")
         local action_state = require("telescope.actions.state")
 
+        local is_macos = vim.loop.os_uname().sysname == "Darwin"
+        local is_linux = vim.loop.os_uname().sysname == "Linux"
+
+        local function get_macos_apps()
+            local app_dirs = {
+                "/Applications",
+                "/System/Applications",
+                vim.fn.expand("~/Applications"),
+            }
+
+            local apps = {}
+            local seen = {}
+
+            for _, dir in ipairs(app_dirs) do
+                if vim.fn.isdirectory(dir) == 1 then
+                    local files = vim.fn.globpath(dir, "*.app", false, true)
+                    for _, file in ipairs(files) do
+                        local name = file:match("([^/]+)%.app$")
+                        if name and not seen[name] then
+                            table.insert(apps, { name = name, path = file })
+                            seen[name] = true
+                        end
+                    end
+                end
+            end
+
+            table.sort(apps, function(a, b)
+                return a.name:lower() < b.name:lower()
+            end)
+
+            return apps
+        end
+
+
         -- Parse a .desktop file and return a table with relevant fields.
         -- Returns nil if it's not an Application or it should be ignored.
         local function parse_desktop_file(path)
@@ -216,7 +250,6 @@ return {
             return apps
         end
 
-        -- The telescope picker
         local function open_with_telescope()
             local entry = oil.get_cursor_entry()
             if not entry then
@@ -224,13 +257,29 @@ return {
                 return
             end
 
-            -- Build full path to selected file/dir. oil.get_current_dir() returns dir with trailing slash.
             local cwd = oil.get_current_dir() or vim.loop.cwd() .. "/"
             local filepath = cwd .. entry.name
 
-            local apps = get_available_desktop_apps()
+            local apps
+            local open_cmd
+
+            if is_macos then
+                apps = get_macos_apps()
+                open_cmd = function(app)
+                    vim.fn.jobstart({ "open", "-a", app.path, filepath }, { detach = true })
+                end
+            elseif is_linux then
+                apps = get_available_desktop_apps()
+                open_cmd = function(app)
+                    vim.fn.jobstart({ "gtk-launch", app.id, filepath }, { detach = true })
+                end
+            else
+                vim.notify("Unsupported OS for this feature", vim.log.levels.ERROR)
+                return
+            end
+
             if vim.tbl_isempty(apps) then
-                vim.notify("No .desktop applications found", vim.log.levels.WARN)
+                vim.notify("No applications found", vim.log.levels.WARN)
                 return
             end
 
@@ -248,10 +297,10 @@ return {
                     display = function(entry)
                         return displayer({
                             entry.value.name,
-                            "(" .. entry.value.id .. ")",
+                            entry.value.path or "",
                         })
                     end,
-                    ordinal = (item.name or "") .. " " .. (item.id or ""),
+                    ordinal = (item.name or "") .. " " .. (item.path or ""),
                 }
             end
 
@@ -267,11 +316,7 @@ return {
                         actions.close(prompt_bufnr)
                         local selection = action_state.get_selected_entry()
                         if not selection or not selection.value then return end
-                        local app_id = selection.value.id
-                        -- Use gtk-launch to open the file with the chosen desktop id
-                        -- gtk-launch accepts: gtk-launch <desktop-id> [files...]
-                        -- We pass the filepath as a single arg.
-                        vim.fn.jobstart({ "gtk-launch", app_id, filepath }, { detach = true })
+                        open_cmd(selection.value)
                     end)
                     return true
                 end,
