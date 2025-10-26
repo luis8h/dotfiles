@@ -12,6 +12,7 @@
 ## known issues
 #### nvim
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
+-   jdtls might not detect the root dir of a maven project. -> just create a `.git` dir even if not using git to make the detectino more reliable, somehow it does not work with `pom.xml` ...
 
 #### tmux
 - when exiting i3 session and logging back in, the global clipboard in tmux is not working any more. to fix this just use `tmux kill-server` and then restart tmux
