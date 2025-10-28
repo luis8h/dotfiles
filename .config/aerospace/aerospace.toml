@@ -91,8 +91,8 @@ on-focus-changed = "move-mouse window-lazy-center"
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # ctrl-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 ctrl-enter = 'exec-and-forget open -n /Applications/iTerm.app'
-# ctrl-shift-enter = 'exec-and-forget open -na "/Applications/Brave Browser.app"'
-ctrl-shift-enter = 'exec-and-forget open -na "/Applications/Zen.app"'
+ctrl-shift-enter = 'exec-and-forget open -na "/Applications/Brave Browser.app"'
+# ctrl-shift-enter = 'exec-and-forget open -na "/Applications/Zen.app"'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
