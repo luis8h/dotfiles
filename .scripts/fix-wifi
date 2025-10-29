@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+nmcli c down OTH-Students
+nmcli c up OTH-Students
+sudo ip addr flush dev wlan0
+
+
