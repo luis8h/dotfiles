@@ -6,6 +6,34 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
+		-- Open a new tmux window in Oil's current directory
+		vim.keymap.set("n", "<leader>tw", function()
+			local bufname = vim.api.nvim_buf_get_name(0)
+			if not bufname:match("^oil:///") then
+				print("Not in an Oil buffer.")
+				return
+			end
+
+			local path = bufname:gsub("^oil://", "")
+
+			local cmd = string.format("tmux new-window -c %q", path)
+			os.execute(cmd)
+		end, { desc = "tmux new window from Oil directory" })
+
+		-- open oil dir in tmux pane terminal
+		vim.keymap.set("n", "<leader>tv", function()
+			local bufname = vim.api.nvim_buf_get_name(0)
+			if not bufname:match("^oil:///") then
+				print("Not in an Oil buffer.")
+				return
+			end
+
+			local path = bufname:gsub("^oil://", "")
+
+			local cmd = string.format("tmux split-window -h -c %q", path)
+			os.execute(cmd)
+		end, { desc = "tmux vertical split from Oil directory" })
+
         -- open downloads dir
         vim.keymap.set("n", "<leader>qh", function()
             local home_dir = os.getenv("HOME")
