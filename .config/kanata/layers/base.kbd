@@ -33,8 +33,8 @@
 
 (deflayer base
     @b_f7 1 2 3 4
-    @b_q w e r t             y @b_u @b_i @b_o @b_p
-    @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_;
+    @b_q w e r t             y @b_u @b_i @b_o @b_;
+    @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_p
     @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
     @b_t1 @b_t2                 @b_t3 @b_t4 _
 )
