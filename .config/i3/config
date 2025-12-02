@@ -263,7 +263,7 @@ smart_borders on
 ########################################################################
 
 exec --no-startup-id "i3-msg 'workspace 1; exec $term'"
-exec --no-startup-id "i3-msg 'workspace 12; exec discord'"
+# exec --no-startup-id "i3-msg 'workspace 12; exec discord'"
 
 ########################################################################
 ########################################################################
