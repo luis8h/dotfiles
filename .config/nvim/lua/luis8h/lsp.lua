@@ -14,7 +14,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
         -- keymaps
         vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Show diagnostics in float' })
-        vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format() end)
+        -- vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format() end)
+        vim.keymap.set("n", "<leader>vf", function()
+            require("conform").format({
+                async = true,
+                lsp_fallback = true,
+            })
+        end, { desc = "Format with Conform" })
         vim.keymap.set('n', '<leader>vy', lsp_helpers.yank_diagnostics, { desc = 'Yank diagnostics on current line' })
 
         -- commands

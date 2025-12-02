@@ -13,4 +13,13 @@ return {
             ensure_installed = { "lua_ls", "rust_analyzer", "jdtls", "gopls", "ty", "ruff", "cssls", "html", "jsonls", "ts_ls", "basedpyright", "ltex_plus", "texlab", "tailwindcss" },
         }
     },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {
+            ensure_installed = {
+                "prettier",
+                "prettierd",
+            },
+        },
+    },
 }
