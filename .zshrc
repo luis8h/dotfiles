@@ -190,10 +190,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# jj autocompletion
-autoload -U compinit
-compinit
-source <(jj util completion zsh)
+### jj autocompletion
+
+# standart (static) version
+# autoload -U compinit
+# compinit
+# source <(jj util completion zsh)
+
+# dynamic version -> includes bookmark names (more advanced but maybe unstable)
+source <(COMPLETE=zsh jj)
 
 # password-store (pass)
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
