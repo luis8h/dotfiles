@@ -369,7 +369,9 @@ return {
                 ["<C-r>"]       = "actions.refresh",
                 ["q"]           = "actions.close",
                 ["gX"]          = open_with_telescope,
-                ["<leader>mao"] = function()
+                ["<leader>mp"] = require("oil.actions").paste_from_system_clipboard,
+                ["<leader>my"] = require("oil.actions").copy_to_system_clipboard,
+                ["<leader>mip"] = function()
                     local oil = require("oil")
                     local dir = oil.get_current_dir()
 
