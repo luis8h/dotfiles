@@ -369,6 +369,9 @@ return {
                 ["<C-r>"]       = "actions.refresh",
                 ["q"]           = "actions.close",
                 ["gX"]          = open_with_telescope,
+                ["gS"] = require("oil.actions").change_sort,
+                ["gst"] = function() require("oil").set_sort({{"mtime", "desc"}}) end,
+                ["gsn"] = function() require("oil").set_sort({{"type", "asc"}, {"name", "asc"}}) end,
                 ["<leader>mp"] = require("oil.actions").paste_from_system_clipboard,
                 ["<leader>my"] = require("oil.actions").copy_to_system_clipboard,
                 ["<leader>mip"] = function()
