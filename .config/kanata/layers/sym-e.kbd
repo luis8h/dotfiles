@@ -1,0 +1,8 @@
+(deflayer sym-e-layer
+    @b_f7 1 2 3 4
+    S-\ S-, S-. S-8 t    y @b_u @b_i @b_o @b_;
+    ; S-; S-9 S-0 g         h @b_j @b_k @b_l @b_p
+    @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
+    @b_t1 @b_t2                 @b_t3 @b_t4 _
+)
+
