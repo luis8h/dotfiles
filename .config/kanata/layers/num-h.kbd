@@ -18,8 +18,8 @@
 
 (deflayer num-h-layer
     f7 1 2 3 4
-    . 1 2 3 ,                   S-/ @nh_u S-9 @nh_o @nh_p
-    @nh_a @nh_s @nh_d @nh_f 0       S-= @nh_j @nh_k @nh_l _
-    @nh_z @nh_x 8 @nh_v =               n @nh_m , @b_. @b_/
+    . 1 2 3 ,                       y @b_u @b_i @b_o @b_;
+    @nh_a @nh_s @nh_d @nh_f 0       h @b_j @b_k @b_l @b_p
+    @nh_z @nh_x 8 @nh_v =           n @b_m , @b_. @b_/
     @to_base @b_t2                  @b_t3 @b_t4 _
 )

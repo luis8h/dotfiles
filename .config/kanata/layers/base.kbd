@@ -6,9 +6,9 @@
     b_j (tap-hold $tap-time $hold-time j @c_lctl)
     b_k (tap-hold $tap-time $hold-time k rsft)
     b_l (tap-hold $tap-time $hold-time l @c_lmet)
-    b_; (one-shot $oneshot-timeout (layer-while-held num-c-layer))
+    b_; (one-shot $oneshot-timeout (layer-while-held sym-e-layer))
 
-    b_/ (one-shot $oneshot-timeout (layer-while-held sym-e-layer))
+    b_/ (one-shot $oneshot-timeout (layer-while-held num-c-layer))
 
     b_t1 (tap-hold $tap-time $hold-time esc (layer-toggle esc-layer))
     b_t2 (tap-hold $tap-time $hold-time spc (layer-toggle num-h-layer))
@@ -33,7 +33,7 @@
 
 (deflayer base
     @b_f7 1 2 3 4
-    @b_q w e r t             y @b_u @b_i @b_o @b_;
+    @b_q w e r t                y @b_u @b_i @b_o @b_;
     @b_a @b_s @b_d @b_f g       h @b_j @b_k @b_l @b_p
     @b_z @b_x c @b_v b          n @b_m , @b_. @b_/
     @b_t1 @b_t2                 @b_t3 @b_t4 _
