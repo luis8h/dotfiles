@@ -1,3 +1,13 @@
+-- use directory based shada file
+local function project_shada()
+    local cwd = vim.fn.getcwd()
+    -- make path filesystem-safe
+    local safe = cwd:gsub("/", "%%"):gsub(":", "%%")
+    return vim.fn.stdpath("state") .. "/shada/" .. safe .. ".shada"
+end
+vim.opt.shadafile = project_shada()
+
+-- lazy plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
@@ -22,9 +32,9 @@ vim.g.markdown_folding = 1
 vim.opt.termguicolors = true
 
 require("lazy").setup("plugins", {
-  change_detection = {
-    notify = false,
-  },
+    change_detection = {
+        notify = false,
+    },
 })
 
 
