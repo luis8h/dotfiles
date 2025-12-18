@@ -21,8 +21,13 @@ autocmd('TextYankPost', {
 autocmd({ "BufWritePre" }, {
     group = luis8h_group,
     pattern = "*",
-    command = [[%s/\s\+$//e]],
+    callback = function()
+        local view = vim.fn.winsaveview()
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.winrestview(view)
+    end,
 })
+
 
 -- fix python command indenting not working
 vim.api.nvim_create_augroup("PythonIndentFix", { clear = true })
