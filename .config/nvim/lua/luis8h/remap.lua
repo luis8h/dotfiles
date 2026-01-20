@@ -1,3 +1,4 @@
+
 -- also set in lazy config
 vim.g.mapleader = " "
 
@@ -16,6 +17,13 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- append line below
 vim.keymap.set("n", "J", "mzJ`z")
+
+-- make ctrl-backspace possible
+vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
+-- Delete word forward in Insert mode
+vim.keymap.set('i', '<C-Delete>', '<C-o>dw', { noremap = true })
+vim.keymap.set('i', '<Esc>[3;5~', '<C-o>dw', { noremap = true })
 
 -- keep window centered when scrolling (uncommented because of scrolloff=999 in set.lua)
 -- vim.keymap.set("n", "J", "mzJ`z")

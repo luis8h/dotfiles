@@ -85,6 +85,11 @@ source $HOME/.profile
 source $HOME/.config/tmuxinator/tmuxinator.zsh
 
 
+## make ctrl-backspace work
+bindkey -M viins '^[^?' backward-kill-word
+## make ctrl-delete work
+bindkey -M viins '^[[3;5~' kill-word
+
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"

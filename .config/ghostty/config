@@ -1,21 +1,33 @@
 # Dynamic theme colors
-config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+config-file = ?"./themes/catppuccin-mocha.conf"
 
 # Font
-font-family = "CaskaydiaMono Nerd Font"
-font-style = Regular
-font-size = 9
+# font-family = "CaskaydiaMono Nerd Font"
+# font-style = Regular
+font-size = 15
 
-# Window
-window-padding-x = 14
-window-padding-y = 14
-confirm-close-surface=false
-resize-overlay = never
+# macos remap
+key-remap = ctrl=super
+key-remap = super=ctrl
 
-# Cursor stlying
-cursor-style = "block"
-cursor-style-blink = false
-shell-integration-features = no-cursor
+# clear the defaults
+keybind=clear
+
+# ctrl-backspace
+keybind = ctrl+backspace=text:\x1b\x7f
+
+# ctrl-delete (delete word forward)
+keybind = ctrl+delete=text:\x1b[3;5~
+
+# paste
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Increase font size
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+equal=increase_font_size:1
+
+# Decrease font size
+keybind = ctrl+minus=decrease_font_size:1
 
 # Keyboard bindings
 keybind = f11=toggle_fullscreen
