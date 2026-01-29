@@ -22,5 +22,5 @@
 )
 
 (defalias
-    to_base (layer-switch base)
+    to_base (tap-hold $tap-time $hold-time (layer-switch base) (layer-toggle esc-layer))
 )
