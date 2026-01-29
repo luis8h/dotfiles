@@ -1,10 +1,17 @@
 # Dynamic theme colors
 config-file = ?"./themes/catppuccin-mocha.conf"
 
-# Font
+### Font
 # font-family = "CaskaydiaMono Nerd Font"
 # font-style = Regular
 font-size = 15
+
+
+### Settings
+confirm-close-surface = false
+
+
+### Keymaps
 
 # macos remap
 key-remap = ctrl=super
