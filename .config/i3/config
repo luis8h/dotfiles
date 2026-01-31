@@ -29,7 +29,7 @@ font pango:Hack 9
 floating_modifier $mod
 
 # start a terminal
-set $term kitty
+set $term ghostty
 bindsym $mod+Return exec $term
 
 # start a webbrowser
