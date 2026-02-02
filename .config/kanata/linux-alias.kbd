@@ -6,6 +6,9 @@
     c_paste C-v
     c_tmux C-spc
 
+    c_w_del C-del
+    c_w_bspc C-bspc
+
     ac_1 C-M-1
     ac_2 C-M-2
     ac_3 C-M-3
