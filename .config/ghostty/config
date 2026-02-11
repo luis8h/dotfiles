@@ -1,6 +1,9 @@
 # Dynamic theme colors
 config-file = ?"./themes/catppuccin-mocha.conf"
 
+# OS specific configuration (used with symlink) - if the symlink does not exist, nothing happens
+config-file = ?"os-specific"
+
 ### Font
 # font-family = "CaskaydiaMono Nerd Font"
 # font-style = Regular
@@ -14,10 +17,6 @@ window-decoration = false
 
 ### Keymaps
 keybind=clear
-
-# macos remap
-key-remap = ctrl=super
-key-remap = super=ctrl
 
 keybind = ctrl+alt+shift+r=reload_config
 

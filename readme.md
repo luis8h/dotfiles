@@ -30,6 +30,15 @@
     * `:set expandtab`
 - lsp configuration: use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
 
+#### ghostty os specific config
+This is implemented by including a non existing file in the ghostty config that can be created by linking another file to it. This is done automatically on macos by adding the following to `.profile`:
+```sh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf ~/.config/ghostty/macos.conf ~/.config/ghostty/os-specific
+fi
+```
+
+
 #### latex/markdown grammar checking
 - download the ngramms model from [this link](https://languagetool.org/download/ngram-data/) (choose the desired languages)
 - put it into the directory `~/models/ngrams/<language-code>`

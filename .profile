@@ -66,4 +66,9 @@ if [ "$(uname)" != "Darwin" ]; then
     fi
 fi
 
+# create symlink for ghostty config on macos
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf ~/.config/ghostty/macos.conf ~/.config/ghostty/os-specific
+fi
+
 # . "$HOME/.local/share/../bin/env"
