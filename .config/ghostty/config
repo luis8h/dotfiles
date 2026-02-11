@@ -13,6 +13,7 @@ font-size = 15
 ### Settings
 confirm-close-surface = false
 window-decoration = false
+quit-after-last-window-closed = true
 
 
 ### Keymaps
