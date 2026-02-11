@@ -216,4 +216,10 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-. "$HOME/.local/share/../bin/env"
+# . "$HOME/.local/share/../bin/env"
+
+# Check if jenv is installed and initialize it
+if [ -d "$HOME/.jenv" ]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
