@@ -36,4 +36,5 @@ keybind = f11=toggle_fullscreen
 # ctrl-backspace
 keybind = ctrl+backspace=text:\x1b\x7f
 # ctrl-delete (delete word forward)
+keybind = ctrl+delete=text:\x1b[3;5~
 keybind = ctrl+delete=csi:3;5~

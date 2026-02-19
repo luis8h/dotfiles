@@ -1,3 +1,5 @@
+OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -88,8 +90,13 @@ source $HOME/.config/tmuxinator/tmuxinator.zsh
 ## make ctrl-backspace work
 bindkey -M viins '^[^?' backward-kill-word
 ## make ctrl-delete work
-bindkey -M viins '^[[3;3~' kill-word
-bindkey -M vicmd '^[[3;3~' kill-word
+if [ "$OS" = "darwin" ]; then
+    bindkey -M viins '^[[3;3~' kill-word
+    bindkey -M vicmd '^[[3;3~' kill-word
+elif [ "$OS" = "linux" ]; then
+    bindkey -M viins '^[[3;5~' kill-word
+    bindkey -M vicmd '^[[3;5~' kill-word
+fi
 
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
