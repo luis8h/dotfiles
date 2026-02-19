@@ -14,6 +14,7 @@ font-size = 15
 confirm-close-surface = false
 window-decoration = false
 quit-after-last-window-closed = true
+macos-option-as-alt = left
 
 
 ### Keymaps
