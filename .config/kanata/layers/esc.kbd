@@ -1,5 +1,6 @@
 (defalias
     e_k (tap-hold $tap-time $hold-time @c_w_del lsft)
+    e_j (tap-hold $tap-time $hold-time bspc @c_lctl)
 
   ;; This example is similar to the default caps-word behaviour but it moves the
   ;; 0-9 keys to the capitalized key list from the extra non-terminating key list.
@@ -13,7 +14,7 @@
 (deflayer esc-layer
     @b_f7 1 2 3 4
     @c_copy @c_paste @c_tmux f8 _       y @cwc i @b_o @b_;
-    tab del lsft bspc _                 del bspc @e_k @c_w_bspc lalt
+    tab del lsft bspc _                 del @e_j @e_k @c_w_bspc lalt
     ret _ _ _ _                         n @c_lctl lsft @c_lmet @b_/
     @b_t1 @b_t2                         ret ralt _
 )
