@@ -1,13 +1,19 @@
 return {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { { 'nvim-lua/plenary.nvim' } },
+    version = '*',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
     config = function()
         local builtin = require('telescope.builtin')
 
         -- document symbols
-        vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_document_symbols() end, { desc = 'Telescope document symbols' })
-        vim.keymap.set('n', '<leader>vsw', function() builtin.lsp_workspace_symbols() end, { desc = 'Telescope document symbols in workspace' })
+        vim.keymap.set('n', '<leader>vsd', function() builtin.lsp_document_symbols() end,
+            { desc = 'Telescope document symbols' })
+        vim.keymap.set('n', '<leader>vsw', function() builtin.lsp_workspace_symbols() end,
+            { desc = 'Telescope document symbols in workspace' })
         -- vim.keymap.set('n', '<leader>vsc', function() builtin.lsp_dynamic_workspace_symbols() end, { desc = 'Telescope document symbols in workspace dynamic' })
 
         -- git commits
@@ -219,5 +225,18 @@ return {
 
         -- search open buffers
         vim.keymap.set('n', '<leader>bf', builtin.buffers, { desc = "Telescope open buffers" })
+
+        -- fix delete word not working in telescope windows
+        require('telescope').setup({
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<M-BS>"] = function()
+                            vim.api.nvim_input "<C-w>"
+                        end,
+                    }
+                },
+            },
+        })
     end,
 }
