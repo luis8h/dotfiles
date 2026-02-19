@@ -88,7 +88,8 @@ source $HOME/.config/tmuxinator/tmuxinator.zsh
 ## make ctrl-backspace work
 bindkey -M viins '^[^?' backward-kill-word
 ## make ctrl-delete work
-bindkey -M viins '^[[3;5~' kill-word
+bindkey -M viins '^[[3;3~' kill-word
+bindkey -M vicmd '^[[3;3~' kill-word
 
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
