@@ -7,7 +7,7 @@
     nh_k (tap-hold $tap-time $hold-time S-, rsft)
     nh_l (tap-hold $tap-time $hold-time S-. @c_lmet)
 
-    nh_z (tap-hold $tap-time $hold-time S-- (layer-toggle move-layer))
+    nh_z (tap-hold $tap-time $hold-time S-- (multi @c_lctl @c_lmet))
     nh_x (tap-hold $tap-time $hold-time 7 (layer-toggle symspec-layer))
     nh_o (tap-hold $tap-time $hold-time S-0 (layer-toggle wor-a-layer))
     nh_u (tap-hold $tap-time $hold-time S-\ (layer-toggle wor-ac-layer))
