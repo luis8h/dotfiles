@@ -15,6 +15,7 @@ confirm-close-surface = false
 window-decoration = false
 quit-after-last-window-closed = true
 macos-option-as-alt = left
+app-notifications = true
 
 
 ### Keymaps

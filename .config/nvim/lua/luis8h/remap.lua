@@ -22,7 +22,10 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
 vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
 -- Delete word forward in Insert mode
-vim.keymap.set('i', '<C-Delete>', '<C-o>dw', { noremap = true })
+vim.keymap.set('i', '<M-Delete>', '<C-o>dw', { noremap = true }) -- macos
+vim.keymap.set('c', '<M-Delete>', '<C-o>dw', { noremap = true }) -- macos
+vim.keymap.set('i', '<C-Delete>', '<C-o>dw', { noremap = true }) -- linux
+vim.keymap.set('c', '<C-Delete>', '<C-o>dw', { noremap = true }) -- linux
 
 -- keep window centered when scrolling (uncommented because of scrolloff=999 in set.lua)
 -- vim.keymap.set("n", "J", "mzJ`z")
