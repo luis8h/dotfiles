@@ -148,3 +148,21 @@ for i = string.byte("a"), string.byte("z") do
 		desc = "Jump to global mark " .. upper,
 	})
 end
+
+
+-- shortcut for daily note in kbase
+local function open_daily()
+    local dir = os.getenv("H8_KBASE_DIR")
+    if not dir then
+        print("Error: H8_KBASE_DIR env var not set")
+        return
+    end
+
+    local filename = os.date("%Y-%m-%d") .. ".md"
+    local path = dir .. "/2_areas/daily/" .. filename
+
+    -- Open the file (this creates a buffer even if it doesn't exist yet)
+    vim.cmd("edit " .. path)
+end
+-- Map it to <leader>dn (Daily Note)
+vim.keymap.set("n", "<leader>dn", open_daily, { desc = "Open/Create Daily Note" })
