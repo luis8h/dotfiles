@@ -195,6 +195,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+ctrl+Shift+l exec swaylock -f -c 11111b
+
 
 #
 # colors (cattpuchine mocha)
@@ -372,8 +374,9 @@ output * bg ~/.config/i3/wallpaper.png fill
 
 # Idle/Lock (Replaces xss-lock)
 exec swayidle -w \
-         timeout 300 'swaylock -c 11111b' \
-         before-sleep 'swaylock -c 11111b'
+    timeout 270 'brightnessctl --save set 10%' resume 'brightnessctl --restore' \
+    timeout 300 'swaylock -c 11111b' \
+    before-sleep 'swaylock -c 11111b'
 
 exec dunst
 exec redshift-gtk # Or use 'gammastep' for Wayland
