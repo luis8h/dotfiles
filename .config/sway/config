@@ -32,8 +32,7 @@ set $floating_modifier $mod
 floating_modifier $floating_modifier
 
 # start a terminal
-# set $term ghostty
-set $term env GTK_IM_MODULE=simple ghostty
+set $term env IM_MODULE='' GTK_IM_MODULE=simple XMODIFIERS=@im=none ghostty
 bindsym $mod+Return exec $term
 
 # start a webbrowser
@@ -382,7 +381,7 @@ exec dunst
 exec redshift-gtk # Or use 'gammastep' for Wayland
 exec nm-applet --indicator
 
-exec ibus-daemon -drx
+exec fcitx5 -d
 
 # Waybar is the standard for Sway (Polybar won't work easily)
 exec_always sh -c 'pkill waybar; waybar'
