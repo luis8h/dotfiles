@@ -1,27 +1,25 @@
 return {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     lazy = false,
     build = ':TSUpdate',
     config = function()
-        require('nvim-treesitter').setup {
-            ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "java", "python" },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-                disable = { "latex" },
-            },
-            indent = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    ccope_incremental = "grc",
-                    node_decremental = "grm",
-                },
-            },
-        }
-    end,
+        local ts = require('nvim-treesitter')
+
+        ts.install(
+            {
+                -- 1. Structural & Config (Essential for Markdown frontmatter & CLI)
+                'yaml', 'json', 'toml', 'ron', 'xml', 'csv', 'ini', 'dockerfile',
+
+                -- 2. Scripting & Systems (The "Must-Haves")
+                'bash', 'fish', 'zsh', 'rust', 'python', 'lua', 'zig', 'go', 'gomod', 'c', 'cpp',
+
+                -- 3. Web & App Development
+                'javascript', 'typescript', 'tsx', 'html', 'css', 'scss', 'java', 'kotlin', 'ruby',
+
+                -- 4. Documentation & Git (The "Invisible" Essentials)
+                'markdown', 'markdown_inline', 'vim', 'vimdoc', 'query', 'diff', 'git_config', 'gitcommit', 'gitignore'
+            }
+        )
+    end
 }

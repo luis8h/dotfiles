@@ -2,6 +2,7 @@
 return {
     "m00qek/baleia.nvim",
     version = "*",
+    submodules = false,
     config = function()
         vim.g.baleia = require("baleia").setup({})
 
@@ -11,6 +12,6 @@ return {
         end, { bang = true })
 
         -- Command to show logs
-        vim.api.nvim_create_user_command("BaleiaLogs", vim.g.baleia.logger.show, { bang = true })
+        vim.api.nvim_create_user_command("BaleiaLogs", vim.cmd.messages, { bang = true })
     end,
 }
