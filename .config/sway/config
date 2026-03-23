@@ -359,7 +359,7 @@ input "type:keyboard" {
 
 
 # apply .Xresources
-exec --no-startup-id dunst
+exec swaync
 exec --no-startup-id redshift
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

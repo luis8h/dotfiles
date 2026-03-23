@@ -1,55 +1,137 @@
 {
+    // ─── Bar Layout ───────────────────────────────────────────────────────────────
     "layer": "top",
     "position": "top",
-    "height": 30,
-    "spacing": 4,
+    "height": 34,
+    "spacing": 0,
+
+
 
     "modules-left":   ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right":  ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "group/hardware", "battery"],
+
+
+    // ─── Left ────────────────────────────────────────────────────────────────────
 
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": false
+        "all-outputs": false,
+        // Show workspace number; urgent ones get a dot indicator via CSS
+        "format": "{name}",
+        "format-icons": {
+            "urgent":  "󰝦",
+            "focused": "󰝥",
+            "default": "󰝣"
+        }
     },
 
+    "sway/mode": {
+        "format": "  {}"
+    },
+
+
+    // ─── Center ──────────────────────────────────────────────────────────────────
+
     "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+        // 24h time  ·  day of month  (e.g. "14:35  ·  19")
+        "format": "{:%H:%M  ·  %d}",
+        "format-alt": "{:%A, %d %B %Y  ·  %H:%M:%S}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1
+    },
+
+
+    // ─── Right ───────────────────────────────────────────────────────────────────
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6
+    },
+
+    "pulseaudio": {
+        // :3 pads volume to 3 chars — same structure muted/unmuted = no width shift
+        "format": "{icon} {volume:3}%",
+        "format-muted": "󰝟 {volume:3}%",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi":       "󰤨  {essid}  ({signalStrength}%)",
+        "format-ethernet":   "󰈀  {ifname}",
+        "format-disconnected": "󰤭  No connection",
+        // Shows IPv4 on hover
+        "tooltip-format": "󰩠  {ipaddr}\n󰈀  {ifname}\n  {bandwidthUpBytes}  /  󰇚 {bandwidthDownBytes}"
+    },
+
+    // ─── Hardware group: CPU + RAM share one pill ─────────────────────────────
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "memory"]
     },
 
     "cpu": {
         "interval": 2,
-        "format": " {usage}%"
+        // :3 pads to 3 chars — stable width from 1% to 100%
+        "format": "{usage:2}% ",
+        "tooltip": true,
+        "format-tooltip": "Core breakdown:\n{core0}% · {core1}% · {core2}% · {core3}%"
     },
 
     "memory": {
         "interval": 5,
-        "format": " {used:0.1f}G"
+        // 4.1f pads to 4 chars before G — stable up to 99.9G
+        "format": "{used:4.1f}G",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
     },
 
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": " muted",
-        "format-icons": { "default": ["", "", ""] },
-        "on-click": "pavucontrol"
+    // ─── swaync notification bell ─────────────────────────────────────────────
+    // {} = unread count (hidden when 0 via format-icons "none" key)
+    // Right-click toggles Do Not Disturb
+    "custom/swaync": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification":           "󱅫",
+            "none":                   "󰂚",
+            "dnd-notification":       "󰪓",
+            "dnd-none":               "󰂛",
+            "inhibited-notification": "󱅫",
+            "inhibited-none":         "󰂚",
+            "dnd-inhibited-notification": "󰪓",
+            "dnd-inhibited-none":     "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
 
-    "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": " {ifname}",
-        "format-disconnected": "⚠ Disconnected",
-        "tooltip-format": "{ipaddr}"
-    },
-
+    // ─── Battery: standalone pill ─────────────────────────────────────────────
     "battery": {
-        "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""],
-        "format-charging": " {capacity}%"
-    },
-
-    "tray": {
-        "spacing": 8
+        "interval": 30,
+        // Discharging: icon + %
+        "format": "{icon}  {capacity}%",
+        // Charging: arrow up  + %
+        "format-charging": "󰂄  {capacity}%  ↑",
+        // Plugged in at full / wall power: plug icon
+        "format-plugged":  "󱟢  {capacity}%",
+        // 10-step icons for smooth visual drain feedback
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states": {
+            "full":     100,
+            "good":      95,
+            "warning":   30,
+            "critical":  15
+        },
+        "tooltip-format": "{timeTo}\n{power}W"
     }
 }
