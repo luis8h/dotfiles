@@ -1,5 +1,5 @@
-# i3/Sway config
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Sway config
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # ═══════════════════════════════════════════════════════════════════════════
 # THEME — edit this block to retheme everything at once.
@@ -31,21 +31,29 @@ font pango:JetBrainsMono Nerd Font 11
 
 
 # ─── Window borders ──────────────────────────────────────────────────────────
-for_window [class="^.*"] border pixel 1
-for_window [app_id="^.*"] border pixel 1
+for_window [class="^.*"]   border pixel 1
+for_window [app_id="^.*"]  border pixel 1
 
 # Exceptions — borderless for browsers
-for_window [class="librewolf"]  border none
-for_window [class="firefox"]    border none
-for_window [class="brave"]      border none
+# class  = XWayland fallback, app_id = native Wayland
+for_window [class="librewolf"]        border none
+for_window [class="firefox"]          border none
+for_window [class="brave"]            border none
+for_window [app_id="librewolf"]       border none
+for_window [app_id="firefox"]         border none
+for_window [app_id="brave-browser"]   border none
 
 # Floating windows
-for_window [title="Calculator"] floating enable
-for_window [title="Timer"]      floating enable
-for_window [class="mpv"]        floating enable
-for_window [class="imv"]        floating enable
-for_window [class="zenity"]     floating enable
-for_window [class="cachyos-welcome"] floating enable
+for_window [title="Calculator"]              floating enable
+for_window [title="Timer"]                   floating enable
+for_window [class="mpv"]                     floating enable
+for_window [app_id="mpv"]                    floating enable
+for_window [class="imv"]                     floating enable
+for_window [app_id="imv"]                    floating enable
+for_window [class="zenity"]                  floating enable
+for_window [app_id="zenity"]                 floating enable
+for_window [class="cachyos-welcome"]         floating enable
+for_window [app_id="cachyos-welcome"]        floating enable
 
 # Only show borders when more than one window is in the container
 smart_borders on
@@ -85,8 +93,7 @@ input "type:keyboard" {
 }
 
 set $mod Mod4
-set $floating_modifier $mod
-floating_modifier $floating_modifier
+floating_modifier $mod
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -98,7 +105,7 @@ set $term env IM_MODULE='' GTK_IM_MODULE=simple XMODIFIERS=@im=none ghostty
 bindsym $mod+Return       exec $term
 bindsym $mod+Shift+Return exec brave
 bindsym $mod+Shift+q      kill
-bindsym $mod+d            exec --no-startup-id rofi -show drun -terminal ghostty
+bindsym $mod+d            exec rofi -show drun -terminal ghostty
 
 # ─── Focus ───────────────────────────────────────────────────────────────────
 bindsym $mod+h focus left
@@ -204,7 +211,7 @@ bindsym $mod+ctrl+Shift+0 move container to workspace number $ws20
 
 # ─── System ──────────────────────────────────────────────────────────────────
 bindsym $mod+Shift+r          reload
-bindsym $mod+Shift+e          exec "i3-nagbar -t warning -m 'Exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e          exec swaynag -t warning -m 'Exit sway?' -b 'Yes, exit' 'swaymsg exit'
 bindsym $mod+ctrl+Shift+l     exec swaylock -f -c 11111b
 bindsym $mod+Shift+period     exec systemctl suspend
 
@@ -231,8 +238,11 @@ bindsym XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-bindsym $mod+Shift+Control+Mod1+w exec flameshot gui
-
+# Capture a region and open in Satty for annotation
+# bindsym $mod+Shift+Control+Mod1+w exec flameshot gui
+bindsym $mod+Shift+Control+Mod1+w exec grim -g "$(slurp)" - | satty --filename - --early-exit
+# Force Satty to stay floating and borderless
+for_window [app_id="com.gabm.satty"] floating enable
 
 # ═══════════════════════════════════════════════════════════════════════════
 # OUTPUT / WALLPAPER
@@ -246,11 +256,9 @@ output * bg ~/.config/i3/wallpaper.png fill
 # ═══════════════════════════════════════════════════════════════════════════
 
 exec swaync
-exec --no-startup-id nm-applet --indicator
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec nm-applet --indicator
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec fcitx5 -d
-exec redshift-gtk
 
 exec swayidle -w \
     timeout 270 'brightnessctl --save set 10%' resume 'brightnessctl --restore' \
@@ -259,4 +267,4 @@ exec swayidle -w \
 
 exec_always sh -c 'pkill waybar; waybar'
 
-exec --no-startup-id "i3-msg 'workspace 1; exec $term'"
+exec swaymsg 'workspace 1; exec $term'
