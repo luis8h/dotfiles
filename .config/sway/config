@@ -55,6 +55,11 @@ for_window [app_id="zenity"]                 floating enable
 for_window [class="cachyos-welcome"]         floating enable
 for_window [app_id="cachyos-welcome"]        floating enable
 
+# Catch Brave/Chrome file pickers by their window title
+for_window [app_id="brave" title="wants to open$"] floating enable, resize set 1000 600, move position center
+# Catch Discord (usually identified as 'discord')
+for_window [app_id="discord" title="(?i)open"] floating enable, resize set 1000 600, move position center
+
 # Only show borders when more than one window is in the container
 smart_borders on
 
