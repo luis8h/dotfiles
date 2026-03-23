@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME — edit only this block to retheme.
+   Matches waybar/sway palette exactly.
+
+   bg          #181818   deepest background (window, listview)
+   bg-light    #222222   slightly raised surface (inputbar bg, buttons)
+   bg-hover    #2c2c2c   selected item / hovered button background
+   border-col  #303030   window border, dividers
+   text        #9ab4c4   primary text (matches waybar --text / accent)
+   text-dim    #484848   dim text (unselected mode buttons, placeholder)
+   accent      #9ab4c4   prompt badge, selected text, active button text
+   warn        #d4a96a   urgent / warning
+   crit        #d47a7a   error states
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+* {
+    bg:         #181818;
+    bg-light:   #222222;
+    bg-hover:   #2c2c2c;
+    border-col: #303030;
+    text:       #9ab4c4;
+    text-dim:   #484848;
+    accent:     #9ab4c4;
+
+    font:       "JetBrainsMono Nerd Font 13";
+    width:      580;
+}
+
+/* Inherit bg/text from parent so individual elements don't need overrides */
+element-text, element-icon, mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+/* ─── Window ─────────────────────────────────────────────────────────────── */
+window {
+    height:           400px;
+    background-color: @bg;
+    border:           1px;
+    border-color:     @border-col;
+    border-radius:    8px;
+}
+
+/* ─── Main layout ────────────────────────────────────────────────────────── */
+mainbox {
+    background-color: @bg;
+    children:         [inputbar, listview, mode-switcher, message];
+    spacing:          0px;
+    padding:          0px;
+}
+
+/* ─── Input bar ──────────────────────────────────────────────────────────── */
+inputbar {
+    children:         [prompt, entry];
+    background-color: @bg-light;
+    border-radius:    6px;
+    padding:          4px;
+    margin:           12px 12px 8px 12px;
+}
+
+prompt {
+    background-color: @bg-hover;
+    text-color:       @accent;
+    border-radius:    4px;
+    padding:          6px 10px;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @text;
+    padding:          6px 10px;
+    placeholder:      "Search...";
+    placeholder-color: @text-dim;
+}
+
+/* ─── List ───────────────────────────────────────────────────────────────── */
+listview {
+    background-color: @bg;
+    padding:          4px 8px;
+    margin:           0px;
+    columns:          1;
+    lines:            7;
+    scrollbar:        false;
+    spacing:          2px;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @text-dim;
+    padding:          7px 8px;
+    border-radius:    4px;
+    spacing:          8px;
+}
+
+element selected {
+    background-color: @bg-hover;
+    text-color:       @text;
+}
+
+element-icon {
+    size:             20px;
+}
+
+/* ─── Mode switcher (Apps / Run / Windows tabs) ──────────────────────────── */
+mode-switcher {
+    background-color: @bg-light;
+    border-radius:    6px;
+    margin:           8px 12px 12px 12px;
+    spacing:          0px;
+}
+
+button {
+    background-color: transparent;
+    text-color:       @text-dim;
+    padding:          7px 12px;
+    border-radius:    4px;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+button selected {
+    background-color: @bg-hover;
+    text-color:       @accent;
+}
+
+/* ─── Message / error box ────────────────────────────────────────────────── */
+message {
+    background-color: @bg-light;
+    border-radius:    4px;
+    margin:           0px 12px 12px 12px;
+    padding:          0px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       @text;
+    padding:          6px 10px;
+}
