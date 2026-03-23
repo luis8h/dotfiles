@@ -128,7 +128,6 @@ bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # ─── Layout ──────────────────────────────────────────────────────────────────
-bindsym $mod+v         split v
 bindsym $mod+t         split toggle
 bindsym $mod+f         fullscreen toggle
 bindsym $mod+s         layout stacking
@@ -244,9 +243,11 @@ bindsym $mod+Shift+Control+Mod1+w exec grim -g "$(slurp)" - | satty --filename -
 # Force Satty to stay floating and borderless
 for_window [app_id="com.gabm.satty"] floating enable
 
-
 # color picker
 bindsym $mod+Shift+Control+Mod1+s exec hyprpicker -a
+
+# Bind clipboard history to Super+V
+bindsym $mod+v exec cliphist list | rofi -dmenu -p "Clipboard" -display-columns 2 | cliphist decode | wl-copy
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -273,3 +274,7 @@ exec swayidle -w \
 exec_always sh -c 'pkill waybar; waybar'
 
 exec swaymsg 'workspace 1; exec $term'
+
+# Start cliphist daemon for text and images
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
