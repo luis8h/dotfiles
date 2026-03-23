@@ -244,11 +244,16 @@ bindsym $mod+Shift+Control+Mod1+w exec grim -g "$(slurp)" - | satty --filename -
 # Force Satty to stay floating and borderless
 for_window [app_id="com.gabm.satty"] floating enable
 
+
+# color picker
+bindsym $mod+Shift+Control+Mod1+s exec hyprpicker -a
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # OUTPUT / WALLPAPER
 # ═══════════════════════════════════════════════════════════════════════════
 
-output * bg ~/.config/i3/wallpaper.png fill
+output * bg ~/.config/sway/wallpaper.png fill
 
 
 # ═══════════════════════════════════════════════════════════════════════════
