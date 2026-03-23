@@ -278,3 +278,5 @@ exec swaymsg 'workspace 1; exec $term'
 # Start cliphist daemon for text and images
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
+
+exec kanshi
