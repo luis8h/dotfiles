@@ -1,4 +1,5 @@
 .config/tmux/plugins/
+.config/gtk-3.0/bookmarks
 .scripts/monitor-setup.sh
 .dotfiles-settings
 .scripts/.last-clean-download-run

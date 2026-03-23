@@ -1,0 +1,3 @@
+
+[general]
+copy-command = "cliphist store && cliphist list | head -n 1 | cliphist decode | wl-copy"
