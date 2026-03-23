@@ -6,35 +6,35 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
-		-- Open a new tmux window in Oil's current directory
-		vim.keymap.set("n", "<leader>tw", function()
-			local bufname = vim.api.nvim_buf_get_name(0)
-			if not bufname:match("^oil:///") then
-				print("Not in an Oil buffer.")
-				return
-			end
+        local function get_current_dir()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            if bufname:match("^oil:///") then
+                return bufname:gsub("^oil://", "")
+            end
+            return vim.fn.expand("%:p:h")
+        end
 
-			local path = bufname:gsub("^oil://", "")
+        -- 1. New tmux window
+        vim.keymap.set("n", "<leader>tw", function()
+            local cmd = string.format("tmux new-window -c %q", get_current_dir())
+            vim.fn.jobstart(cmd)
+        end, { desc = "tmux new window" })
 
-			local cmd = string.format("tmux new-window -c %q", path)
-			os.execute(cmd)
-		end, { desc = "tmux new window from Oil directory" })
+        -- 2. Vertical split (side-by-side)
+        vim.keymap.set("n", "<leader>tv", function()
+            local cmd = string.format("tmux split-window -h -c %q", get_current_dir())
+            vim.fn.jobstart(cmd)
+        end, { desc = "tmux vertical split" })
 
-		-- open oil dir in tmux pane terminal
-		vim.keymap.set("n", "<leader>tv", function()
-			local bufname = vim.api.nvim_buf_get_name(0)
-			if not bufname:match("^oil:///") then
-				print("Not in an Oil buffer.")
-				return
-			end
+        -- 3. Horizontal split (1/4 height at bottom)
+        vim.keymap.set("n", "<leader>th", function()
+            -- -v: vertical split (creates a horizontal line)
+            -- -l 25%: sets the size to 25% of the current height
+            local cmd = string.format("tmux split-window -v -l 25%% -c %q", get_current_dir())
+            vim.fn.jobstart(cmd)
+        end, { desc = "tmux horizontal split (1/4 height)" })
 
-			local path = bufname:gsub("^oil://", "")
-
-			local cmd = string.format("tmux split-window -h -c %q", path)
-			os.execute(cmd)
-		end, { desc = "tmux vertical split from Oil directory" })
-
-        -- open downloads dir
+        -- open home dir
         vim.keymap.set("n", "<leader>qh", function()
             local home_dir = os.getenv("HOME")
             require('oil').open(home_dir)
@@ -369,11 +369,11 @@ return {
                 ["<C-r>"]       = "actions.refresh",
                 ["q"]           = "actions.close",
                 ["gX"]          = open_with_telescope,
-                ["gS"] = require("oil.actions").change_sort,
-                ["gst"] = function() require("oil").set_sort({{"mtime", "desc"}}) end,
-                ["gsn"] = function() require("oil").set_sort({{"type", "asc"}, {"name", "asc"}}) end,
-                ["<leader>mp"] = require("oil.actions").paste_from_system_clipboard,
-                ["<leader>my"] = require("oil.actions").copy_to_system_clipboard,
+                ["gS"]          = require("oil.actions").change_sort,
+                ["gst"]         = function() require("oil").set_sort({ { "mtime", "desc" } }) end,
+                ["gsn"]         = function() require("oil").set_sort({ { "type", "asc" }, { "name", "asc" } }) end,
+                ["<leader>mp"]  = require("oil.actions").paste_from_system_clipboard,
+                ["<leader>my"]  = require("oil.actions").copy_to_system_clipboard,
                 ["<leader>mip"] = function()
                     local oil = require("oil")
                     local dir = oil.get_current_dir()
