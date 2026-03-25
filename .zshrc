@@ -45,6 +45,8 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 ## using ohmyposh (when enabling everything with p10k should be removed)
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 # eval "$(oh-my-posh init zsh)"
