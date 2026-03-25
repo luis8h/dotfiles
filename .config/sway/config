@@ -284,4 +284,9 @@ exec swaymsg 'workspace 1; exec $term'
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 
-exec kanshi
+# When switching to use kanshi, remove those lines as they might interfier with Kanshi
+include ~/.config/sway/outputs
+include ~/.config/sway/workspaces
+
+# When using Kanshi delete the two lines above
+# exec_always pkill kanshi; kanshi
