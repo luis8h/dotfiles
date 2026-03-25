@@ -206,6 +206,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+### keychain agent
+eval $(keychain --eval --noask --quiet ~/.ssh/id_ed25519)
+
 ### jj autocompletion
 
 # standart (static) version
@@ -216,10 +219,10 @@ export NVM_DIR="$HOME/.nvm"
 # dynamic version -> includes bookmark names (more advanced but maybe unstable)
 source <(COMPLETE=zsh jj)
 
-# password-store (pass)
+### password-store (pass)
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
-# bun completions
+### bun completions
 [ -s "/home/luis8h/.bun/_bun" ] && source "/home/luis8h/.bun/_bun"
 
 # bun
