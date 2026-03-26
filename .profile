@@ -1,8 +1,3 @@
-alias c="clear"
-alias vim='nvim'
-alias vimo='vim'
-alias ls='ls --color=auto'
-
 export EDITOR="nvim"
 export SHELL="zsh"
 

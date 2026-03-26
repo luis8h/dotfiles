@@ -1,238 +1,155 @@
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# ─── Instant prompt (must stay near top) ───────────────────────────────────────
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set the directory we want to store zinit and plugins
+# ─── Zinit bootstrap ───────────────────────────────────────────────────────────
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
-# Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
+# ─── Plugins ───────────────────────────────────────────────────────────────────
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Add in zsh plugins
+ZVM_INIT_MODE=sourcing  # must be set before loading zsh-vi-mode (fixes tmux-resurrect)
+zinit light jeffreytse/zsh-vi-mode
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light jeffreytse/zsh-vi-mode
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-zinit load 'zsh-users/zsh-history-substring-search'
-# zinit ice wait atload'_history_substring_search_config'
-
-ZVM_INIT_MODE=sourcing # very important fix for zsh vi mode working with tmux (resurect)
+zinit load  zsh-users/zsh-history-substring-search
 
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
-# Load completions
-autoload -Uz compinit && compinit
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# ─── Completion ────────────────────────────────────────────────────────────────
+autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-## using ohmyposh (when enabling everything with p10k should be removed)
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
-# eval "$(oh-my-posh init zsh)"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# History
-HISTSIZE=500000000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-unsetopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-
-# Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*'         fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# exports
-export PATH="$PATH:/home/elliott/Library/flutter/bin"
+# ─── History ───────────────────────────────────────────────────────────────────
+HISTSIZE=500000000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# ─── Exports ───────────────────────────────────────────────────────────────────
 export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
 export PATH="$PATH:$HOME/go/bin"
 export LD_LIBRARY_PATH=/usr/local/lib
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+export MANPAGER="nvim +Man!"   # man pages in nvim with syntax highlighting
+
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 source $HOME/.profile
 source $HOME/.config/tmuxinator/tmuxinator.zsh
 
-
-## make ctrl-backspace work
-bindkey -M viins '^[^?' backward-kill-word
-## make ctrl-delete work
-if [ "$OS" = "darwin" ]; then
-    bindkey -M viins '^[[3;3~' kill-word
-    bindkey -M vicmd '^[[3;3~' kill-word
-elif [ "$OS" = "linux" ]; then
-    bindkey -M viins '^[[3;5~' kill-word
-    bindkey -M vicmd '^[[3;5~' kill-word
-fi
-
-# Shell integrations
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-
-
-## fuzzy switch directory
-cda() {
-    local dir
-    dir=$(fd --hidden --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-cdf() {
-    local dir
-    dir=$(fd --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-cdh() {
-    local dir
-    dir=$(fd --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-cdha() {
-    local dir
-    dir=$(fd --hidden --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-cdr() {
-    local dir
-    dir=$(fd --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-cdra() {
-    local dir
-    dir=$(fd --hidden --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
-}
-
-
-# Aliases
+# ─── Aliases ───────────────────────────────────────────────────────────────────
+alias c="clear"
 alias vim='nvim'
-
 alias sudo='sudo '
-alias vimk="nvim ~/kbase/"
-alias dco="docker-compose"
-alias ls="lsd"
-alias l="lsd -lh"
-alias la="lsd -lah"
+alias vimk='nvim ~/kbase/'
+alias dco='docker-compose'
+alias ls='lsd'
+alias l='lsd -lh'
+alias la='lsd -lah'
 
 alias ..='cd ..'
 alias cd..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
+# ─── Functions ─────────────────────────────────────────────────────────────────
+# Fuzzy cd from current dir — hidden files included
+cda() {
+  local dir
+  dir=$(fd --hidden --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+# Fuzzy cd from current dir — no hidden files
+cdf() {
+  local dir
+  dir=$(fd --type d . | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+# Fuzzy cd from home — no hidden files
+cdh() {
+  local dir
+  dir=$(fd --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
+# Fuzzy cd from home — hidden files included
+cdha() {
+  local dir
+  dir=$(fd --hidden --type d . ~ | fzf --height 40% --layout=reverse --preview 'tree -C -L 1 {} | head -200') && cd "$dir"
+}
 
-## fuzzy find commands in history
-if command -v fzf > /dev/null; then
-  bindkey -M viins '^R' fzf-history-widget  # Bind for vi insert mode
-  bindkey -M vicmd '^R' fzf-history-widget  # Bind for vi normal mode
-  bindkey '^R' fzf-history-widget          # General binding
+# ─── Keybindings ───────────────────────────────────────────────────────────────
+# ctrl+backspace: delete word backwards
+bindkey -M viins '^[^?' backward-kill-word
+
+# ctrl+delete: delete word forwards (escape code differs by OS)
+if [ "$OS" = "darwin" ]; then
+  bindkey -M viins '^[[3;3~' kill-word
+  bindkey -M vicmd '^[[3;3~' kill-word
+elif [ "$OS" = "linux" ]; then
+  bindkey -M viins '^[[3;5~' kill-word
+  bindkey -M vicmd '^[[3;5~' kill-word
 fi
 
-fzf-history-widget() {
-  BUFFER=$(fc -l -n -r 1 | fzf)  # Use '1' to include the full history
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N fzf-history-widget
-
+# History substring search (page up/down)
 bindkey "^[[5~" history-substring-search-up
 bindkey "^[[6~" history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_FUZZY=1
 
-# Define the ZLE widgets for line movement
+# Beginning-of-line history navigation (ctrl+p/n)
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-
-# Bind keys for line movement
 bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
 
+# ─── Integrations ──────────────────────────────────────────────────────────────
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-if [ -e /home/luis8h/.nix-profile/etc/profile.d/nix.sh ]; then . /home/luis8h/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-### keychain agent
-eval $(keychain --eval --noask --quiet ~/.ssh/id_ed25519)
-
-### jj autocompletion
-
-# standart (static) version
-# autoload -U compinit
-# compinit
-# source <(jj util completion zsh)
-
-# dynamic version -> includes bookmark names (more advanced but maybe unstable)
+# jj — dynamic completions (includes bookmark names)
 source <(COMPLETE=zsh jj)
 
-### password-store (pass)
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+# keychain SSH agent
+# eval $(keychain --eval --noask --quiet ~/.ssh/id_ed25519)
 
-### bun completions
-[ -s "/home/luis8h/.bun/_bun" ] && source "/home/luis8h/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# . "$HOME/.local/share/../bin/env"
-
-# Check if jenv is installed and initialize it
+# jenv
 if [ -d "$HOME/.jenv" ]; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
 fi
+
+# bun completions
+[ -s "/home/luis8h/.bun/_bun" ] && source "/home/luis8h/.bun/_bun"
