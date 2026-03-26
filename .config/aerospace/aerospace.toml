@@ -186,8 +186,9 @@ ctrl-cmd-shift-0 = 'move-node-to-workspace 20'
 ctrl-shift-m = 'move-workspace-to-monitor --wrap-around left'
 ctrl-shift-o = 'move-workspace-to-monitor --wrap-around right'
 
-ctrl-shift-f = 'layout floating tiling'
-ctrl-shift-a = 'layout tiling accordion'
+ctrl-shift-space = 'layout floating tiling'
+ctrl-w = 'layout tiles accordion'
+ctrl-e = 'layout accordion tiles'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 ctrl-shift-semicolon = 'mode service'
