@@ -194,7 +194,6 @@ window#waybar.hidden {
     border-radius:    0;
     margin:           0;
     padding:          0 10px;
-    min-width:        46px;
     color:            #9ab4c4;   /* --text */
 }
 
