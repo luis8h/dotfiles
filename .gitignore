@@ -5,3 +5,10 @@
 .scripts/.last-clean-download-run
 logs/
 .Xresources
+
+# vesktop
+vesktop/session_data/
+vesktop/Cache/
+vesktop/GPUCache/
+vesktop/Local Storage/
+vesktop/IndexedDB/
