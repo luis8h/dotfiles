@@ -273,8 +273,9 @@ exec fcitx5 -d
 
 exec swayidle -w \
     timeout 270 'brightnessctl --save set 10%' resume 'brightnessctl --restore' \
-    timeout 300 'swaylock -c 11111b' \
-    before-sleep 'swaylock -c 11111b'
+    timeout 300 'swaylock -f -c 11111b' \
+    before-sleep 'pgrep swaylock || swaylock -f -c 11111b' \
+    lock 'swaylock -f -c 11111b'
 
 exec_always sh -c 'pkill waybar; waybar'
 
