@@ -7,26 +7,26 @@
 
 
 
-    "modules-left":   ["sway/workspaces", "sway/mode"],
+    "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
     "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "group/hardware", "battery"],
 
 
     // ─── Left ────────────────────────────────────────────────────────────────────
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         // Show workspace number; urgent ones get a dot indicator via CSS
         "format": "{name}",
         "format-icons": {
             "urgent":  "󰝦",
-            "focused": "󰝥",
+            "active":  "󰝥",   // Hyprland uses "active" (not "focused")
             "default": "󰝣"
         }
     },
 
-    "sway/mode": {
+    "hyprland/submap": {                          // Hyprland equivalent of sway/mode
         "format": "  {}"
     },
 
@@ -63,8 +63,8 @@
 
     "network": {
         "interval": 5,
-        "format-wifi":       "󰤨  {essid}  ({signalStrength}%)",
-        "format-ethernet":   "󰈀  {ifname}",
+        "format-wifi":         "󰤨  {essid}  ({signalStrength}%)",
+        "format-ethernet":     "󰈀  {ifname}",
         "format-disconnected": "󰤭  No connection",
         // Shows IPv4 on hover
         "tooltip-format": "󰩠  {ipaddr}\n󰈀  {ifname}\n  {bandwidthUpBytes}  /  󰇚 {bandwidthDownBytes}"
@@ -78,7 +78,7 @@
 
     "cpu": {
         "interval": 2,
-        // :3 pads to 3 chars — stable width from 1% to 100%
+        // :2 pads to 2 chars — stable width from 1% to 99%
         "format": "{usage:2}% ",
         "tooltip": true,
         "format-tooltip": "Core breakdown:\n{core0}% · {core1}% · {core2}% · {core3}%"
@@ -98,14 +98,14 @@
         "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-            "notification":           "󱅫",
-            "none":                   "󰂚",
-            "dnd-notification":       "󰪓",
-            "dnd-none":               "󰂛",
-            "inhibited-notification": "󱅫",
-            "inhibited-none":         "󰂚",
+            "notification":               "󱅫",
+            "none":                       "󰂚",
+            "dnd-notification":           "󰪓",
+            "dnd-none":                   "󰂛",
+            "inhibited-notification":     "󱅫",
+            "inhibited-none":             "󰂚",
             "dnd-inhibited-notification": "󰪓",
-            "dnd-inhibited-none":     "󰂛"
+            "dnd-inhibited-none":         "󰂛"
         },
         "return-type": "json",
         "exec-if": "which swaync-client",

@@ -7,8 +7,14 @@ logs/
 .Xresources
 
 # vesktop
-vesktop/session_data/
-vesktop/Cache/
-vesktop/GPUCache/
-vesktop/Local Storage/
-vesktop/IndexedDB/
+.config/vesktop/session_data/
+.config/vesktop/Crashpad/client_id
+.config/vesktop/SingletonCookie
+.config/vesktop/SingletonLock
+.config/vesktop/SingletonSocket
+.config/vesktop/sessionData/
+.config/vesktop/Cache/
+.config/vesktop/GPUCache/
+.config/vesktop/Local Storage/
+.config/vesktop/IndexedDB/
+.config/vesktop/state.json
