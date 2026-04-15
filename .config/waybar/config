@@ -64,7 +64,7 @@
 
     "network": {
         "interval": 5,
-        "format-wifi":         "󰤨 {essid} ({signalStrength}%)",
+        "format-wifi":         "󰤨 {essid}({signalStrength}%)",
         "format-ethernet":     "󰈀 {ifname}",
         "format-disconnected": "󰤭 No connection",
         // Shows IPv4 on hover
@@ -80,7 +80,7 @@
     "cpu": {
         "interval": 2,
         // :2 pads to 2 chars — stable width from 1% to 99%
-        "format": "\uf4bc{usage:2}% ",
+        "format": "<span letter_spacing='3072'>\uf4bc</span> {usage}%",
         "tooltip": true,
         "format-tooltip": "Core breakdown:\n{core0}% · {core1}% · {core2}% · {core3}%"
     },
@@ -88,7 +88,7 @@
     "memory": {
         "interval": 5,
         // 4.1f pads to 4 chars before G — stable up to 99.9G
-        "format": "\uefc5{used:4.1f}G",
+        "format": "<span letter_spacing='3072'>\uefc5</span> {used:.1f}G",
         "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
     },
 
