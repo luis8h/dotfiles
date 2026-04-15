@@ -1,10 +1,11 @@
 {
     // ─── Bar Layout ───────────────────────────────────────────────────────────────
+
     "layer": "top",
     "position": "top",
     "height": 34,
     "spacing": 0,
-
+    "margin": 3,
 
 
     "modules-left":   ["hyprland/workspaces", "hyprland/submap"],

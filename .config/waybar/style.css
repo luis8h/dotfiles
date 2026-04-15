@@ -28,35 +28,46 @@
    bat-crit-bg     rgba(212, 122, 122, 0.10)
    ─────────────────────────────────────────────────────────────────────────── */
 
-
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
 * {
-    border:        none;
-    border-radius: 0;
-    font-family:   "JetBrainsMono Nerd Font", "Noto Sans", monospace;
-    font-size:     13px;
-    font-weight:   400;
-    min-height:    0;
-    padding:       0;
-    margin:        0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+  font-size: 13px;
+  font-weight: 400;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
 }
-
 
 /* ─── Bar ────────────────────────────────────────────────────────────────── */
 window#waybar {
-    background-color: transparent;
-    color:            #9ab4c4;
-    border-radius:    0;
+  background-color: transparent;
+  color: #9ab4c4;
+  border-radius: 0;
 }
 
 window#waybar.hidden {
-    opacity: 0.15;
+  opacity: 0.15;
 }
 
-.modules-left   { padding: 0 4px; }
-.modules-center { padding: 0;     }
-.modules-right  { padding: 0 4px; }
+.modules-left,
+.modules-center,
+.modules-right {
+  /* Make the background slightly lighter and more opaque */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
 
+.modules-left {
+  padding: 0 4px;
+}
+.modules-center {
+  padding: 0;
+}
+.modules-right {
+  padding: 0 4px;
+}
 
 /* ─── Shared pill base ───────────────────────────────────────────────────── */
 #workspaces,
@@ -69,172 +80,165 @@ window#waybar.hidden {
 #cpu,
 #memory,
 #battery {
-    background-color: transparent;
-    border-radius:    6px;
-    padding:          2px 12px;
-    margin:           4px 3px;
-    color:            #9ab4c4;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 2px 12px;
+  margin: 4px 3px;
+  color: #9ab4c4;
 }
-
 
 /* ─── Workspaces ─────────────────────────────────────────────────────────── */
 #workspaces {
-    padding: 0 4px;
+  padding: 0 4px;
 }
 
 #workspaces button {
-    padding:          4px 10px;
-    margin:           0 1px;
-    border-radius:    4px;
-    background:       transparent;
-    color:            #484848;
-    font-size:        12px;
-    transition:       background-color 0.15s ease, color 0.15s ease;
+  padding: 4px 10px;
+  margin: 0 1px;
+  border-radius: 4px;
+  background: transparent;
+  color: #484848;
+  font-size: 12px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 #workspaces button:hover {
-    background-color: transparent;
-    color:            #9ab4c4;
-    box-shadow:       none;
+  background-color: transparent;
+  color: #9ab4c4;
+  box-shadow: none;
 }
 
 #workspaces button.active {
-    background-color: rgba(154, 180, 196, 1);
-    color:            #484848;
-    font-weight:      900;
-    margin:           0;
-    border-radius:    6px;
-    padding:          4px 11px;
+  background-color: rgba(154, 180, 196, 1);
+  color: #484848;
+  font-weight: 900;
+  margin: 0;
+  border-radius: 6px;
+  padding: 4px 11px;
 }
 
 #workspaces button.urgent {
-    background-color: rgba(212, 122, 122, 0.15);
-    color:            #d47a7a;
+  background-color: rgba(212, 122, 122, 0.15);
+  color: #d47a7a;
 }
-
 
 /* ─── Submap (hyprland/submap) ───────────────────────────────────────────── */
 #submap {
-    background-color: rgba(212, 169, 106, 0.12);
-    color:            #d4a96a;
-    font-style:       italic;
-    padding:          2px 10px;
+  background-color: rgba(212, 169, 106, 0.12);
+  color: #d4a96a;
+  font-style: italic;
+  padding: 2px 10px;
 }
-
 
 /* ─── swaync ─────────────────────────────────────────────────────────────── */
 #custom-swaync {
-    color:   #9ab4c4;
+  color: #9ab4c4;
 }
 
 #custom-swaync.notification {
-    color: #9ab4c4;
+  color: #9ab4c4;
 }
 
 #custom-swaync.dnd-none,
 #custom-swaync.dnd-notification {
-    color: #484848;
+  color: #484848;
 }
 
 #custom-swaync.inhibited-notification {
-    color: #d4a96a;
+  color: #d4a96a;
 }
-
 
 /* ─── Tray ───────────────────────────────────────────────────────────────── */
 #tray {
 }
 
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: rgba(212, 122, 122, 0.15);
-    border-radius:    4px;
+  -gtk-icon-effect: highlight;
+  background-color: rgba(212, 122, 122, 0.15);
+  border-radius: 4px;
 }
-
 
 /* ─── Volume ─────────────────────────────────────────────────────────────── */
 #pulseaudio {
-    color:     #9ab4c4;
+  color: #9ab4c4;
 }
 
 #pulseaudio.muted {
-    color: #484848;
+  color: #484848;
 }
-
 
 /* ─── Network ────────────────────────────────────────────────────────────── */
 #network {
-    color: #9ab4c4;
+  color: #9ab4c4;
 }
 
 #network.disconnected {
-    color: #d47a7a;
+  color: #d47a7a;
 }
 
 #network.disabled {
-    color: #484848;
+  color: #484848;
 }
-
 
 /* ─── CPU & Memory ───────────────────────────────────────────────────────── */
 #cpu,
 #memory {
-    background-color: transparent;
-    border-radius:    0;
-    color:            #9ab4c4;
+  background-color: transparent;
+  border-radius: 0;
+  color: #9ab4c4;
 }
 
 #cpu.warning,
 #memory.warning {
-    color: #d4a96a;
+  color: #d4a96a;
 }
 
 #cpu.critical,
 #memory.critical {
-    color: #d47a7a;
+  color: #d47a7a;
 }
-
 
 /* ─── Battery ────────────────────────────────────────────────────────────── */
 #battery {
-    color:         #7ec89a;
+  color: #7ec89a;
 }
 
 #battery.charging {
-    color: #7ec89a;
+  color: #7ec89a;
 }
 
 #battery.plugged {
-    color: #9ab4c4;
+  color: #9ab4c4;
 }
 
 #battery.good {
-    color: #7ec89a;
+  color: #7ec89a;
 }
 
 #battery.warning:not(.charging) {
-    color: #d4a96a;
+  color: #d4a96a;
 }
 
 #battery.critical:not(.charging) {
-    color: #d47a7a;
+  color: #d47a7a;
 }
-
 
 /* ─── Tooltip ────────────────────────────────────────────────────────────── */
 tooltip {
-    background-color: #070707;
-    border:           1px solid #303030;
-    border-radius:    6px;
-    color:            #9ab4c4;
-    font-size:        12px;
+  background-color: #070707;
+  border: 1px solid #303030;
+  border-radius: 6px;
+  color: #9ab4c4;
+  font-size: 12px;
 }
 
 tooltip label {
-    padding: 4px 10px;
-    color:   #9ab4c4;
+  padding: 4px 10px;
+  color: #9ab4c4;
 }
