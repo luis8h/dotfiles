@@ -1,32 +1,33 @@
 {
     // ─── Bar Layout ───────────────────────────────────────────────────────────────
+
     "layer": "top",
     "position": "top",
     "height": 34,
     "spacing": 0,
+    "margin": 3,
 
 
-
-    "modules-left":   ["sway/workspaces", "sway/mode"],
+    "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
-    "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "group/hardware", "battery"],
+    "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "cpu", "memory", "battery"],
 
 
     // ─── Left ────────────────────────────────────────────────────────────────────
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         // Show workspace number; urgent ones get a dot indicator via CSS
         "format": "{name}",
         "format-icons": {
             "urgent":  "󰝦",
-            "focused": "󰝥",
+            "active":  "󰝥",   // Hyprland uses "active" (not "focused")
             "default": "󰝣"
         }
     },
 
-    "sway/mode": {
+    "hyprland/submap": {                          // Hyprland equivalent of sway/mode
         "format": "  {}"
     },
 
@@ -51,8 +52,8 @@
 
     "pulseaudio": {
         // :3 pads volume to 3 chars — same structure muted/unmuted = no width shift
-        "format": "{icon} {volume:3}%",
-        "format-muted": "󰝟 {volume:3}%",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
         "format-icons": {
             "default": ["󰕿", "󰖀", "󰕾"]
         },
@@ -63,9 +64,9 @@
 
     "network": {
         "interval": 5,
-        "format-wifi":       "󰤨  {essid}  ({signalStrength}%)",
-        "format-ethernet":   "󰈀  {ifname}",
-        "format-disconnected": "󰤭  No connection",
+        "format-wifi":         "󰤨 {essid}({signalStrength}%)",
+        "format-ethernet":     "󰈀 {ifname}",
+        "format-disconnected": "󰤭 No connection",
         // Shows IPv4 on hover
         "tooltip-format": "󰩠  {ipaddr}\n󰈀  {ifname}\n  {bandwidthUpBytes}  /  󰇚 {bandwidthDownBytes}"
     },
@@ -78,8 +79,8 @@
 
     "cpu": {
         "interval": 2,
-        // :3 pads to 3 chars — stable width from 1% to 100%
-        "format": "{usage:2}% ",
+        // :2 pads to 2 chars — stable width from 1% to 99%
+        "format": "<span letter_spacing='3072'>\uf4bc</span> {usage}%",
         "tooltip": true,
         "format-tooltip": "Core breakdown:\n{core0}% · {core1}% · {core2}% · {core3}%"
     },
@@ -87,7 +88,7 @@
     "memory": {
         "interval": 5,
         // 4.1f pads to 4 chars before G — stable up to 99.9G
-        "format": "{used:4.1f}G",
+        "format": "<span letter_spacing='3072'>\uefc5</span> {used:.1f}G",
         "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
     },
 
@@ -98,14 +99,14 @@
         "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-            "notification":           "󱅫",
-            "none":                   "󰂚",
-            "dnd-notification":       "󰪓",
-            "dnd-none":               "󰂛",
-            "inhibited-notification": "󱅫",
-            "inhibited-none":         "󰂚",
+            "notification":               "󱅫",
+            "none":                       "󰂚",
+            "dnd-notification":           "󰪓",
+            "dnd-none":                   "󰂛",
+            "inhibited-notification":     "󱅫",
+            "inhibited-none":             "󰂚",
             "dnd-inhibited-notification": "󰪓",
-            "dnd-inhibited-none":     "󰂛"
+            "dnd-inhibited-none":         "󰂛"
         },
         "return-type": "json",
         "exec-if": "which swaync-client",
@@ -119,11 +120,11 @@
     "battery": {
         "interval": 30,
         // Discharging: icon + %
-        "format": "{icon}  {capacity}%",
+        "format": "{icon} {capacity}%",
         // Charging: arrow up  + %
-        "format-charging": "󰂄  {capacity}%  ↑",
+        "format-charging": "󰂄 {capacity}%",
         // Plugged in at full / wall power: plug icon
-        "format-plugged":  "󱟢  {capacity}%",
+        "format-plugged":  "󱟢 {capacity}%",
         // 10-step icons for smooth visual drain feedback
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "states": {

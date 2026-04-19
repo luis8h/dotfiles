@@ -2,256 +2,243 @@
    THEME — edit these values, then find+replace them in the file below.
    ═══════════════════════════════════════════════════════════════════════════
 
-   --bar-bg          rgba(24, 24, 24, 0.92)
-   --bar-border      #282828
-   --pill-bg         #222222
-   --pill-hover      #2c2c2c
-   --divider         #303030
+   bar-bg          rgba(24, 24, 24, 0.92)
+   bar-border      #282828
+   pill-bg         #222222
+   pill-hover      #2c2c2c
+   divider         #303030
 
-   --text            #9ab4c4        (all non-battery text)
-   --text-dim        #484848        (inactive ws, muted, dnd bell)
+   text            #9ab4c4        (all non-battery text)
+   text-dim        #484848        (inactive ws, muted, dnd bell)
 
-   --accent-bg       rgba(154, 180, 196, 0.07)
-   --accent-border   rgba(154, 180, 196, 0.15)
+   accent-bg       rgba(154, 180, 196, 0.07)
+   accent-border   rgba(154, 180, 196, 0.15)
+   accent-solid    rgba(154, 180, 196, 1)
 
-   --warn            #d4a96a
-   --warn-bg         rgba(212, 169, 106, 0.12)
-   --crit            #d47a7a
-   --crit-bg         rgba(212, 122, 122, 0.15)
+   warn            #d4a96a
+   warn-bg         rgba(212, 169, 106, 0.12)
+   crit            #d47a7a
+   crit-bg         rgba(212, 122, 122, 0.15)
 
-   --bat-ok          #7ec89a
-   --bat-ok-bg       rgba(126, 200, 154, 0.07)
-   --bat-warn        #d4a96a
-   --bat-warn-bg     rgba(212, 169, 106, 0.07)
-   --bat-crit        #d47a7a
-   --bat-crit-bg     rgba(212, 122, 122, 0.10)
+   bat-ok          #7ec89a
+   bat-ok-bg       rgba(126, 200, 154, 0.07)
+   bat-warn        #d4a96a
+   bat-warn-bg     rgba(212, 169, 106, 0.07)
+   bat-crit        #d47a7a
+   bat-crit-bg     rgba(212, 122, 122, 0.10)
    ─────────────────────────────────────────────────────────────────────────── */
-
 
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
 * {
-    border:        none;
-    border-radius: 0;
-    font-family:   "JetBrainsMono Nerd Font", "Noto Sans", monospace;
-    font-size:     13px;
-    font-weight:   400;
-    min-height:    0;
-    padding:       0;
-    margin:        0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+  font-size: 13px;
+  font-weight: 400;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
 }
-
 
 /* ─── Bar ────────────────────────────────────────────────────────────────── */
 window#waybar {
-    background-color: rgba(24, 24, 24, 0.92);   /* --bar-bg */
-    color:            #9ab4c4;                   /* --text */
-    border-radius:    0;
-    border-bottom:    1px solid #282828;         /* --bar-border */
+  background-color: transparent;
+  color: #9ab4c4;
+  border-radius: 0;
 }
 
 window#waybar.hidden {
-    opacity: 0.15;
+  opacity: 0.15;
 }
 
-.modules-left   { padding: 0 4px; }
-.modules-center { padding: 0;     }
-.modules-right  { padding: 0 4px; }
+.modules-left,
+.modules-center,
+.modules-right {
+  /* Make the background slightly lighter and more opaque */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
 
+.modules-left {
+  padding: 0 4px;
+}
+.modules-center {
+  padding: 0;
+}
+.modules-right {
+  padding: 0 4px;
+}
 
 /* ─── Shared pill base ───────────────────────────────────────────────────── */
 #workspaces,
-#mode,
+#submap,
 #clock,
 #tray,
 #custom-swaync,
 #pulseaudio,
 #network,
-#hardware,
+#cpu,
+#memory,
 #battery {
-    background-color: #222222;    /* --pill-bg */
-    border-radius:    6px;
-    padding:          2px 12px;
-    margin:           4px 3px;
-    color:            #9ab4c4;    /* --text */
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 2px 12px;
+  margin: 4px 3px;
+  color: #9ab4c4;
 }
-
 
 /* ─── Workspaces ─────────────────────────────────────────────────────────── */
 #workspaces {
-    padding: 2px 4px;
+  padding: 0 4px;
 }
 
 #workspaces button {
-    padding:          2px 10px;
-    margin:           0 1px;
-    border-radius:    4px;
-    background:       transparent;
-    color:            #484848;    /* --text-dim */
-    font-size:        12px;
-    transition:       background-color 0.15s ease, color 0.15s ease;
+  padding: 4px 10px;
+  margin: 0 1px;
+  border-radius: 4px;
+  background: transparent;
+  color: #484848;
+  font-size: 12px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 #workspaces button:hover {
-    background-color: #2c2c2c;   /* --pill-hover */
-    color:            #9ab4c4;   /* --text */
-    box-shadow:       none;
+  background-color: transparent;
+  color: #9ab4c4;
+  box-shadow: none;
 }
 
-#workspaces button.focused {
-    background-color: #2c2c2c;   /* --pill-hover */
-    color:            #9ab4c4;   /* --text */
-    font-weight:      600;
+#workspaces button.active {
+  background-color: rgba(154, 180, 196, 1);
+  color: #484848;
+  font-weight: 900;
+  margin: 0;
+  border-radius: 6px;
+  padding: 4px 11px;
 }
 
 #workspaces button.urgent {
-    background-color: rgba(212, 122, 122, 0.15);   /* --crit-bg */
-    color:            #d47a7a;                      /* --crit */
+  background-color: rgba(212, 122, 122, 0.15);
+  color: #d47a7a;
 }
 
-#mode {
-    background-color: rgba(212, 169, 106, 0.12);   /* --warn-bg */
-    color:            #d4a96a;                      /* --warn */
-    font-style:       italic;
-    padding:          2px 10px;
+/* ─── Submap (hyprland/submap) ───────────────────────────────────────────── */
+#submap {
+  background-color: rgba(212, 169, 106, 0.12);
+  color: #d4a96a;
+  font-style: italic;
+  padding: 2px 10px;
 }
-
-
-/* ─── Clock ──────────────────────────────────────────────────────────────── */
-#clock {
-    color:            #9ab4c4;                      /* --text */
-    font-weight:      600;
-    letter-spacing:   0.5px;
-    background-color: rgba(154, 180, 196, 0.07);   /* --accent-bg */
-    border:           1px solid rgba(154, 180, 196, 0.15);   /* --accent-border */
-}
-
 
 /* ─── swaync ─────────────────────────────────────────────────────────────── */
 #custom-swaync {
-    color:   #484848;   /* --text-dim */
-    padding: 2px 10px;
+  color: #9ab4c4;
 }
 
 #custom-swaync.notification {
-    color: #9ab4c4;     /* --text */
+  color: #9ab4c4;
 }
 
 #custom-swaync.dnd-none,
 #custom-swaync.dnd-notification {
-    color: #484848;     /* --text-dim */
+  color: #484848;
 }
 
 #custom-swaync.inhibited-notification {
-    color: #d4a96a;     /* --warn */
+  color: #d4a96a;
 }
-
 
 /* ─── Tray ───────────────────────────────────────────────────────────────── */
 #tray {
-    padding: 2px 8px;
 }
 
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: rgba(212, 122, 122, 0.15);   /* --crit-bg */
-    border-radius:    4px;
+  -gtk-icon-effect: highlight;
+  background-color: rgba(212, 122, 122, 0.15);
+  border-radius: 4px;
 }
-
 
 /* ─── Volume ─────────────────────────────────────────────────────────────── */
 #pulseaudio {
-    color:     #9ab4c4;   /* --text */
-    min-width: 68px;
+  color: #9ab4c4;
 }
 
 #pulseaudio.muted {
-    color: #484848;       /* --text-dim */
+  color: #484848;
 }
-
 
 /* ─── Network ────────────────────────────────────────────────────────────── */
 #network {
-    color: #9ab4c4;       /* --text */
+  color: #9ab4c4;
 }
 
 #network.disconnected {
-    color: #d47a7a;       /* --crit */
+  color: #d47a7a;
 }
 
 #network.disabled {
-    color: #484848;       /* --text-dim */
+  color: #484848;
 }
 
-
-/* ─── Hardware group (CPU + RAM) ─────────────────────────────────────────── */
+/* ─── CPU & Memory ───────────────────────────────────────────────────────── */
 #cpu,
 #memory {
-    background-color: transparent;
-    border-radius:    0;
-    margin:           0;
-    padding:          0 10px;
-    color:            #9ab4c4;   /* --text */
-}
-
-#cpu {
-    border-right: 1px solid #303030;   /* --divider */
+  background-color: transparent;
+  border-radius: 0;
+  color: #9ab4c4;
 }
 
 #cpu.warning,
 #memory.warning {
-    color: #d4a96a;       /* --warn */
+  color: #d4a96a;
 }
 
 #cpu.critical,
 #memory.critical {
-    color: #d47a7a;       /* --crit */
+  color: #d47a7a;
 }
-
 
 /* ─── Battery ────────────────────────────────────────────────────────────── */
 #battery {
-    color: #7ec89a;       /* --bat-ok */
+  color: #7ec89a;
 }
 
 #battery.charging {
-    color:            #7ec89a;                    /* --bat-ok */
-    background-color: rgba(126, 200, 154, 0.07);  /* --bat-ok-bg */
+  color: #7ec89a;
 }
 
 #battery.plugged {
-    color:            #9ab4c4;                    /* --text (calm/neutral) */
-    background-color: rgba(154, 180, 196, 0.07);  /* --accent-bg */
+  color: #9ab4c4;
 }
 
 #battery.good {
-    color: #7ec89a;       /* --bat-ok */
+  color: #7ec89a;
 }
 
 #battery.warning:not(.charging) {
-    color:            #d4a96a;                    /* --bat-warn */
-    background-color: rgba(212, 169, 106, 0.07);  /* --bat-warn-bg */
+  color: #d4a96a;
 }
 
 #battery.critical:not(.charging) {
-    color:            #d47a7a;                    /* --bat-crit */
-    background-color: rgba(212, 122, 122, 0.10);  /* --bat-crit-bg */
+  color: #d47a7a;
 }
-
 
 /* ─── Tooltip ────────────────────────────────────────────────────────────── */
 tooltip {
-    background-color: #1e1e1e;
-    border:           1px solid #303030;   /* --divider */
-    border-radius:    6px;
-    color:            #9ab4c4;             /* --text */
-    font-size:        12px;
+  background-color: #070707;
+  border: 1px solid #303030;
+  border-radius: 6px;
+  color: #9ab4c4;
+  font-size: 12px;
 }
 
 tooltip label {
-    padding: 4px 10px;
-    color:   #9ab4c4;     /* --text */
+  padding: 4px 10px;
+  color: #9ab4c4;
 }

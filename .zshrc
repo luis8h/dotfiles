@@ -153,3 +153,5 @@ fi
 
 # bun completions
 [ -s "/home/luis8h/.bun/_bun" ] && source "/home/luis8h/.bun/_bun"
+
+. "$HOME/.local/share/../bin/env"

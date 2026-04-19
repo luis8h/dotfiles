@@ -32,6 +32,12 @@
     * `:set expandtab`
 - lsp configuration: use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
 
+##### arduiono lsp configuration
+- clangd needs to be installed
+- arduino-cli config needs to exist: `arduino-cli config init`
+- find board name: `arduino-cli board list`
+- create a sketch file: `arduino-cli board attach -p /dev/ttyACM0 -b <board-name> TestSketch.ino`
+
 #### ghostty os specific config
 This is implemented by including a non existing file in the ghostty config that can be created by linking another file to it. This is done automatically on macos by adding the following to `.profile`:
 ```sh
