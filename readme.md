@@ -39,6 +39,9 @@
 - create a sketch file: `arduino-cli board attach -p /dev/ttyACM0 -b <board-name> TestSketch.ino` or create the sketch file manually
 - ensure that clangd ist installed and the arduino libraries for the used board are also installed on the system, otherwise there will be an error
 
+#### Jujutsu
+- the jujutsu config in `.config/jj/config.toml` configures the email depending on the hostname (different for work macbook)
+
 #### ghostty os specific config
 This is implemented by including a non existing file in the ghostty config that can be created by linking another file to it. This is done automatically on macos by adding the following to `.profile`:
 ```sh

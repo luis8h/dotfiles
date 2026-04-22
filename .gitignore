@@ -6,6 +6,9 @@
 logs/
 .Xresources
 
+# ignore repos specific jj config
+.config/jj/repos/*
+
 # vesktop
 .config/vesktop/session_data/
 .config/vesktop/Crashpad/client_id

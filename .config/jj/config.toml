@@ -1,0 +1,21 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "luis8h"
+email = "git@luis8h.de"
+
+[[--scope]]
+--when.hostnames = ["Luiss-MacBook-Pro.local"]
+[--scope.user]
+email = "luis.schmidmeister@trinnovative.de"
+
+[ui]
+default-command = "log"
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+
+# merge-editor = "pycharm-ce"
+
+[merge-tools.pycharm-ce]
+program = "pycharm-ce"
+merge-args = ["merge", "$left", "$right", "$base", "$output"]
+
