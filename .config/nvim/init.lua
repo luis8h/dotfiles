@@ -28,6 +28,11 @@ vim.g.have_nerd_font = true
 
 vim.g.markdown_folding = 1
 
+-- enable new experimantel ui
+require("vim._core.ui2").enable({
+    enable = true,
+})
+
 -- fix for colorizer plugin throwing an error at startup
 vim.opt.termguicolors = true
 
