@@ -14,6 +14,11 @@ return {
         config = function()
             require("catppuccin").setup({
                 term_colors = true, -- This is crucial for matching terminal output (used for baleia and tmux keybind)
+                custom_highlights = function(colors)
+                    return {
+                        CursorLineNr = { fg = colors.peach, style = { "bold" } },
+                    }
+                end
             })
             vim.cmd([[colorscheme catppuccin]])
         end,
