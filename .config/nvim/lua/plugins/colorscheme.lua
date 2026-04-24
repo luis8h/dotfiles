@@ -1,28 +1,31 @@
 return {
-	{
-		"folke/tokyonight.nvim",
-		name = "tokyonight",
-		priority = 1000,
-		config = function()
-			-- vim.cmd([[colorscheme tokyonight-night]])
-		end,
-	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme catppuccin]])
-		end,
-	},
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		priority = 1000,
-		config = function()
-			-- vim.cmd([[colorscheme rose-pine]])
-		end,
-	},
+    {
+        "folke/tokyonight.nvim",
+        name = "tokyonight",
+        priority = 1000,
+        config = function()
+            -- vim.cmd([[colorscheme tokyonight-night]])
+        end,
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                term_colors = true, -- This is crucial for matching terminal output (used for baleia and tmux keybind)
+            })
+            vim.cmd([[colorscheme catppuccin]])
+        end,
+    },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        priority = 1000,
+        config = function()
+            -- vim.cmd([[colorscheme rose-pine]])
+        end,
+    },
 }
 
 
@@ -43,6 +46,3 @@ return {
 --
 --     end,
 -- }
-
-
-
