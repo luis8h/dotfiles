@@ -197,7 +197,7 @@ ctrl-shift-semicolon = 'mode service'
 ctrl-r = 'mode resize'
 
 # screenshot
-cmd-ctrl-shift-alt-w = 'exec-and-forget screencapture -i -c'
+# cmd-ctrl-shift-alt-w = 'exec-and-forget screencapture -i -c'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
