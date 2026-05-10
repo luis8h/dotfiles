@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+set -e # Exit on error
+
+# --- Configuration ---
+JJ_SYNC_SERVER="luis8h@192.168.188.179"
+JJ_SYNC_BASE="/mnt/hdd1/repos"
+STATE_FILE=".jj-sync-state"
+NAME_FILE=".jj-sync-name"
+# ---------------------
+
+usage() {
+    echo "Usage: jj-sync [up|down]"
+    exit 1
+}
+
+# Ensure we are in a directory
+[[ -z "$1" ]] && usage
+
+# Determine Repo Name
+REPO_NAME=$(cat "$NAME_FILE" 2>/dev/null || basename "$PWD")
+REMOTE_PATH="${JJ_SYNC_BASE}/${REPO_NAME}"
+
+check_gitignore() {
+    local sync_files=("$STATE_FILE" "$NAME_FILE")
+    for s_file in "${sync_files[@]}"; do
+        if ! grep -qFx "$s_file" .gitignore 2>/dev/null; then
+            echo "⚠️  WARNING: '$s_file' is not in your .gitignore."
+            read -p "❓ Add it automatically? [Y/n] " answer
+            if [[ -z "$answer" || "$answer" =~ ^[Yy] ]]; then
+                echo "$s_file" >> .gitignore
+                echo "✅ Added $s_file to .gitignore."
+            fi
+        fi
+    done
+}
+
+sync_up() {
+    check_gitignore
+
+    echo "🔍 Checking remote state for '${REPO_NAME}'..."
+    ssh "$JJ_SYNC_SERVER" "mkdir -p '${REMOTE_PATH}'"
+
+    # State Check
+    local remote_state=$(ssh "$JJ_SYNC_SERVER" "cat '${REMOTE_PATH}/${STATE_FILE}' 2>/dev/null" || true)
+    local local_state=$(cat "$STATE_FILE" 2>/dev/null || true)
+
+    if [[ -n "$remote_state" && "$remote_state" != "$local_state" ]]; then
+        echo "❌ ERROR: OVERWRITE PREVENTED!"
+        echo "Server state: $remote_state"
+        echo "Local state:  ${local_state:-None}"
+        echo "👉 Run 'jj-sync down' first."
+        exit 1
+    fi
+
+    # Generate new state
+    local new_state="$(hostname)-$(date +'%Y%m%d-%H%M%S')"
+    echo "$new_state" > "$STATE_FILE"
+
+    echo "⬆️  Syncing UP..."
+    rsync -avP --delete \
+        --exclude='target/' \
+        --exclude='.git/index.lock' \
+        --exclude='.jj/repo/lock' \
+        ./ "${JJ_SYNC_SERVER}:${REMOTE_PATH}/"
+
+    echo "✅ Success. State: $new_state"
+}
+
+sync_down() {
+    echo "⬇️  Syncing DOWN from ${REPO_NAME}..."
+    rsync -avP --delete \
+        --exclude='target/' \
+        "${JJ_SYNC_SERVER}:${REMOTE_PATH}/" ./
+
+    local current_state=$(cat "$STATE_FILE" 2>/dev/null || echo "Unknown")
+    echo "✅ Success. State: $current_state"
+}
+
+case "$1" in
+    up)   sync_up ;;
+    down) sync_down ;;
+    *)    usage ;;
+esac
