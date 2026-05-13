@@ -10,7 +10,7 @@
 
     "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
-    "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "cpu", "memory", "custom/idle_mode", "battery"],
+    "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "cpu", "memory", "battery"],
 
 
     // ─── Left ────────────────────────────────────────────────────────────────────
@@ -114,16 +114,6 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-    },
-
-    // ─── Idle mode toggle: click to cycle normal → no-suspend → fully-awake ───
-    "custom/idle_mode": {
-        "exec": "~/.config/hypr/scripts/idle_mode.sh status",
-        "return-type": "json",
-        "interval": "once",          // only re-runs on click or the RTMIN+8 signal below
-        "signal": 8,                 // idle_mode.sh pings this after every mode change
-        "on-click": "~/.config/hypr/scripts/idle_mode.sh cycle",
-        "tooltip": true
     },
 
     // ─── Battery: standalone pill ─────────────────────────────────────────────

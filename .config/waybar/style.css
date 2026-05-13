@@ -193,6 +193,33 @@ window#waybar.hidden {
   color: #ff6b6b;
 }
 
+/* ─── Idle mode toggle ───────────────────────────────────────────────────── */
+#custom-idle_mode {
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+/* normal — idle handling fully active, styled like other dim/inactive states */
+#custom-idle_mode.normal {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* no_suspend — screen still sleeps, PC won't suspend: amber "heads up" */
+#custom-idle_mode.no-suspend {
+  color: #f0a868;
+}
+
+/* full — nothing can happen: inverted pill, same treatment as the active workspace */
+#custom-idle_mode.full {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 0 9px;
+  margin: 0 2px;
+}
+
 /* ─── Tooltip ────────────────────────────────────────────────────────────── */
 tooltip {
   background-color: rgba(20, 20, 20, 0.95);
