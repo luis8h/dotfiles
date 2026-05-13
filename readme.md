@@ -24,6 +24,12 @@
 - disable in "privacy security -> Accessebility -> iterm (disable)"
 
 ## usefull tips
+
+#### increase gamma on hyprland
+```sh
+hyprctl hyprsunset gamma 150
+```
+
 #### nvim
 -   clang project setup: use `bear -- make` (`sudo apt install bear -y`) instead of `make` to generate `compile_commands.json` -> clangd will recoginze the project
 -   changing tabwidth in neovim:
