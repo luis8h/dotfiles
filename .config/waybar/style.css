@@ -1,32 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   THEME — edit these values, then find+replace them in the file below.
-   ═══════════════════════════════════════════════════════════════════════════
-
-   bar-bg          rgba(24, 24, 24, 0.92)
-   bar-border      #282828
-   pill-bg         #222222
-   pill-hover      #2c2c2c
-   divider         #303030
-
-   text            #9ab4c4        (all non-battery text)
-   text-dim        #484848        (inactive ws, muted, dnd bell)
-
-   accent-bg       rgba(154, 180, 196, 0.07)
-   accent-border   rgba(154, 180, 196, 0.15)
-   accent-solid    rgba(154, 180, 196, 1)
-
-   warn            #d4a96a
-   warn-bg         rgba(212, 169, 106, 0.12)
-   crit            #d47a7a
-   crit-bg         rgba(212, 122, 122, 0.15)
-
-   bat-ok          #7ec89a
-   bat-ok-bg       rgba(126, 200, 154, 0.07)
-   bat-warn        #d4a96a
-   bat-warn-bg     rgba(212, 169, 106, 0.07)
-   bat-crit        #d47a7a
-   bat-crit-bg     rgba(212, 122, 122, 0.10)
-   ─────────────────────────────────────────────────────────────────────────── */
+   THEME — macOS dark menu bar
+   ─────────────────────────────────────────────────────────────────────────
+   bg              rgba(20, 20, 20, 0.82)   semi-transparent dark
+   text            #ffffff                  primary (white)
+   text-dim        rgba(255,255,255,0.35)   inactive / muted / dnd
+   warn            #f0a868                  amber
+   crit / err      #ff6b6b                  red
+   bat-ok          #7ec89a                  green
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
 * {
@@ -42,8 +23,8 @@
 
 /* ─── Bar ────────────────────────────────────────────────────────────────── */
 window#waybar {
-  background-color: transparent;
-  color: #9ab4c4;
+  background-color: rgba(20, 20, 20, 0.82);
+  color: #ffffff;
   border-radius: 0;
 }
 
@@ -51,25 +32,16 @@ window#waybar.hidden {
   opacity: 0.15;
 }
 
+/* Module groups are transparent — the bar itself is the background */
 .modules-left,
 .modules-center,
 .modules-right {
-  /* Make the background slightly lighter and more opaque */
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-}
-
-.modules-left {
-  padding: 0 4px;
-}
-.modules-center {
+  background-color: transparent;
+  border-radius: 0;
   padding: 0;
 }
-.modules-right {
-  padding: 0 4px;
-}
 
-/* ─── Shared pill base ───────────────────────────────────────────────────── */
+/* ─── Shared module base ─────────────────────────────────────────────────── */
 #workspaces,
 #submap,
 #clock,
@@ -81,127 +53,119 @@ window#waybar.hidden {
 #memory,
 #battery {
   background-color: transparent;
-  border-radius: 6px;
-  padding: 2px 12px;
-  margin: 4px 3px;
-  color: #9ab4c4;
+  border-radius: 0;
+  padding: 0 10px;
+  margin: 0;
+  color: #ffffff;
 }
 
 /* ─── Workspaces ─────────────────────────────────────────────────────────── */
-#workspaces {
-  padding: 0 4px;
-}
-
 #workspaces button {
-  padding: 4px 10px;
-  margin: 0 1px;
-  border-radius: 4px;
+  padding: 0 8px;
+  margin: 1px 1px;
+  border-radius: 0;
   background: transparent;
-  color: #484848;
+  color: rgba(255, 255, 255, 0.35);
   font-size: 12px;
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 #workspaces button:hover {
   background-color: transparent;
-  color: #9ab4c4;
+  color: rgba(255, 255, 255, 0.70);
   box-shadow: none;
 }
 
+/* Visible on another monitor — underline signals presence without priority */
+#workspaces button.visible {
+  color: rgba(255, 255, 255, 0.70);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+  border-radius: 3px;
+}
+
+/* Your active workspace — inverted pill, unmistakable */
 #workspaces button.active {
-  background-color: rgba(154, 180, 196, 1);
-  color: #484848;
-  font-weight: 900;
-  margin: 0;
-  border-radius: 6px;
-  padding: 4px 11px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 0 9px;
 }
 
 #workspaces button.urgent {
-  background-color: rgba(212, 122, 122, 0.15);
-  color: #d47a7a;
+  background-color: transparent;
+  color: #ff6b6b;
 }
 
-/* ─── Submap (hyprland/submap) ───────────────────────────────────────────── */
+/* ─── Submap ─────────────────────────────────────────────────────────────── */
 #submap {
-  background-color: rgba(212, 169, 106, 0.12);
-  color: #d4a96a;
+  color: #f0a868;
   font-style: italic;
-  padding: 2px 10px;
 }
 
 /* ─── swaync ─────────────────────────────────────────────────────────────── */
 #custom-swaync {
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #custom-swaync.notification {
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #custom-swaync.dnd-none,
 #custom-swaync.dnd-notification {
-  color: #484848;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 #custom-swaync.inhibited-notification {
-  color: #d4a96a;
+  color: #f0a868;
 }
 
 /* ─── Tray ───────────────────────────────────────────────────────────────── */
-#tray {
-}
-
 #tray > .passive {
   -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: rgba(212, 122, 122, 0.15);
-  border-radius: 4px;
 }
 
 /* ─── Volume ─────────────────────────────────────────────────────────────── */
 #pulseaudio {
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #pulseaudio.muted {
-  color: #484848;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 /* ─── Network ────────────────────────────────────────────────────────────── */
 #network {
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #network.disconnected {
-  color: #d47a7a;
+  color: #ff6b6b;
 }
 
 #network.disabled {
-  color: #484848;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 /* ─── CPU & Memory ───────────────────────────────────────────────────────── */
 #cpu,
 #memory {
-  background-color: transparent;
-  border-radius: 0;
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #cpu.warning,
 #memory.warning {
-  color: #d4a96a;
+  color: #f0a868;
 }
 
 #cpu.critical,
 #memory.critical {
-  color: #d47a7a;
+  color: #ff6b6b;
 }
 
 /* ─── Battery ────────────────────────────────────────────────────────────── */
@@ -214,7 +178,7 @@ window#waybar.hidden {
 }
 
 #battery.plugged {
-  color: #9ab4c4;
+  color: #ffffff;
 }
 
 #battery.good {
@@ -222,23 +186,23 @@ window#waybar.hidden {
 }
 
 #battery.warning:not(.charging) {
-  color: #d4a96a;
+  color: #f0a868;
 }
 
 #battery.critical:not(.charging) {
-  color: #d47a7a;
+  color: #ff6b6b;
 }
 
 /* ─── Tooltip ────────────────────────────────────────────────────────────── */
 tooltip {
-  background-color: #070707;
-  border: 1px solid #303030;
+  background-color: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 6px;
-  color: #9ab4c4;
+  color: #ffffff;
   font-size: 12px;
 }
 
 tooltip label {
   padding: 4px 10px;
-  color: #9ab4c4;
+  color: #ffffff;
 }

@@ -3,9 +3,9 @@
 
     "layer": "top",
     "position": "top",
-    "height": 34,
+    "height": 26,
     "spacing": 0,
-    "margin": 3,
+    "margin": 0,
 
 
     "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
