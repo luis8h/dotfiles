@@ -1,0 +1,3 @@
+# Change these backend settings inside your config file:
+backend=wtype
+clipboard_backend=wl-clipboard
