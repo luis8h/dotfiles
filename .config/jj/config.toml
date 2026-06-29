@@ -15,7 +15,7 @@ diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 # merge-editor = "pycharm-ce"
 
-[merge-tools.pycharm-ce]
-program = "pycharm-ce"
+[merge-tools.pycharm]
+program = "pycharm"
 merge-args = ["merge", "$left", "$right", "$base", "$output"]
 
