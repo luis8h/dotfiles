@@ -37,6 +37,7 @@ hyprctl hyprsunset gamma 150
     * `:set shiftwidth=2`
     * `:set expandtab`
 - lsp configuration: use [this link](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) for online docs or just run `:help lspconfig-all` in nvim.
+- temporarely disable floating lsp texts: `:lua vim.diagnostics.enable(false)`
 
 ##### arduiono lsp configuration
 - clangd needs to be installed

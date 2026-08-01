@@ -374,6 +374,18 @@ return {
                 ["gsn"]         = function() require("oil").set_sort({ { "type", "asc" }, { "name", "asc" } }) end,
                 ["<leader>mp"]  = require("oil.actions").paste_from_system_clipboard,
                 ["<leader>my"]  = require("oil.actions").copy_to_system_clipboard,
+                -- Copy current directory absolute path to system clipboard with `<leader>yd`
+                ["gcp"]  = {
+                    callback = function()
+                        local oil = require("oil")
+                        local dir = oil.get_current_dir()
+                        if dir then
+                            vim.fn.setreg("+", dir)
+                            vim.notify("Copied directory: " .. dir)
+                        end
+                    end,
+                    desc = "Copy current directory path to system clipboard",
+                },
                 ["<leader>mip"] = function()
                     local oil = require("oil")
                     local dir = oil.get_current_dir()
