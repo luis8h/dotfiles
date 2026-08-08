@@ -14,6 +14,7 @@
 -   when using gradle project, java lsp is not woring when the java version of the gradle project is not installed (lsp shows everything as error)
 -   jdtls might not detect the root dir of a maven project. -> just create a `.git` dir even if not using git to make the detectino more reliable, somehow it does not work with `pom.xml` ...
 - markdown preview might not work. To solve this go into the `~/.local/share/nvim/lazy/markdown-preview.nvim/app` directory and run npm install there. Then it should work.
+- when using tinymist and a project that contains files in a subdirectory, tags/citations/labels do not work out of the box in those subdir files. To solve this you need to pin the main file once. This works by opening the main.typ file in nvim and running the command `:LspTinymistPinMain`
 
 
 #### tmux
