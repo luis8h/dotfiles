@@ -627,9 +627,14 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal")
+
+    -- Moved here so these actually launch on boot
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hyprsunset")
 end)
 
--- Exec (run every reload)
+-- Optional: keep this only if you want a hard restart of these on every `hyprctl reload`
 hl.on("config.reloaded", function()
     hl.exec_cmd("pkill waybar; waybar")
     hl.exec_cmd("pkill hyprpaper; hyprpaper")
