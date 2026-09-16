@@ -12,6 +12,7 @@ email = "luis.schmidmeister@trinnovative.de"
 [ui]
 default-command = "log"
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+merge-tool = "diffview"
 
 # merge-editor = "pycharm-ce"
 
@@ -19,3 +20,18 @@ diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 program = "pycharm"
 merge-args = ["merge", "$left", "$right", "$base", "$output"]
 
+
+# [merge-tools.diffview]
+# program = "nvim"
+# merge-args = ["-d", "$left", "$base", "$right", "$output", "-c", "wincmd J"]
+
+[merge-tools.diffview]
+program = "nvim"
+# 1. Pre-fill output file with conflict markers from Jujutsu
+merge-tool-edits-conflict-markers = true
+
+# 2. Open 4 windows in diff mode, jump to the output buffer (buffer 4), then move it to the bottom
+merge-args = [
+  "-d", "$left", "$base", "$right", "$output",
+  "-c", "4wincmd w | wincmd J"
+]
