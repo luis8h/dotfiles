@@ -91,6 +91,17 @@ export "H8_KBASE_DIR"="/mnt/data/kbase"
 - if error: under privacy and security add kanata (path/to/kanata/binary) to input monitoring
 - command example: `sudo target/debug/kanata -c ~/dotfiles/.config/kanata/macos/config-macos-default.kbd -c ~/dotfiles/.config/kanata/macos/config-macos-moon.kbd -c ~/dotfiles/.config/kanata/macos/config-macos-keyboard.kbd`
 
+#### shortcuts setup
+To make ghostty and aerospace work with the typical shortcuts, got into `system settings -> keyboard -> Keyboard Shortcuts -> App Shortcuts` and add shortcuts so that it looks like in this screenshot:
+![](./macos-shortcuts.png)
+
+To also add the shorcut to finder run the following in the terminal:
+```sh
+defaults write com.apple.finder QuitMenuItem -bool true; killall Finder
+```
+
+Note that macos native apps like finder, preview, etc. might need a separate shortcut defined. Just add it dircetly like done in the screenshot with finder.
+
 #### iterm2 setup
 - install using brew
 - load settings from folder in dotfiles

@@ -20,6 +20,7 @@ app-notifications = true
 
 ### Keymaps
 keybind=clear
+keybind = cmd+shift+q=close_window
 
 keybind = ctrl+alt+shift+r=reload_config
 

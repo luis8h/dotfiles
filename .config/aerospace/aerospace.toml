@@ -122,7 +122,9 @@ ctrl-f = 'fullscreen'
 # quit window
 # ctrl-shift-q = 'close'
 # ctrl-shift-q = 'exec-and-forget osascript -e "tell application \"Ghostty\" to quit"'
-ctrl-shift-q = 'exec-and-forget ~/.config/aerospace/close.sh'
+
+# now using the native app macos shortcut to close apps, so this is deactivated
+# ctrl-shift-q = 'exec-and-forget ~/.config/aerospace/close.sh'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-1 = 'workspace 1'
