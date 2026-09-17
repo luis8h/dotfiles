@@ -596,6 +596,8 @@ hl.window_rule({
     float = true,
 })
 
+hl.env("SSH_AUTH_SOCK", os.getenv("XDG_RUNTIME_DIR") .. "/gcr/ssh")
+
 -- Autostart
 hl.on("hyprland.start", function()
     -- Machine spec generator & hypridle launcher
@@ -611,6 +613,9 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal")
+
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+    hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11,ssh")
 
     -- Moved here so these actually launch on boot
     hl.exec_cmd("waybar")
