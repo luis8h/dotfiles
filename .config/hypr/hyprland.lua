@@ -360,49 +360,30 @@ hl.bind(mainMod .. " + " .. "CONTROL" .. " + " .. 9, hl.dsp.focus({ workspace = 
 
 hl.bind(mainMod .. " + " .. "CONTROL" .. " + " .. 0, hl.dsp.focus({ workspace = 20 }))
 
--- ─── Move to workspace 1–10 ──────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 1, hl.dsp.window.move({ workspace = 1 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 2, hl.dsp.window.move({ workspace = 2 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 3, hl.dsp.window.move({ workspace = 3 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 4, hl.dsp.window.move({ workspace = 4 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 5, hl.dsp.window.move({ workspace = 5 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 6, hl.dsp.window.move({ workspace = 6 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 7, hl.dsp.window.move({ workspace = 7 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 8, hl.dsp.window.move({ workspace = 8 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspace = 9 }))
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 10 }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 1, hl.dsp.window.move({ workspace = 1, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 2, hl.dsp.window.move({ workspace = 2, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 3, hl.dsp.window.move({ workspace = 3, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 4, hl.dsp.window.move({ workspace = 4, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 5, hl.dsp.window.move({ workspace = 5, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 6, hl.dsp.window.move({ workspace = 6, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 7, hl.dsp.window.move({ workspace = 7, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 8, hl.dsp.window.move({ workspace = 8, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspace = 9, follow = false }))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 10, follow = false }))
 
 -- ─── Move to workspace 11–20 ─────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 1, hl.dsp.window.move({ workspace = 11 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 2, hl.dsp.window.move({ workspace = 12 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 3, hl.dsp.window.move({ workspace = 13 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 4, hl.dsp.window.move({ workspace = 14 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 5, hl.dsp.window.move({ workspace = 15 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 6, hl.dsp.window.move({ workspace = 16 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 7, hl.dsp.window.move({ workspace = 17 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 8, hl.dsp.window.move({ workspace = 18 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspace = 19 }))
-
-hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 20 }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 1, hl.dsp.window.move({ workspace = 11, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 2, hl.dsp.window.move({ workspace = 12, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 3, hl.dsp.window.move({ workspace = 13, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 4, hl.dsp.window.move({ workspace = 14, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 5, hl.dsp.window.move({ workspace = 15, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 6, hl.dsp.window.move({ workspace = 16, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 7, hl.dsp.window.move({ workspace = 17, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 8, hl.dsp.window.move({ workspace = 18, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspace = 19, follow = false }))
+hl.bind(mainMod .. " + " .. "CONTROL + SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 20, follow = false }))
 
 -- ─── Scratchpad ──────────────────────────────────────────────────────────────
 
@@ -434,7 +415,8 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "X", hl.dsp.exec_cmd("swaync-cli
 
 -- ─── Screenshot: region → satty ──────────────────────────────────────────────
 
-hl.bind(mainMod .. " + " .. "SHIFT + CTRL + ALT" .. " + " .. "W", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | satty --filename - --early-exit"))
+hl.bind(mainMod .. " + " .. "SHIFT + CTRL + ALT" .. " + " .. "W",
+    hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | satty --filename - --early-exit"))
 
 -- ─── Color picker ────────────────────────────────────────────────────────────
 
@@ -442,7 +424,8 @@ hl.bind(mainMod .. " + " .. "SHIFT + CTRL + ALT" .. " + " .. "S", hl.dsp.exec_cm
 
 -- ─── Clipboard history ───────────────────────────────────────────────────────
 
-hl.bind(mainMod .. " + " .. "V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p \"Clipboard\" -display-columns 2 | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + " .. "V",
+    hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p \"Clipboard\" -display-columns 2 | cliphist decode | wl-copy"))
 
 -- ─── Media / hardware keys ───────────────────────────────────────────────────
 
@@ -492,24 +475,24 @@ end)
 -- fix golden cheetah distance not updating in background (when window visible)
 
 hl.window_rule({
-    name  = "goldencheetah-keepawake",
-    match = {
+    name             = "goldencheetah-keepawake",
+    match            = {
         class = "^(GoldenCheetah)$",
     },
     render_unfocused = true,
 })
 
 hl.window_rule({
-    name  = "suppress-maximize-events",
-    match = {
+    name           = "suppress-maximize-events",
+    match          = {
         class = ".*",
     },
     suppress_event = "maximize",
 })
 
 hl.window_rule({
-    name  = "fix-xwayland-drags",
-    match = {
+    name     = "fix-xwayland-drags",
+    match    = {
         class = "^$",
         title = "^$",
         xwayland = true,
@@ -525,7 +508,7 @@ hl.window_rule({
     match = {
         class = "hyprland-run",
     },
-    move = { 20, "monitor_h-120" },
+    move  = { 20, "monitor_h-120" },
     float = true,
 })
 
@@ -582,24 +565,24 @@ hl.window_rule({
 -- ─── File picker popups ───────────────────────────────────────────────────────
 
 hl.window_rule({
-    name  = "float-brave-picker",
-    match = {
+    name   = "float-brave-picker",
+    match  = {
         class = "brave-browser",
         title = "wants to open",
     },
-    float = true,
-    size = { 1000, 600 },
+    float  = true,
+    size   = { 1000, 600 },
     center = true,
 })
 
 hl.window_rule({
-    name  = "float-discord-picker",
-    match = {
+    name   = "float-discord-picker",
+    match  = {
         class = "discord",
         title = "(?i)open",
     },
-    float = true,
-    size = { 1000, 600 },
+    float  = true,
+    size   = { 1000, 600 },
     center = true,
 })
 
@@ -616,7 +599,8 @@ hl.window_rule({
 -- Autostart
 hl.on("hyprland.start", function()
     -- Machine spec generator & hypridle launcher
-    hl.exec_cmd([[bash -c 'pkill hypridle; [ ! -f ~/.config/hypr/machine-spec.conf ] && echo -e "$lock_timeout = 150\nscreen_off_timeout = 300\nsuspend_timeout = 600" > ~/.config/hypr/machine-spec.conf; hypridle']])
+    hl.exec_cmd(
+    [[bash -c 'pkill hypridle; [ ! -f ~/.config/hypr/machine-spec.conf ] && echo -e "$lock_timeout = 150\nscreen_off_timeout = 300\nsuspend_timeout = 600" > ~/.config/hypr/machine-spec.conf; hypridle']])
 
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("swaync")
