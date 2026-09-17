@@ -614,8 +614,11 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal")
 
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-    hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11,ssh")
+    -- 1. Export session & DBus variables to systemd user instance
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS")
+    -- 2. Start gnome-keyring systemd socket instead of executing the binary directly
+    hl.exec_cmd("systemctl --user start gnome-keyring-daemon.service")
 
     -- Moved here so these actually launch on boot
     hl.exec_cmd("waybar")
