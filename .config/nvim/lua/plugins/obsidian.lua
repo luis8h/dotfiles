@@ -1,30 +1,39 @@
 return {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    "obsidian-nvim/obsidian.nvim", -- <- changed from epwalsh
+    version = "*",
     lazy = true,
     ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    -- event = {
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    --   -- refer to `:h file-pattern` for more examples
-    --   "BufReadPre path/to/my-vault/*.md",
-    --   "BufNewFile path/to/my-vault/*.md",
-    -- },
     dependencies = {
-        -- Required.
         "nvim-lua/plenary.nvim",
-
-        -- see below for full list of optional dependencies 👇
+    },
+    keys = {
+        { "<leader>od",  "<cmd>ObsidianToday<CR>",            desc = "Obsidian Today" },
+        { "<leader>os",  "<cmd>ObsidianSearch<CR>",           desc = "Obsidian Search" },
+        { "<leader>oo",  "<cmd>ObsidianQuickSwitch<CR>",      desc = "Obsidian Quick Switch" },
+        { "<leader>on",  "<cmd>ObsidianNew<CR>",              desc = "Obsidian New Note" },
+        { "gf",          "<cmd>ObsidianFollowLink<CR>",       desc = "Obsidian Follow Link" },
+        { "<leader>oc",  "<cmd>ObsidianToggleCheckbox<CR>",   desc = "Obsidian Toggle Checkbox" },
+        { "<leader>otd", "<cmd>ObsidianTemplate default<CR>", desc = "Obsidian insert default template" },
+        { "<leader>ot",  "<cmd>ObsidianTemplate<CR>",         desc = "Obsidian insert" },
     },
     opts = {
+        completion = {
+            blink = true,
+            min_chars = 2,
+        },
+        daily_notes = {
+            folder = "daily",
+            template = "default-daily"
+        },
+        disable_frontmatter = true,
         workspaces = {
             {
                 name = "kbase",
-                path = "~/store/sync/kbase/",
+                path = vim.fn.expand(vim.env.H8_KBASE_DIR),
             },
         },
-
-        -- see below for full list of options 👇
+        templates = {
+            folder = vim.fn.expand(vim.env.H8_KBASE_DIR .. "/templates"),
+        },
     },
 }

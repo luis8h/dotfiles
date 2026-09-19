@@ -77,11 +77,11 @@ return {
             end
         end, { silent = true })
 
-        -- open floating oil buffer
-        vim.keymap.set("n", "<leader>of", function()
-            local current_file_dir = vim.fn.expand('%:p:h')
-            require('oil').open_float(current_file_dir)
-        end, { silent = true })
+        -- open floating oil buffer (deactivated because this keybind is now used for obsidian)
+        -- vim.keymap.set("n", "<leader>of", function()
+        --     local current_file_dir = vim.fn.expand('%:p:h')
+        --     require('oil').open_float(current_file_dir)
+        -- end, { silent = true })
 
         -- change current oil buffer to nvim root directory
         vim.keymap.set("n", "<leader>cd", function()
