@@ -48,3 +48,6 @@ vim.o.cursorline = true
 -- vim.cmd [[
 -- highlight CursorLine cterm=NONE ctermbg=darkgrey guibg=lightgrey
 -- ]]
+
+-- set conceallevel so that markdown looks nicer (can be changed back to default by `set conceallevel=0` using : command)
+vim.o.conceallevel = 2
