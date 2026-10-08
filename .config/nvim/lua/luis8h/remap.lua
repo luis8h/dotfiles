@@ -166,3 +166,7 @@ local function open_daily()
 end
 -- Map it to <leader>dn (Daily Note)
 vim.keymap.set("n", "<leader>dn", open_daily, { desc = "Open/Create Daily Note" })
+
+-- add position before yanks and visual mode to jumplist
+vim.keymap.set("n", "y", "m'y", { desc = "yank, remembering position in jumplist" })
+vim.keymap.set("n", "v", "m'v")
