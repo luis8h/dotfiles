@@ -8,12 +8,21 @@
     "margin": 0,
 
 
-    "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
+    // "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
+    "modules-left": ["custom/layout", "hyprland/workspaces", "hyprland/submap"],
     "modules-center": ["clock"],
     "modules-right":  ["tray", "custom/swaync", "pulseaudio", "network", "cpu", "memory", "custom/idle_mode", "battery"],
 
 
     // ─── Left ────────────────────────────────────────────────────────────────────
+    "custom/layout": {
+        "exec": "~/.config/waybar/scripts/layout.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 1,        // catches workspace switches and layout changes from anywhere
+        "signal": 9,          // instant refresh via: pkill -RTMIN+9 waybar
+        "tooltip": true
+    },
 
     "hyprland/workspaces": {
         "disable-scroll": true,

@@ -303,9 +303,22 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "down", hl.dsp.window.move({ dir
 
 hl.bind(mainMod .. " + " .. "F", hl.dsp.window.fullscreen())
 
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "W", hl.dsp.window.pin())
+hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pin())
 
--- sticky window (≈ sway sticky toggle)
+hl.bind(mainMod .. " + W", function()
+    local ws = hl.get_active_workspace()
+    if not ws then return end
+
+    local target = (ws.tiled_layout == "scrolling") and "dwindle" or "scrolling"
+    hl.workspace_rule({ workspace = tostring(ws.id), layout = target })
+end)
+
+hl.config({
+    scrolling = {
+        column_width = 0.95,
+    },
+})
+
 
 -- ─── Monitor focus and move ──────────────────────────────────────────────────
 

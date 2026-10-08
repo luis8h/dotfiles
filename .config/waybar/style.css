@@ -233,3 +233,15 @@ tooltip label {
   padding: 4px 10px;
   color: #ffffff;
 }
+
+/* ─── Layout indicator ─── */
+#custom-layout {
+  min-width: 10px;          /* fixed width, so glyph changes never shift the workspaces */
+  padding: 0 8px 0 10px;
+  color: rgba(255, 255, 255, 0.35);   /* default: dim, same as inactive states */
+}
+
+#custom-layout.dwindle   { color: rgba(255, 255, 255, 0.35); }
+#custom-layout.scrolling { color: #8fb4d9; }                  /* soft blue: noticeable, not loud */
+#custom-layout.master,
+#custom-layout.monocle   { color: #b4a7d6; }                  /* soft lavender */
