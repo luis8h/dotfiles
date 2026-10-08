@@ -3,10 +3,11 @@ return {
     version = '*',
     config = function()
         require('mini.ai').setup({
+            n_lines = 500,
             custom_textobjects = {
-                -- Enables vi* and va* for Markdown bold (**text**)
-                ['*'] = { '%*%*().-()%*%*' },
-            }
+                ['*'] = { '%*().-()%*' },
+                t = false,
+            },
         })
     end,
 }
