@@ -50,4 +50,4 @@ vim.o.cursorline = true
 -- ]]
 
 -- set conceallevel so that markdown looks nicer (can be changed back to default by `set conceallevel=0` using : command)
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0 -- reset to 0 because it was annoying to edit markdown codeblocks
